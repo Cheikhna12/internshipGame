@@ -16,7 +16,7 @@ git clone <votre-repo>
 cd java_2D
 
 # Compiler le projet
-mvn clean x²
+mvn clean install
 
 # Lancer le jeu
 mvn exec:java
