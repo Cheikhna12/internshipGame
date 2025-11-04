@@ -9,7 +9,7 @@ public class Location {
     private final float width;
     private final float height;
     private final float[] color;
-    
+
     public Location(String name, String icon, float x, float y, float width, float height, float[] color) {
         this.name = name;
         this.icon = icon;
@@ -50,7 +50,6 @@ public class Location {
         return height;
     }
 
-    
     public float[] getColor() {
         return color;
     }
