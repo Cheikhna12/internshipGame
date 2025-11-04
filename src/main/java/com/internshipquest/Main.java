@@ -13,7 +13,8 @@ public class Main {
         config.setWindowedMode(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         config.setResizable(false);
         config.setForegroundFPS(60);
-        
+
         new Lwjgl3Application(new IntershipQuestGame(), config);
     }
 }
+
