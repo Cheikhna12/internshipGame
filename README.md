@@ -3,6 +3,8 @@
 ##  Lancer
 
 ```bash
+mvn clean install
+mvn clean compile
 mvn exec:java
 ```
 ```
