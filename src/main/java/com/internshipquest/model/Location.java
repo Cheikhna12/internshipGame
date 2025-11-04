@@ -20,11 +20,11 @@ public class Location {
         this.color = color;
     }
     
-
-    public boolean contains(float pointX, float pointY) {
-        return pointX >= x && pointX <= x + width &&
-               pointY >= y && pointY <= y + height;
-    }
+// verify if this place is in the map
+//    public boolean contains(float pointX, float pointY) {
+//        return pointX >= x && pointX <= x + width &&
+//               pointY >= y && pointY <= y + height;
+//    }
     
     public String getName() {
         return name;
