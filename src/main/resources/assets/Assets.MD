@@ -2,7 +2,7 @@
 
 ## tileset.png
 le fichier **tileset.png** contient les différentes cases pour utiliser par la **city_map**
-les images sont numeroté:
+les images sont numérotés:
 1  2  3  4  5  6  7  8
 9 10 11 12 13 14 15 16.
 
