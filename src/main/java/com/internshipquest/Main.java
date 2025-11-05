@@ -14,7 +14,7 @@ public class Main {
         config.setResizable(false);
         config.setForegroundFPS(60);
 
-        new Lwjgl3Application(new IntershipQuestGame(), config);
+        new Lwjgl3Application(new InternshipQuestGame(), config);
     }
 }
 
