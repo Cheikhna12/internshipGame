@@ -37,7 +37,7 @@ public class LocationScreen implements Screen {
         this.game = game;
         this.location = location;
         this.mapScreen = mapScreen;
-        this.hero = hero;
+        this.hero = game.getHero();
 
         if (location.getName().equals("FitnessClub")) {
             gym = new FitnessClub();
