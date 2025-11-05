@@ -22,7 +22,6 @@ public class WorldMapScreen implements Screen {
     private Location hoveredLocation;
     private Hero hero;
 
-    // Textures des icônes
     private Texture iconHome;
     private Texture iconFitnessClub;
 
@@ -39,7 +38,6 @@ public class WorldMapScreen implements Screen {
         // Créer les lieux
         locations.add(new Location("Maison", "assets/icon_home.png", 200, 550));
         locations.add(new Location("FitnessClub", "assets/icon_fitness.png", 700, 150));
-        // Ajouter d'autres lieux ici si besoin
     }
 
     @Override
@@ -48,7 +46,6 @@ public class WorldMapScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Dessiner la carte
         cityMap.render(game.batch, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         game.batch.begin();
@@ -60,21 +57,16 @@ public class WorldMapScreen implements Screen {
 
         // Dessiner les icônes et noms des lieux
         for (Location loc : locations) {
-            Texture icon = null;
-            if (loc.getName().equals("Maison")) icon = iconHome;
-            else if (loc.getName().equals("FitnessClub")) icon = iconFitnessClub;
+            Texture icon = loc.getName().equals("Maison") ? iconHome : iconFitnessClub;
+            game.batch.draw(icon, loc.getX(), loc.getY(), loc.getWidth(), loc.getHeight());
 
-            if (icon != null) {
-                game.batch.draw(icon, loc.getX(), loc.getY(), loc.getWidth(), loc.getHeight());
-            }
-
-            // Dessiner le nom sous l’icône
+            // Nom sous l’icône
             game.font.getData().setScale(1.2f);
             game.font.setColor(1f, 1f, 1f, 1f);
             game.font.draw(game.batch, loc.getName(), loc.getX(), loc.getY() - 5);
         }
 
-        // Affichage du survol
+        // Survol d’un lieu
         if (hoveredLocation != null) {
             game.font.getData().setScale(2f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
@@ -93,10 +85,8 @@ public class WorldMapScreen implements Screen {
         for (Location loc : locations) {
             if (loc.contains(mouse.x, mouse.y)) {
                 hoveredLocation = loc;
-
                 if (Gdx.input.justTouched()) {
-                    // Passer à l'écran du lieu
-                    game.setScreen(new LocationScreen(game, loc, this, hero));
+                    game.setScreen(new com.internshipquest.screens.LocationScreen(game, loc, this, hero));
                 }
                 break;
             }
