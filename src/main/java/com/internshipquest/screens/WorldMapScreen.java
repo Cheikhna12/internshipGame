@@ -41,8 +41,8 @@ public class WorldMapScreen implements Screen {
         iconFitnessClub = new Texture("assets/icon_fitness.png");
 
         // Créer les lieux
-        locations.add(new Location("Maison", "assets/icon_home.png", 200, 550));
-        locations.add(new Location("FitnessClub", "assets/icon_fitness.png", 700, 150));
+        locations.add(new Location("Maison", "assets/icon_home.png", 150, 230));
+        locations.add(new Location("FitnessClub", "assets/icon_fitness.png", 780, 450));
     }
 
     @Override
@@ -55,10 +55,6 @@ public class WorldMapScreen implements Screen {
 
         game.batch.begin();
 
-        // Titre principal
-        game.font.getData().setScale(2.5f);
-        game.font.setColor(1f, 1f, 1f, 1f);
-        game.font.draw(game.batch, "SIM LIFE", 30, 690);
 
         // Dessiner les icônes et noms des lieux
         for (Location loc : locations) {
