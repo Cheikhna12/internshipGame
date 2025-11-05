@@ -5,7 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.*;
 
@@ -22,6 +25,13 @@ public class LocationScreen implements Screen {
 
     private FitnessClub gym;
     private Texture gymBackground;
+    private BitmapFont font;
+
+    // zone "Return to world Map"
+    private final float returnX = 50;
+    private final float returnY = 80;
+    private final float returnWidth = 250;
+    private final float returnHeight = 30;
 
     public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen, Hero hero) {
         this.game = game;
@@ -32,6 +42,10 @@ public class LocationScreen implements Screen {
         if (location.getName().equals("FitnessClub")) {
             gym = new FitnessClub();
         }
+
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        font.setColor(1f, 1f, 1f, 1f);
     }
 
     @Override
@@ -53,55 +67,65 @@ public class LocationScreen implements Screen {
             game.batch.draw(gymBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
-        // Texte en bleu
-        game.font.getData().setScale(2f);
-        game.font.draw(game.batch, "🏠 Lieu : " + location.getName(), 50, 650);
+        // Texte principal
+        font.getData().setScale(2f);
+        font.draw(game.batch, location.getName(), 50, 650);
 
         if (gym != null) gym.update(delta);
 
         if (gym != null && gym.isShowingMessage()) {
-            game.font.getData().setScale(1.5f);
-            game.font.draw(game.batch, gym.getCurrentMessage(), 50, 400);
+            font.getData().setScale(1.5f);
+            font.draw(game.batch, gym.getCurrentMessage(), 50, 400);
         } else {
             actions.clear();
             int yPos = 400;
             if (location.getName().equals("FitnessClub")) {
-                addAction("1. Faire des pompes", 70, yPos, () -> gym.pushUps(hero));
+                addAction("1. Do Push-up", 70, yPos, () -> gym.pushUps(hero));
+                addAction("2. Do Deadlift", 70, yPos - 50, () -> gym.deadlift(hero));
             }
 
-            game.font.getData().setScale(1.8f);
+            font.getData().setScale(1.8f);
             for (ActionZone a : actions) {
-                game.font.draw(game.batch, a.text, a.x, a.y);
+                font.draw(game.batch, a.text, a.x, a.y);
             }
         }
 
-        game.font.getData().setScale(1.5f);
-        game.font.draw(game.batch, "[ECHAP] Retour à la carte", 50, 80);
+        game.batch.end();
 
+        game.batch.begin();
+        font.getData().setScale(1.5f);
+        font.draw(game.batch, "Return to world Map", returnX, returnY);
         game.batch.end();
 
         handleInput();
     }
 
     private void addAction(String text, float x, float y, Runnable action) {
-        Rectangle rect = new Rectangle(x, y - 30, 600, 40);
-        actions.add(new ActionZone(text, x, y, rect, action));
+        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 600, 40), action));
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(mapScreen);
-        }
-
-        if (!actions.isEmpty() && Gdx.input.justTouched()) {
-            float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
+        if (Gdx.input.justTouched()) {
             float clickX = Gdx.input.getX();
+            float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
+            // Zone cliquable du texte "Return to world Map"
+            if (clickX >= returnX && clickX <= returnX + returnWidth &&
+                    clickY >= returnY - returnHeight && clickY <= returnY) {
+                game.setScreen(mapScreen);
+                return;
+            }
+
+            // Vérification des actions normales
             for (ActionZone a : actions) {
                 if (a.bounds.contains(clickX, clickY)) {
                     a.action.run();
                 }
             }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(mapScreen);
         }
     }
 
@@ -109,18 +133,21 @@ public class LocationScreen implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
+
     @Override
     public void dispose() {
         if (gymBackground != null) gymBackground.dispose();
+        if (font != null) font.dispose();
+        if (shapeRenderer != null) shapeRenderer.dispose();
     }
 
     private static class ActionZone {
         String text;
         float x, y;
-        Rectangle bounds;
+        com.badlogic.gdx.math.Rectangle bounds;
         Runnable action;
 
-        ActionZone(String text, float x, float y, Rectangle bounds, Runnable action) {
+        ActionZone(String text, float x, float y, com.badlogic.gdx.math.Rectangle bounds, Runnable action) {
             this.text = text;
             this.x = x;
             this.y = y;
