@@ -31,8 +31,8 @@ public class WorldMapScreen implements Screen {
     private Texture iconFitnessClub;
 
     public WorldMapScreen(InternshipQuestGame game) {
+        this.hero=game.getHero();
         this.game = game;
-        this.hero = new Hero();
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 

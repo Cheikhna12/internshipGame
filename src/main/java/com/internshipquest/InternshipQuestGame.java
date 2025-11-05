@@ -4,15 +4,19 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.internshipquest.screens.WorldMapScreen;
+import com.internshipquest.model.*;
+
 
 public class InternshipQuestGame extends Game {
     public SpriteBatch batch;
-    public BitmapFont font; // <- ajouté
+    public BitmapFont font;
+    private Hero hero;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
+        hero = new Hero();
         setScreen(new WorldMapScreen(this));
     }
 
@@ -26,5 +30,9 @@ public class InternshipQuestGame extends Game {
         if (batch != null) batch.dispose();
         if (font != null) font.dispose();
         if (getScreen() != null) getScreen().dispose();
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 }
