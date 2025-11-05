@@ -32,4 +32,4 @@ Libère la mémoire des textures et objets GPU quand tu quittes le jeu.
         mapRenderer.render();
     }
 
-??? pas fini
+??? pas fini manque le batch pour suivre le joueur
