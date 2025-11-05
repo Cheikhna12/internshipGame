@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.IntershipQuestGame;
 import com.internshipquest.model.Location;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
+import com.internshipquest.model.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,10 @@ public class WorldMapScreen implements Screen {
     private Texture iconHome;
     private Texture iconSchool;
     private Texture iconCompany;
-
     private Texture iconMarket;
+
+    private SpriteBatch heroBatch;
+    private Hero hero;
     
 
     public WorldMapScreen(IntershipQuestGame game) {
@@ -102,6 +106,10 @@ public class WorldMapScreen implements Screen {
             game.font.draw(game.batch, hoveredLocation.getName() + " - Cliquez pour entrer", 20, 40);
         }
 
+        heroBatch.begin();
+        hero.render(heroBatch);
+        heroBatch.end();
+
         game.batch.end();
 
         checkMouse();
@@ -137,7 +145,10 @@ public class WorldMapScreen implements Screen {
     
 
     @Override
-    public void show() {}
+    public void show() {
+         heroBatch = new SpriteBatch();
+         hero = new Hero();
+    }
 
     @Override
     public void resize(int width, int height) {}
@@ -164,5 +175,8 @@ public class WorldMapScreen implements Screen {
         iconSchool.dispose();
         iconCompany.dispose();
         iconMarket.dispose();
+
+        heroBatch.dispose();
+
     }
 }
