@@ -37,7 +37,7 @@ public class LocationScreen implements Screen {
         this.game = game;
         this.location = location;
         this.mapScreen = mapScreen;
-        this.hero = hero;
+        this.hero = game.getHero();
 
         if (location.getName().equals("FitnessClub")) {
             gym = new FitnessClub();
@@ -70,6 +70,8 @@ public class LocationScreen implements Screen {
         // Texte principal
         font.getData().setScale(2f);
         font.draw(game.batch, location.getName(), 50, 650);
+        font.getData().setScale(1.5f);
+        font.draw(game.batch,"Your current energy is "+hero.getEnergy()+".", 50, 600);
 
         if (gym != null) gym.update(delta);
 
@@ -109,6 +111,10 @@ public class LocationScreen implements Screen {
             float clickX = Gdx.input.getX();
             float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
+            if (gym != null && gym.isShowingMessage()) {
+                return;
+            }
+
             // Zone cliquable du texte "Return to world Map"
             if (clickX >= returnX && clickX <= returnX + returnWidth &&
                     clickY >= returnY - returnHeight && clickY <= returnY) {
@@ -138,7 +144,6 @@ public class LocationScreen implements Screen {
     public void dispose() {
         if (gymBackground != null) gymBackground.dispose();
         if (font != null) font.dispose();
-        if (shapeRenderer != null) shapeRenderer.dispose();
     }
 
     private static class ActionZone {
