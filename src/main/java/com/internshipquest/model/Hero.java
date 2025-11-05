@@ -46,7 +46,6 @@ public class Hero {
         this.y = 100;
 
         this.texture = new Texture("assets/Hero.png");
-        texture.setSize
     }
 
     //methods
