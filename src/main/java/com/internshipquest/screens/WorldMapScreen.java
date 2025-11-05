@@ -3,6 +3,8 @@ package com.internshipquest.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
@@ -10,6 +12,7 @@ import com.internshipquest.model.Hero;
 import com.internshipquest.model.Location;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
+import com.internshipquest.model.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ public class WorldMapScreen implements Screen {
     private final List<Location> locations;
     private final CityMapRenderer cityMap;
     private Location hoveredLocation;
+
+    private SpriteBatch heroBatch;
     private Hero hero;
 
     private Texture iconHome;
@@ -73,6 +78,10 @@ public class WorldMapScreen implements Screen {
             game.font.draw(game.batch, hoveredLocation.getName() + " - Cliquez pour entrer", 20, 40);
         }
 
+        heroBatch.begin();
+        hero.render(heroBatch);
+        heroBatch.end();
+
         game.batch.end();
 
         checkMouse();
@@ -93,7 +102,11 @@ public class WorldMapScreen implements Screen {
         }
     }
 
-    @Override public void show() {}
+    @Override
+    public void show() {
+         heroBatch = new SpriteBatch();
+         hero = new Hero();
+    }
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}
     @Override public void resume() {}
@@ -103,6 +116,7 @@ public class WorldMapScreen implements Screen {
     public void dispose() {
         cityMap.dispose();
         iconHome.dispose();
+        heroBatch.dispose();
         iconFitnessClub.dispose();
     }
 }
