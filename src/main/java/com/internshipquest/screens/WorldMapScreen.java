@@ -12,7 +12,7 @@ import com.internshipquest.model.Hero;
 import com.internshipquest.model.Location;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
-import com.internshipquest.model.Hero;
+
 
 import java.util.ArrayList;
 import java.util.List;
