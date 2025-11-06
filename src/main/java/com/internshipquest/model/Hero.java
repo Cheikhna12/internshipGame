@@ -3,40 +3,18 @@ package com.internshipquest.model;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Hero {
+public class Hero extends AbstractHero{
 
-    // attributes
-    private int endurance;
-    private int energy;
-    // position
-    private float x;
-    private float y;
-    //texture
-    private Texture texture;
-
-    // getters
-    public int getEndurance() {return endurance;}
-    public int getEnergy() {return energy;}
-    public float getX() {return x;}
-    public float getY() {return y;}
-    public Texture getTexture() {return texture;}
-
-    // setters
-    public void setEndurance(int endurance) {this.endurance = endurance;}
-    public void setEnergy(int energy) {this.energy = energy;}
-    public void setX(float x) {this.x = x;}
-    public void setY(float y) {this.y = y;}
+    //attribute
+    private final String name;
+    private final Texture texture = new Texture("assets/Hero.png");
 
     // constructor
+    // template : public Hero(int endurance,  int social, int luck,
+    // int skills, int motivation, int money, int energy, Texture texture)
     public Hero(){
-
-        this.endurance = 100;
-        this.energy = 100;
-
-        this.x = 100;
-        this.y = 100;
-
-        this.texture = new Texture("assets/Hero.png");
+        super(100, 20, 5, 0, 50, 500, 100, new Texture("assets/Hero.png"));
+        this.name = "Zeldo";
     }
 
     //methods
@@ -44,4 +22,6 @@ public class Hero {
         batch.draw(texture,x,y,40,40);
     }
 
+    //getter
+    public String getName() {return name;}
 }
