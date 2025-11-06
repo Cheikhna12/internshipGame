@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.*;
+import com.internshipquest.model.activity.AActivity;
+import com.internshipquest.model.activity.ActivityFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +33,14 @@ public class LocationScreen implements Screen {
     private final float returnWidth = 250;
     private final float returnHeight = 30;
 
-    public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen, Hero hero) {
+    public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen) {
         this.game = game;
         this.location = location;
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
 
         if (location.getName().equals("FitnessClub")) {
-            gym = new FitnessClub();
+            gym = new FitnessClub(game);
         }
 
         font = new BitmapFont();
@@ -71,7 +71,12 @@ public class LocationScreen implements Screen {
         font.getData().setScale(2f);
         font.draw(game.batch, location.getName(), 50, 900);
         font.getData().setScale(1.5f);
-        font.draw(game.batch,"Your current energy is "+hero.getEnergy()+".", 50, 850);
+        font.draw(game.batch,"Your current energy is " + hero.getEnergy() + ".", 50, 850);
+
+        Day day = game.getDay();
+        if (day != null) {
+            font.draw(game.batch,"It's " + day.getHour() + "h.", 50, 825);
+        }
 
         if (gym != null) gym.update(delta);
 
@@ -80,10 +85,15 @@ public class LocationScreen implements Screen {
             font.draw(game.batch, gym.getCurrentMessage(), 50, 400);
         } else {
             actions.clear();
-            int yPos = 650;
+            int yPos = 750;
             if (location.getName().equals("FitnessClub")) {
-                addAction("1. Do Push-up", 170, yPos, () -> gym.pushUps(hero));
-                addAction("2. Do Deadlift", 170, yPos - 50, () -> gym.deadlift(hero));
+                List<AActivity> activities = ActivityFactory.getFitnessActivities();
+                for (int i = 0; i < activities.size(); i++) {
+                    final int index = i;
+                    AActivity activity = activities.get(i);
+                    addAction((i + 1) + ". " + activity.getName(), 170, yPos - i * 50,
+                            () -> gym.performActivity(index, hero, day));
+                }
             }
 
             font.getData().setScale(1.8f);
@@ -115,14 +125,13 @@ public class LocationScreen implements Screen {
                 return;
             }
 
-            // Zone cliquable du texte "Return to world Map"
+            // Zone cliquable du texte "Return to world Map avec arret direct pour éviter de pouvoir lancer une autre action pendantle chargement"
             if (clickX >= returnX && clickX <= returnX + returnWidth &&
                     clickY >= returnY - returnHeight && clickY <= returnY) {
                 game.setScreen(mapScreen);
                 return;
             }
 
-            // Vérification des actions normales
             for (ActionZone a : actions) {
                 if (a.bounds.contains(clickX, clickY)) {
                     a.action.run();

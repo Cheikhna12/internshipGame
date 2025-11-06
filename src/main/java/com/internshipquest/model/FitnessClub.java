@@ -1,32 +1,39 @@
 package com.internshipquest.model;
 
+import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.activity.AActivity;
+import com.internshipquest.model.activity.ActivityFactory;
+
+import java.util.List;
+
 public class FitnessClub extends ALieuVisitable {
 
-    public void pushUps(Hero hero) {
-        int newEndurance = hero.getEndurance() + 3;
-        int newEnergy = hero.getEnergy() - 5;
+    private List<AActivity> activities;
 
-        currentMessage = "After 1 hour of push-ups, your endurance increased to "
-                + newEndurance + " but your energy decreased to " + newEnergy;
+    public FitnessClub(InternshipQuestGame game) {
+        super(game);
+        activities = ActivityFactory.getFitnessActivities();
+    }
 
-        hero.setEndurance(newEndurance);
-        hero.setEnergy(newEnergy);
 
+    public void performActivity(int index, Hero hero, Day day) {
+        if (index < 0 || index >= activities.size()) return;
+
+        AActivity activity = activities.get(index);
+        activity.doIt(hero, day);
+
+        // Affichage du message
+        currentMessage = activity.getMessage();
         showingMessage = true;
         messageTimer = 0f;
     }
 
-    public void deadlift(Hero hero) {
-        int newEndurance = hero.getEndurance() + 8;
-        int newEnergy = hero.getEnergy() - 10;
-
-        currentMessage = "After 1 hour of deadlift, your endurance increased to "
-                + newEndurance + " but your energy decreased to " + newEnergy;
-
-        hero.setEndurance(newEndurance);
-        hero.setEnergy(newEnergy);
-
-        showingMessage = true;
-        messageTimer = 0f;
+    public List<AActivity> getActivities() {
+        return activities;
     }
 }
+
+
+
+
+

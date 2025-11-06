@@ -11,12 +11,14 @@ public class InternshipQuestGame extends Game {
     public SpriteBatch batch;
     public BitmapFont font;
     private Hero hero;
+    protected Day day;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
         hero = new Hero();
+        day = new Day(this,hero);
         setScreen(new WorldMapScreen(this));
     }
 
@@ -34,5 +36,9 @@ public class InternshipQuestGame extends Game {
 
     public Hero getHero() {
         return hero;
+    }
+
+    public Day getDay() {
+        return day;
     }
 }
