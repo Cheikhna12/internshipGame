@@ -55,7 +55,7 @@ public class WorldMapScreen implements Screen {
         
         game.font.getData().setScale(1.8f);
         game.font.setColor(1f, 1f, 1f, 1f);
-        game.font.draw(game.batch, "Day: "+day.getDay()+" - Hour: "+day.getHour(), 40, 940);
+        game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
         for (Location loc : locations) {
             float x = loc.getX();
@@ -122,10 +122,14 @@ public class WorldMapScreen implements Screen {
                 hoveredLocation = loc;
 
                 if (Gdx.input.justTouched()) {
+
                     System.out.println("[CLICK] " + loc.getName());
 
                     if (hero.getCurrentLocation() == loc) {
                         System.out.println("[WORLDMAP] Entrée dans " + loc.getName());
+//                    if (!loc.isOpen(game.getDay())) {
+//                        font.draw(game.batch, "The " + location.getName() + " is currently closed.", 50, 400);
+//                    } else {
                         game.setScreen(new LocationScreen(game, loc, this));
                     } else if (!hero.isMoving()) {
                         System.out.println("[WORLDMAP] Déplacement vers " + loc.getName());
@@ -137,13 +141,15 @@ public class WorldMapScreen implements Screen {
         }
     }
 
+
     @Override
     public void show() {
         heroBatch = new SpriteBatch();
 
-        if (hero == null) {
-            hero = new Hero();
-        }
+
+        //if (hero == null) {
+        //  hero = new Hero();
+        //}
         
         if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
             hero.setInitialLocation(locations.get(0));
