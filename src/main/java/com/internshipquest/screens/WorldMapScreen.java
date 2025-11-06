@@ -31,8 +31,8 @@ public class WorldMapScreen implements Screen {
     private Texture iconFitnessClub;
 
     public WorldMapScreen(InternshipQuestGame game) {
-        this.day=game.getDay();
-        this.hero=game.getHero();
+        this.day = game.getDay();
+        this.hero = game.getHero();
         this.game = game;
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
@@ -57,7 +57,7 @@ public class WorldMapScreen implements Screen {
         game.batch.begin();
         game.font.getData().setScale(1.8f);
         game.font.setColor(1f, 1f, 1f, 1f);
-        game.font.draw(game.batch, "Day: "+day.getDay()+" - Hour: "+day.getHour(), 40, 940);
+        game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
         // Dessiner les icônes et noms des lieux
         for (Location loc : locations) {
@@ -94,6 +94,9 @@ public class WorldMapScreen implements Screen {
             if (loc.contains(mouse.x, mouse.y)) {
                 hoveredLocation = loc;
                 if (Gdx.input.justTouched()) {
+//                    if (!loc.isOpen(game.getDay())) {
+//                        font.draw(game.batch, "The " + location.getName() + " is currently closed.", 50, 400);
+//                    } else {
                     game.setScreen(new com.internshipquest.screens.LocationScreen(game, loc, this));
                 }
                 break;
@@ -101,15 +104,28 @@ public class WorldMapScreen implements Screen {
         }
     }
 
+
     @Override
     public void show() {
-         heroBatch = new SpriteBatch();
-         hero = new Hero();
+        heroBatch = new SpriteBatch();
+        hero = new Hero();
     }
-    @Override public void resize(int width, int height) {}
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
