@@ -2,16 +2,14 @@ package com.internshipquest.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,51 +35,80 @@ public class WorldMapScreen implements Screen {
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
-        // Charger les icônes
         iconHome = new Texture("assets/icon_home.png");
         iconFitnessClub = new Texture("assets/icon_fitness.png");
 
-        // Créer les lieux
         locations.add(new Location("Maison", "assets/icon_home.png", 150, 230));
         locations.add(new Location("FitnessClub", "assets/icon_fitness.png", 780, 450));
     }
 
     @Override
     public void render(float delta) {
-        // Nettoyer l’écran
+        hero.update(delta);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         cityMap.render(game.batch, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         game.batch.begin();
+        
         game.font.getData().setScale(1.8f);
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
-        // Dessiner les icônes et noms des lieux
         for (Location loc : locations) {
+            float x = loc.getX();
+            float y = loc.getY();
+            float size = (loc == hoveredLocation) ? 60 : 50;
+            float offset = (loc == hoveredLocation) ? -5 : 0;
+
             Texture icon = loc.getName().equals("Maison") ? iconHome : iconFitnessClub;
-            game.batch.draw(icon, loc.getX(), loc.getY(), loc.getWidth(), loc.getHeight());
 
-            // Nom sous l’icône
+            if (icon != null) {
+                if (hero.getCurrentLocation() == loc && !hero.isMoving()) {
+                    float pulse = (float) (Math.sin(System.currentTimeMillis() / 200.0) * 0.5 + 0.5);
+                    float pulseSize = size + pulse * 5;
+                    float pulseOffset = offset - pulse * 2.5f;
+                    game.batch.setColor(1f, 1f, 1f, 0.3f + pulse * 0.3f);
+                    game.batch.draw(icon, x + pulseOffset, y + pulseOffset, pulseSize, pulseSize);
+                    game.batch.setColor(1f, 1f, 1f, 1f);
+                }
+                game.batch.draw(icon, x + offset, y + offset, size, size);
+            }
+
             game.font.getData().setScale(1.2f);
+            game.font.setColor(0f, 0f, 0f, 0.8f);
+            game.font.draw(game.batch, loc.getName(), x - 10 + 1, y - 10 - 1);
             game.font.setColor(1f, 1f, 1f, 1f);
-            game.font.draw(game.batch, loc.getName(), loc.getX(), loc.getY() - 5);
+            game.font.draw(game.batch, loc.getName(), x - 10, y - 10);
         }
 
-        // Survol d’un lieu
         if (hoveredLocation != null) {
-            game.font.getData().setScale(2f);
+            game.font.getData().setScale(1.8f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
-            game.font.draw(game.batch, hoveredLocation.getName() + " - Cliquez pour entrer", 20, 40);
+            
+            String message;
+            if (hero.getCurrentLocation() == hoveredLocation) {
+                message = hoveredLocation.getName() + " - Cliquez pour entrer";
+            } else if (hero.isMoving()) {
+                message = "En déplacement...";
+            } else {
+                message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
+            }
+            
+            game.font.draw(game.batch, message, 20, 40);
+        } else if (hero.isMoving()) {
+            game.font.getData().setScale(1.5f);
+            game.font.setColor(0.7f, 0.7f, 1f, 1f);
+            game.font.draw(game.batch, "En déplacement...", 20, 40);
         }
+
+        game.batch.end();
 
         heroBatch.begin();
         hero.render(heroBatch);
         heroBatch.end();
-
-        game.batch.end();
 
         checkMouse();
     }
@@ -93,11 +120,21 @@ public class WorldMapScreen implements Screen {
         for (Location loc : locations) {
             if (loc.contains(mouse.x, mouse.y)) {
                 hoveredLocation = loc;
+
                 if (Gdx.input.justTouched()) {
+
+                    System.out.println("[CLICK] " + loc.getName());
+
+                    if (hero.getCurrentLocation() == loc) {
+                        System.out.println("[WORLDMAP] Entrée dans " + loc.getName());
 //                    if (!loc.isOpen(game.getDay())) {
 //                        font.draw(game.batch, "The " + location.getName() + " is currently closed.", 50, 400);
 //                    } else {
-                    game.setScreen(new com.internshipquest.screens.LocationScreen(game, loc, this));
+                        game.setScreen(new LocationScreen(game, loc, this));
+                    } else if (!hero.isMoving()) {
+                        System.out.println("[WORLDMAP] Déplacement vers " + loc.getName());
+                        hero.moveTo(loc);
+                    }
                 }
                 break;
             }
@@ -108,30 +145,35 @@ public class WorldMapScreen implements Screen {
     @Override
     public void show() {
         heroBatch = new SpriteBatch();
-        hero = new Hero();
+
+
+        //if (hero == null) {
+        //  hero = new Hero();
+        //}
+        
+        if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
+            hero.setInitialLocation(locations.get(0));
+            System.out.println("[WORLDMAP] Héros placé à " + locations.get(0).getName());
+        }
     }
 
     @Override
-    public void resize(int width, int height) {
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void pause() {
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {
         cityMap.dispose();
         iconHome.dispose();
-        heroBatch.dispose();
         iconFitnessClub.dispose();
+        heroBatch.dispose();
     }
 }
