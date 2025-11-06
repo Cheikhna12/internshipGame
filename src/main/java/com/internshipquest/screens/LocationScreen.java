@@ -69,9 +69,9 @@ public class LocationScreen implements Screen {
 
         // Texte principal
         font.getData().setScale(2f);
-        font.draw(game.batch, location.getName(), 50, 650);
+        font.draw(game.batch, location.getName(), 50, 900);
         font.getData().setScale(1.5f);
-        font.draw(game.batch,"Your current energy is "+hero.getEnergy()+".", 50, 600);
+        font.draw(game.batch,"Your current energy is "+hero.getEnergy()+".", 50, 850);
 
         if (gym != null) gym.update(delta);
 
@@ -80,10 +80,10 @@ public class LocationScreen implements Screen {
             font.draw(game.batch, gym.getCurrentMessage(), 50, 400);
         } else {
             actions.clear();
-            int yPos = 400;
+            int yPos = 650;
             if (location.getName().equals("FitnessClub")) {
-                addAction("1. Do Push-up", 70, yPos, () -> gym.pushUps(hero));
-                addAction("2. Do Deadlift", 70, yPos - 50, () -> gym.deadlift(hero));
+                addAction("1. Do Push-up", 170, yPos, () -> gym.pushUps(hero));
+                addAction("2. Do Deadlift", 170, yPos - 50, () -> gym.deadlift(hero));
             }
 
             font.getData().setScale(1.8f);
