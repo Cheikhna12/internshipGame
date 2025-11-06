@@ -33,14 +33,14 @@ public class LocationScreen implements Screen {
     private final float returnWidth = 250;
     private final float returnHeight = 30;
 
-    public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen, Hero hero) {
+    public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen) {
         this.game = game;
         this.location = location;
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
 
         if (location.getName().equals("FitnessClub")) {
-            gym = new FitnessClub();
+            gym = new FitnessClub(game);
         }
 
         font = new BitmapFont();

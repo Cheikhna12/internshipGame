@@ -1,12 +1,19 @@
 package com.internshipquest.model;
 
-public abstract class ALieuVisitable{
+import com.internshipquest.InternshipQuestGame;
 
+public abstract class ALieuVisitable {
+
+    protected InternshipQuestGame game;
+    protected Day day;
     protected String currentMessage = null;
     protected float messageTimer = 0f;
     protected boolean showingMessage = false;
 
-    public ALieuVisitable(){}
+    public ALieuVisitable(InternshipQuestGame game){
+        this.game=game;
+        this.day=game.getDay();
+    }
 
 
     public void update(float delta) {

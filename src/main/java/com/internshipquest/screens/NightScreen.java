@@ -31,7 +31,7 @@ public class NightScreen implements Screen {
         this.hero = hero;
 
         stage = new Stage(new ScreenViewport());
-        background = new Texture(Gdx.files.internal("night.png"));
+        background = new Texture(Gdx.files.internal("assets/night.png"));
 
         // --- Configuration du texte ---
         BitmapFont font = new BitmapFont();

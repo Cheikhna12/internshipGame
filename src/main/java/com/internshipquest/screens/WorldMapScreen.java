@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.Hero;
-import com.internshipquest.model.Location;
+import com.internshipquest.model.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
 
@@ -26,11 +25,13 @@ public class WorldMapScreen implements Screen {
 
     private SpriteBatch heroBatch;
     private Hero hero;
+    private Day day;
 
     private Texture iconHome;
     private Texture iconFitnessClub;
 
     public WorldMapScreen(InternshipQuestGame game) {
+        this.day=game.getDay();
         this.hero=game.getHero();
         this.game = game;
         this.locations = new ArrayList<>();
@@ -54,7 +55,9 @@ public class WorldMapScreen implements Screen {
         cityMap.render(game.batch, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         game.batch.begin();
-
+        game.font.getData().setScale(1.8f);
+        game.font.setColor(1f, 1f, 1f, 1f);
+        game.font.draw(game.batch, "Day: "+day.getDay()+" - Hour: "+day.getHour(), 40, 940);
 
         // Dessiner les icônes et noms des lieux
         for (Location loc : locations) {
@@ -91,7 +94,7 @@ public class WorldMapScreen implements Screen {
             if (loc.contains(mouse.x, mouse.y)) {
                 hoveredLocation = loc;
                 if (Gdx.input.justTouched()) {
-                    game.setScreen(new com.internshipquest.screens.LocationScreen(game, loc, this, hero));
+                    game.setScreen(new com.internshipquest.screens.LocationScreen(game, loc, this));
                 }
                 break;
             }
