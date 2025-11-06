@@ -9,11 +9,14 @@ public abstract class AActivity {
     protected int energyUse;     // Energie consommée
     protected String message;    // Message afficher par l'activité
 
+
     public AActivity(String name, int duration, int energyUse) {
         this.name = name;
         this.duration = duration;
         this.energyUse = energyUse;
     }
+
+
 
     public String getName() {
         return name;
