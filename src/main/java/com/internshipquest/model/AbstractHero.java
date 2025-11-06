@@ -72,8 +72,8 @@ abstract public class AbstractHero {
     // public abstract int energyLeft(int endurance);
     // public abstract boolean hasEnoughTime(Activity activity, Day day);
     // public abstract int fatigue();
-    // public abstract Object postuler(Object entreprise);
-    // public abstract void allerVers(Object lieu);
+    // public abstract Object postuler(Entreprise entreprise);
+    // public abstract void allerVers(Lieu lieu);
 
 
     public void dispose() {
