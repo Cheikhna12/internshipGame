@@ -90,7 +90,7 @@ public class LocationScreen implements Screen {
 
         if (lieu != null && lieu.isShowingMessage()) {
             font.getData().setScale(1.5f);
-            font.draw(game.batch, lieu.getCurrentMessage(), 50, 400);}
+            font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
                 int yPos = 750;
@@ -107,7 +107,7 @@ public class LocationScreen implements Screen {
                     final int index = i;
                     AActivity activity = activities.get(i);
 
-                    addAction((i + 1) + ". " + activity.getName(), 170, yPos - i * 50,() -> {
+                    addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
                                 // on cast dynamiquement selon le type du lieu
                                 if (lieu instanceof FitnessClub club) {
                                     club.performActivity(index, hero, day);
