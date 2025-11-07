@@ -6,7 +6,7 @@ import com.internshipquest.model.Hero;
 public class DeadLifts extends AActivity {
     // name, duration, cost
     public DeadLifts() {
-        super("deadlift", 1, 5);
+        super("Do some Deadlifts", 1, 10);
     }
 
     @Override

@@ -11,4 +11,12 @@ public class ActivityFactory {
         list.add(new DeadLifts());
         return list;
     }
+
+
+    public static List<AActivity> getMaisonActivities() {
+        List<AActivity> list = new ArrayList<>();
+        list.add(new Sleep());
+        list.add(new Wait());
+        return list;
+    }
 }

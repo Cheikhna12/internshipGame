@@ -71,4 +71,20 @@ public class Day {
             hourAfterMidnight = 0;
         }
     }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setHourAfterMidnight(int hourAfterMidnight) {
+        this.hourAfterMidnight = hourAfterMidnight;
+    }
+
+    public int getHourAfterMidnight() {
+        return hourAfterMidnight;
+    }
 }
