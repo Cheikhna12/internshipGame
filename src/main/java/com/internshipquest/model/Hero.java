@@ -13,7 +13,7 @@ public class Hero extends AHero{
     // int skills, int motivation, int money, int energy, Texture texture)
     public Hero(){
       
-        super(100, 20, 5, 0, 50, 500, 100);
+        super(35, 20, 5, 0, 50, 500, 100);
         this.name = "Zeldo";
     }
 
