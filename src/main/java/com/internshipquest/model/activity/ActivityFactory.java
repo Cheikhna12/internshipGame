@@ -17,6 +17,7 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new Sleep());
         list.add(new Wait());
+        list.add(new DevWait16h());
         return list;
     }
 }

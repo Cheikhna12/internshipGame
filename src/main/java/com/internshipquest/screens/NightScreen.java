@@ -78,7 +78,7 @@ public class NightScreen implements Screen {
 
         // Après 3 secondes, on passe à la world map
         timeElapsed += delta;
-        if (timeElapsed > 3f) {
+        if (timeElapsed > 6f) {
 //            hero.setPosition(150, 230);
             game.setScreen(new WorldMapScreen(game));
         }
