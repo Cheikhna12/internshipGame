@@ -1,7 +1,7 @@
 package com.internshipquest.model;
 
 
-public class Hero extends AbstractHero{
+public class Hero extends AHero{
     //attribute
     private final String name;
 

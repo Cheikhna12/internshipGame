@@ -9,6 +9,7 @@ public class Location {
     private final float width;
     private final float height;
     private final float[] color;
+    private ALieuVisitable lieu;
 
     // Constructeur principal (tout défini)
     public Location(String name, String icon, float x, float y, float width, float height, float[] color) {
@@ -24,6 +25,15 @@ public class Location {
     // Constructeur simplifié : largeur/hauteur par défaut, couleur blanche
     public Location(String name, String icon, float x, float y) {
         this(name, icon, x, y, 50, 50, new float[]{1f, 1f, 1f}); // largeur=50, hauteur=50, couleur blanche
+    }
+
+
+    public void setLieu(ALieuVisitable lieu) {
+        this.lieu = lieu;
+    }
+
+    public ALieuVisitable getLieu() {
+        return lieu;
     }
 
     // Getters
