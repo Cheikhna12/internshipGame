@@ -16,6 +16,7 @@ public class Sleep extends AActivity {
 //        hero.newEnergy(hero.getEndurance());
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
+        day.setNightTriggered(false);
 
         message = "After a good night, you regenere your energie to "+hero.getEnergy()+".";
     }

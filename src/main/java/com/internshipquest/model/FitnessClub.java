@@ -14,7 +14,7 @@ public class FitnessClub extends ALieuVisitable {
 
     public FitnessClub(InternshipQuestGame game) {
         super(game);
-        this.openHour = 7;
+        this.openHour = 8;
         this.closedHour = 22;
         this.openOnWeekends = true;
         activities = ActivityFactory.getFitnessActivities();
