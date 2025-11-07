@@ -10,6 +10,7 @@ public class Day {
     private int hour;
     private boolean weekend = false;
     private int hourAfterMidnight = 0;
+    private boolean nightTriggered = false; // nouveau flag
 
     public Day(InternshipQuestGame game, Hero hero) {
         this.hero = hero;
@@ -17,14 +18,8 @@ public class Day {
         day += 1;
         this.hour = 7;
         hourAfterMidnight = 0;
+        nightTriggered = false;
     }
-
-
-    // if (this.hour == 10) {
-    //     hero.setEnergy(Hero.calcEnergy(hero.getEndurance()) / 2);
-    // } else {
-    //     hero.setEnergy(Hero.calcEnergy(hero.getEndurance()));
-    // }
 
     public boolean isWeekend() {
         weekend = (day % 6 == 0 || day % 7 == 0);
@@ -39,38 +34,46 @@ public class Day {
         return day;
     }
 
+    public int getHourAfterMidnight() {
+        return hourAfterMidnight;
+    }
+
     public void addHour(int timeAdd) {
-        if (hourAfterMidnight == 0) {
-            if (hour + timeAdd < 24) {
-                hour += timeAdd;
-            } else if (hour + timeAdd >= 24 && hour + timeAdd < 27) {
-                hour = hour + timeAdd - 24;
-                hourAfterMidnight = hour;
-            } else {
-                hour = 3;
-                hourAfterMidnight = 3;
+        if (hour < 24 && !nightTriggered) {
+            hour += timeAdd;
+            if (hour >= 24) {
+                hourAfterMidnight = hour - 24;
+                hour = hourAfterMidnight;
+                nightTriggered = true;
             }
-        } else if (hourAfterMidnight + timeAdd < 3) {
-            hour = hourAfterMidnight + timeAdd;
-            hourAfterMidnight = hour;
+
         } else {
-            hour = 3;
-            hourAfterMidnight = 3;
+            hourAfterMidnight += timeAdd;
+            hour = hourAfterMidnight;
+            nightTriggered = true;
         }
-
-        verifHour();
-    }
-
-    public void verifHour() {
-        if (this.hourAfterMidnight>= 3) {
-            this.hourAfterMidnight = 3;
+        System.out.println(hourAfterMidnight);
+        System.out.println(nightTriggered);
+        // Bloquer après 3h du matin
+        if (nightTriggered && hourAfterMidnight >= 3) {
             game.setScreen(new NightScreen(game, hero));
-            this.day += 1;
-            this.hour = 10;        // réveil à 10h car fatigue
-            //     hero.setEnergy(Hero.calcEnergy(hero.getEndurance()) / 2); //Energie divisé par 2 le jour suivant
+
+            day += 1;       // jour suivant
+            hour = 10;      // réveil à 10h
             hourAfterMidnight = 0;
+            nightTriggered = false;
         }
     }
+
+//    public void verifHour() {
+//        if (!nightTriggered && hourAfterMidnight >= 3) {
+//            nightTriggered = true;
+//            game.setScreen(new NightScreen(game, hero));
+//            day += 1;
+//            hour = 10;
+//            hourAfterMidnight = 0;
+//        }
+//    }
 
     public void setDay(int day) {
         this.day = day;
@@ -84,7 +87,7 @@ public class Day {
         this.hourAfterMidnight = hourAfterMidnight;
     }
 
-    public int getHourAfterMidnight() {
-        return hourAfterMidnight;
+    public void setNightTriggered(boolean nightTriggered) {
+        this.nightTriggered = nightTriggered;
     }
 }
