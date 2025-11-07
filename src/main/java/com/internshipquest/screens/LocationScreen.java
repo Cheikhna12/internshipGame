@@ -114,7 +114,7 @@ public class LocationScreen implements Screen {
 
                 // On détermine quelles activités charger selon le lieu
                 if (lieu instanceof FitnessClub) {
-                    activities = ActivityFactory.getFitnessActivities();
+                    activities = ActivityFactory.getFitnessActivities(lieu);
                 } else if (lieu instanceof Maison) {
                     activities = ActivityFactory.getMaisonActivities();
                 }

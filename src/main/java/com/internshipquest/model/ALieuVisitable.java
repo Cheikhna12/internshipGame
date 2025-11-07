@@ -2,6 +2,9 @@ package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
 import com.badlogic.gdx.graphics.Texture;
+import com.internshipquest.model.activity.AActivity;
+import com.internshipquest.model.activity.ActivityFactory;
+import java.util.List;
 
 public abstract class ALieuVisitable {
 
@@ -13,6 +16,7 @@ public abstract class ALieuVisitable {
     protected int openHour = 9;
     protected int closedHour =21;
     protected boolean openOnWeekends = true;
+    protected List<AActivity> activities;
 
 
     public ALieuVisitable(InternshipQuestGame game){
@@ -54,9 +58,40 @@ public abstract class ALieuVisitable {
         return showingMessage;
     }
 
+    public void performActivity(int index, Hero hero, Day day) {
+        if (index < 0 || index >= activities.size()) return;
+
+        AActivity activity = activities.get(index);
+        if (day.getHour() + activity.getDuration() > closedHour) {
+            currentMessage = "I don't have time for that !!!";
+            showingMessage = true;
+            messageTimer = 0f;
+            return;
+        }
+
+        if (hero.getEnergy() < activity.getEnergyUse() ) {
+            currentMessage = "Damn !!! I am too tired to do that...";
+            showingMessage = true;
+            messageTimer = 0f;
+            return;
+        }
+
+        activity.doIt(hero, day);
+
+        // Affichage du message
+        currentMessage = activity.getMessage();
+        showingMessage = true;
+        messageTimer = 0f;
+    }
+
     public String getCurrentMessage() {
         return currentMessage;
     }
     public Texture getNpcTexture() { return null; }
     public String getNpcMessage() { return null; }
+
+    public List<AActivity> getActivities() {
+        return activities;
+    }
+
 }
