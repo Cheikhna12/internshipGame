@@ -3,10 +3,10 @@ package com.internshipquest.model.activity;
 import com.internshipquest.model.Day;
 import com.internshipquest.model.Hero;
 
-public class Dormir extends AActivity {
+public class Sleep extends AActivity {
     // name, duration, cost
-    public Dormir() {
-        super("Dormir", 0, 0);
+    public Sleep() {
+        super("Sleep until tomorrow", 0, 0);
     }
 
     @Override

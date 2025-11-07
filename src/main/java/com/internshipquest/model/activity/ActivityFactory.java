@@ -15,7 +15,8 @@ public class ActivityFactory {
 
     public static List<AActivity> getMaisonActivities() {
         List<AActivity> list = new ArrayList<>();
-        list.add(new Dormir());
+        list.add(new Sleep());
+        list.add(new Wait());
         return list;
     }
 }
