@@ -12,7 +12,7 @@ abstract public class AHero {
     protected int endurance;
     protected int social;
     protected int luck;
-    protected int skills;
+    protected int codingSkills;
     protected int motivation;
     protected int money;
     protected int energy;
@@ -34,7 +34,7 @@ abstract public class AHero {
     public int getEndurance() {return endurance;}
     public int getSocial() {return social;}
     public int getLuck() {return luck;}
-    public int getSkills() {return skills;}
+    public int getCodingSkills() {return codingSkills;}
     public int getMotivation() {return motivation;}
     public int getMoney() {return money;}
     public int getEnergy() {return energy;}
@@ -50,7 +50,7 @@ abstract public class AHero {
     public void setEnergy(int energy) {this.energy = energy;}
     public void setSocial(int social) {this.social = social;}
     public void setLuck(int luck) {this.luck = luck;}
-    public void setSkills(int skills) {this.skills = skills;}
+    public void setSkills(int skills) {this.codingSkills = skills;}
     public void setMotivation(int motivation) {this.motivation = motivation;}
     public void setMoney(int money) {this.money = money;}
 
@@ -63,7 +63,7 @@ abstract public class AHero {
         this.endurance = endurance;
         this.social = social;
         this.luck = luck;
-        this.skills = skills;
+        this.codingSkills = skills;
         this.motivation = motivation;
         this.money = money;
         this.energy = energy;

@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Maison extends ALieuVisitable {
 
-    private List<AActivity> activities;
 
     public Maison(InternshipQuestGame game) {
         super(game);
@@ -16,23 +15,6 @@ public class Maison extends ALieuVisitable {
         this.closedHour = 24;
         this.openOnWeekends = true;
         activities = ActivityFactory.getMaisonActivities();
-    }
-
-
-    public void performActivity(int index, Hero hero, Day day) {
-        if (index < 0 || index >= activities.size()) return;
-
-        AActivity activity = activities.get(index);
-        activity.doIt(hero, day);
-
-        // Affichage du message
-        currentMessage = activity.getMessage();
-        showingMessage = true;
-        messageTimer = 0f;
-    }
-
-    public List<AActivity> getActivities() {
-        return activities;
     }
 }
 

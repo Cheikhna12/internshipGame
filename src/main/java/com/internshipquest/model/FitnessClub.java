@@ -9,7 +9,6 @@ import java.util.List;
 
 public class FitnessClub extends ALieuVisitable {
 
-    private List<AActivity> activities;
     private Texture coachTexture;
 
     public FitnessClub(InternshipQuestGame game) {
@@ -17,26 +16,10 @@ public class FitnessClub extends ALieuVisitable {
         this.openHour = 8;
         this.closedHour = 22;
         this.openOnWeekends = true;
-        activities = ActivityFactory.getFitnessActivities();
+        activities = ActivityFactory.getFitnessActivities(this);
         coachTexture = new Texture("assets/coach.png");
     }
 
-
-    public void performActivity(int index, Hero hero, Day day) {
-        if (index < 0 || index >= activities.size()) return;
-
-        AActivity activity = activities.get(index);
-        activity.doIt(hero, day);
-
-        // Affichage du message
-        currentMessage = activity.getMessage();
-        showingMessage = true;
-        messageTimer = 0f;
-    }
-
-    public List<AActivity> getActivities() {
-        return activities;
-    }
 
     @Override
     public Texture getNpcTexture() {
