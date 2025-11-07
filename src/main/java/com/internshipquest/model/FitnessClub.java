@@ -3,19 +3,22 @@ package com.internshipquest.model;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
+import com.badlogic.gdx.graphics.Texture;
 
 import java.util.List;
 
 public class FitnessClub extends ALieuVisitable {
 
     private List<AActivity> activities;
+    private Texture coachTexture;
 
     public FitnessClub(InternshipQuestGame game) {
         super(game);
-        this.openHour = 9;
+        this.openHour = 7;
         this.closedHour = 22;
         this.openOnWeekends = true;
         activities = ActivityFactory.getFitnessActivities();
+        coachTexture = new Texture("assets/coach.png");
     }
 
 
@@ -33,6 +36,22 @@ public class FitnessClub extends ALieuVisitable {
 
     public List<AActivity> getActivities() {
         return activities;
+    }
+
+    @Override
+    public Texture getNpcTexture() {
+        return coachTexture;
+    }
+
+    @Override
+    public String getNpcMessage() {
+        return "Hey kid, what do you want to do today ?";
+    }
+
+
+    public void dispose() {
+        if (coachTexture != null)
+            coachTexture.dispose();
     }
 }
 

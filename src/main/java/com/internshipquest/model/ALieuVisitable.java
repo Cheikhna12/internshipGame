@@ -1,6 +1,7 @@
 package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
+import com.badlogic.gdx.graphics.Texture;
 
 public abstract class ALieuVisitable {
 
@@ -12,6 +13,7 @@ public abstract class ALieuVisitable {
     protected int openHour = 9;
     protected int closedHour =21;
     protected boolean openOnWeekends = true;
+
 
     public ALieuVisitable(InternshipQuestGame game){
         this.game=game;
@@ -55,4 +57,6 @@ public abstract class ALieuVisitable {
     public String getCurrentMessage() {
         return currentMessage;
     }
+    public Texture getNpcTexture() { return null; }
+    public String getNpcMessage() { return null; }
 }

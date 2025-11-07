@@ -29,6 +29,10 @@ public class LocationScreen implements Screen {
     private List<AActivity> activities = new ArrayList<>();
     private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
 
+    private Texture npcTexture;
+    private String npcMessage;
+    private boolean showNpcDialog = false;
+
     // zone "Return to world Map"
     private final float returnX = 50;
     private final float returnY = 80;
@@ -51,6 +55,12 @@ public class LocationScreen implements Screen {
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
         font.setColor(1f, 1f, 1f, 1f);
+
+        if (lieu != null && lieu.getNpcTexture() != null) {
+            npcTexture = lieu.getNpcTexture();
+            npcMessage = lieu.getNpcMessage();
+            showNpcDialog = true;
+        }
     }
 
     @Override
@@ -88,12 +98,20 @@ public class LocationScreen implements Screen {
 
         if (lieu != null) lieu.update(delta);
 
+        if (showNpcDialog && npcTexture != null) {
+            // Affiche le PNJ et son message
+            game.batch.draw(npcTexture, 500, 0, 960, 720);
+            font.getData().setScale(1.6f);
+            font.Color.DARK_GRAY;
+            font.draw(game.batch, npcMessage, 550, 800);
+        }
+
         if (lieu != null && lieu.isShowingMessage()) {
             font.getData().setScale(1.5f);
             font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
-                int yPos = 750;
+                int yPos = 700;
 
                 // On détermine quelles activités charger selon le lieu
                 if (lieu instanceof FitnessClub) {
@@ -108,7 +126,6 @@ public class LocationScreen implements Screen {
                     AActivity activity = activities.get(i);
 
                     addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
-                                // on cast dynamiquement selon le type du lieu
                                 if (lieu instanceof FitnessClub club) {
                                     club.performActivity(index, hero, day);
                                 } else if (lieu instanceof Maison maison) {
@@ -142,6 +159,11 @@ public class LocationScreen implements Screen {
         if (Gdx.input.justTouched()) {
             float clickX = Gdx.input.getX();
             float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+            if (showNpcDialog) {
+                showNpcDialog = false;
+                return;
+            }
 
             if (lieu != null && lieu.isShowingMessage()) {
                 return;
@@ -186,6 +208,7 @@ public class LocationScreen implements Screen {
     public void dispose() {
         if (background != null) background.dispose();
         if (font != null) font.dispose();
+        if (npcTexture != null) npcTexture.dispose();
     }
 
     private static class ActionZone {
