@@ -1,0 +1,22 @@
+package com.internshipquest.model.activity;
+
+import com.internshipquest.model.Day;
+import com.internshipquest.model.Hero;
+
+public class Sleep extends AActivity {
+    // name, duration, cost
+    public Sleep() {
+        super("Sleep until tomorrow", 0, 0);
+    }
+
+    @Override
+    public void doIt(Hero hero, Day day) {
+        day.setDay(day.getDay()+ 1);
+        hero.setEnergy(hero.getEndurance()*2);
+//        hero.newEnergy(hero.getEndurance());
+        day.setHour(7+day.getHourAfterMidnight());
+        day.setHourAfterMidnight(0);
+
+        message = "After a good night, you regenere your energie to "+hero.getEnergy()+".";
+    }
+}

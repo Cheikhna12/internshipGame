@@ -28,6 +28,9 @@ public class WorldMapScreen implements Screen {
     private Texture iconHome;
     private Texture iconFitnessClub;
 
+    private String temporaryMessage = null;
+    private float messageTimer = 0f;
+
     public WorldMapScreen(InternshipQuestGame game) {
         this.day = game.getDay();
         this.hero = game.getHero();
@@ -38,8 +41,17 @@ public class WorldMapScreen implements Screen {
         iconHome = new Texture("assets/icon_home.png");
         iconFitnessClub = new Texture("assets/icon_fitness.png");
 
-        locations.add(new Location("Maison", "assets/icon_home.png", 150, 230));
-        locations.add(new Location("FitnessClub", "assets/icon_fitness.png", 780, 450));
+        // Création des lieux graphiques
+        Location maisonLoc = new Location("Maison", "assets/icon_home.png", 150, 230);
+        Location fitnessLoc = new Location("FitnessClub", "assets/icon_fitness.png", 780, 450);
+
+
+        // Crée les ALieuVisitable correspondants
+        maisonLoc.setLieu(new Maison(game));
+        fitnessLoc.setLieu(new FitnessClub(game));
+
+        locations.add(maisonLoc);
+        locations.add(fitnessLoc);
     }
 
     @Override
@@ -106,6 +118,20 @@ public class WorldMapScreen implements Screen {
 
         game.batch.end();
 
+        if (temporaryMessage != null) {
+            messageTimer += delta;
+            game.batch.begin();
+            game.font.getData().setScale(1.6f);
+            game.font.setColor(1f, 0.3f, 0.3f, 1f);
+            game.font.draw(game.batch, temporaryMessage, 800, 80);
+            game.batch.end();
+
+            if (messageTimer > 3.5f) { // 3,5 secondes affichées
+                temporaryMessage = null;
+                messageTimer = 0f;
+            }
+        }
+
         heroBatch.begin();
         hero.render(heroBatch);
         heroBatch.end();
@@ -122,15 +148,19 @@ public class WorldMapScreen implements Screen {
                 hoveredLocation = loc;
 
                 if (Gdx.input.justTouched()) {
-
                     System.out.println("[CLICK] " + loc.getName());
+
+                    // Récupère le lieu logique associé
+                    ALieuVisitable lieu = loc.getLieu();
 
                     if (hero.getCurrentLocation() == loc) {
                         System.out.println("[WORLDMAP] Entrée dans " + loc.getName());
-//                    if (!loc.isOpen(game.getDay())) {
-//                        font.draw(game.batch, "The " + location.getName() + " is currently closed.", 50, 400);
-//                    } else {
-                        game.setScreen(new LocationScreen(game, loc, this));
+                        if (lieu != null && !lieu.isOpen(day)) {
+                            temporaryMessage = "The " + loc.getName() + " is currently closed.";
+                            messageTimer = 0f;
+                        } else {
+                            game.setScreen(new LocationScreen(game, loc, this));
+                        }
                     } else if (!hero.isMoving()) {
                         System.out.println("[WORLDMAP] Déplacement vers " + loc.getName());
                         hero.moveTo(loc);
@@ -140,6 +170,8 @@ public class WorldMapScreen implements Screen {
             }
         }
     }
+
+
 
 
     @Override

@@ -17,15 +17,21 @@ import java.util.List;
 
 public class LocationScreen implements Screen {
 
-    private final InternshipQuestGame game;
-    private final Location location;
-    private final WorldMapScreen mapScreen;
-    private final Hero hero;
-    private final List<ActionZone> actions = new ArrayList<>();
+    private InternshipQuestGame game;
+    private Location location;
+    private WorldMapScreen mapScreen;
+    private Hero hero;
 
-    private FitnessClub gym;
-    private Texture gymBackground;
+    private ALieuVisitable lieu;
+    private Maison maison;
+    private Texture background;
     private BitmapFont font;
+    private List<AActivity> activities = new ArrayList<>();
+    private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
+
+    private Texture npcTexture;
+    private String npcMessage;
+    private boolean showNpcDialog = false;
 
     // zone "Return to world Map"
     private final float returnX = 50;
@@ -40,18 +46,30 @@ public class LocationScreen implements Screen {
         this.hero = game.getHero();
 
         if (location.getName().equals("FitnessClub")) {
-            gym = new FitnessClub(game);
+            lieu = new FitnessClub(game);
+        }
+        if (location.getName().equals("Maison")) {
+            lieu = new Maison(game);
         }
 
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
         font.setColor(1f, 1f, 1f, 1f);
+
+        if (lieu != null && lieu.getNpcTexture() != null) {
+            npcTexture = lieu.getNpcTexture();
+            npcMessage = lieu.getNpcMessage();
+            showNpcDialog = true;
+        }
     }
 
     @Override
     public void show() {
         if (location.getName().equals("FitnessClub")) {
-            gymBackground = new Texture(Gdx.files.internal("assets/images/gym_background.png"));
+            background = new Texture(Gdx.files.internal("assets/images/gym_background.png"));
+        }
+        if (location.getName().equals("Maison")) {
+            background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
         }
     }
 
@@ -63,38 +81,59 @@ public class LocationScreen implements Screen {
 
         game.batch.begin();
 
-        if (gymBackground != null) {
-            game.batch.draw(gymBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        if (background != null) {
+            game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         // Texte principal
         font.getData().setScale(2f);
         font.draw(game.batch, location.getName(), 50, 900);
         font.getData().setScale(1.5f);
-        font.draw(game.batch,"Your current energy is " + hero.getEnergy() + ".", 50, 850);
+        font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
 
         Day day = game.getDay();
         if (day != null) {
-            font.draw(game.batch,"It's " + day.getHour() + "h.", 50, 825);
+            font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 825);
         }
 
-        if (gym != null) gym.update(delta);
+        if (lieu != null) lieu.update(delta);
 
-        if (gym != null && gym.isShowingMessage()) {
+        if (showNpcDialog && npcTexture != null) {
+            // Affiche le PNJ et son message
+            game.batch.draw(npcTexture, 500, 0, 960, 720);
+            font.getData().setScale(1.6f);
+            font.Color.DARK_GRAY;
+            font.draw(game.batch, npcMessage, 550, 800);
+        }
+
+        if (lieu != null && lieu.isShowingMessage()) {
             font.getData().setScale(1.5f);
-            font.draw(game.batch, gym.getCurrentMessage(), 50, 400);
-        } else {
-            actions.clear();
-            int yPos = 750;
-            if (location.getName().equals("FitnessClub")) {
-                List<AActivity> activities = ActivityFactory.getFitnessActivities();
+            font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
+       else {
+                actions.clear();
+                int yPos = 700;
+
+                // On détermine quelles activités charger selon le lieu
+                if (lieu instanceof FitnessClub) {
+                    activities = ActivityFactory.getFitnessActivities();
+                } else if (lieu instanceof Maison) {
+                    activities = ActivityFactory.getMaisonActivities();
+                }
+
+                // Boucle unique pour créer les boutons d’action
                 for (int i = 0; i < activities.size(); i++) {
                     final int index = i;
                     AActivity activity = activities.get(i);
-                    addAction((i + 1) + ". " + activity.getName(), 170, yPos - i * 50,
-                            () -> gym.performActivity(index, hero, day));
+
+                    addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
+                                if (lieu instanceof FitnessClub club) {
+                                    club.performActivity(index, hero, day);
+                                } else if (lieu instanceof Maison maison) {
+                                    maison.performActivity(index, hero, day);
+                                }
+                            }
+                    );
                 }
-            }
 
             font.getData().setScale(1.8f);
             for (ActionZone a : actions) {
@@ -121,7 +160,12 @@ public class LocationScreen implements Screen {
             float clickX = Gdx.input.getX();
             float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (gym != null && gym.isShowingMessage()) {
+            if (showNpcDialog) {
+                showNpcDialog = false;
+                return;
+            }
+
+            if (lieu != null && lieu.isShowingMessage()) {
                 return;
             }
 
@@ -144,15 +188,27 @@ public class LocationScreen implements Screen {
         }
     }
 
-    @Override public void resize(int width, int height) {}
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
-        if (gymBackground != null) gymBackground.dispose();
+        if (background != null) background.dispose();
         if (font != null) font.dispose();
+        if (npcTexture != null) npcTexture.dispose();
     }
 
     private static class ActionZone {

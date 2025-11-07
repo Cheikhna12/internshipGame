@@ -2,13 +2,11 @@ package com.internshipquest.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class AbstractHero {
+abstract public class AHero {
 
     // attributes
     protected int endurance;
@@ -60,7 +58,7 @@ abstract public class AbstractHero {
     public void setY(float y) {this.y = y;}
 
     // constructor
-    public AbstractHero(int endurance,  int social, int luck, int skills, int motivation, int money, int energy) {
+    public AHero(int endurance,  int social, int luck, int skills, int motivation, int money, int energy) {
 
         this.endurance = endurance;
         this.social = social;

@@ -4,9 +4,9 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.Hero;
 
 public class PushUps extends AActivity {
-
+    // name, duration, cost
     public PushUps() {
-        super("Push-Ups", 1, 5);
+        super("Do some push-Ups", 1, 5);
     }
 
     @Override
