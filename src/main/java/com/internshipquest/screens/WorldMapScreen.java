@@ -34,13 +34,13 @@ public class WorldMapScreen implements Screen {
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
-        locations.add(new Location("Zone industrielle", "", 64, 704, 448, 256, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("Epitech", "", 768, 720, 256, 128, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("Carrefour", "", 96, 352, 224, 224, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("FitnessClub", "", 640, 320, 256, 256, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("Marabou", "", 928, 320, 256, 256, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("Maison", "", 64, 205, 256, 64, new float[]{1f, 1f, 1f}));
-        locations.add(new Location("Bar", "", 1024, 720, 256, 128, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Zone industrielle", 64, 704, 448, 256));
+        locations.add(new Location("Epitech", 768, 720, 256, 128));
+        locations.add(new Location("Carrefour", 96, 352, 224, 224));
+        locations.add(new Location("FitnessClub", 640, 320, 256, 256));
+        locations.add(new Location("Marabou", 928, 320, 256, 256));
+        locations.add(new Location("Maison", 64, 205, 256, 64));
+        locations.add(new Location("Bar", 1024, 720, 256, 128));
     }
 
     @Override
