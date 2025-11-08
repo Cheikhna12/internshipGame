@@ -16,6 +16,7 @@ abstract public class AHero {
     protected int motivation;
     protected int money;
     protected int energy;
+    protected String name;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -28,7 +29,10 @@ abstract public class AHero {
     protected float x;
     protected float y;
     //texture
-    protected Texture texture  = new Texture("assets/Hero.png");
+    protected Texture texture;
+
+
+
 
     // getters
     public int getEndurance() {return endurance;}
@@ -38,7 +42,7 @@ abstract public class AHero {
     public int getMotivation() {return motivation;}
     public int getMoney() {return money;}
     public int getEnergy() {return energy;}
-
+    public String getName() {return name;    }
 
     public float getX() {return x;}
     public float getY() {return y;}
@@ -58,7 +62,7 @@ abstract public class AHero {
     public void setY(float y) {this.y = y;}
 
     // constructor
-    public AHero(int endurance,  int social, int luck, int skills, int motivation, int money, int energy) {
+    public AHero(String name, int endurance,  int social, int luck, int skills, int motivation, int money, int energy, Texture texture) {
 
         this.endurance = endurance;
         this.social = social;
@@ -73,6 +77,8 @@ abstract public class AHero {
         this.targetLocation = null;
         this.pathWaypoints = new ArrayList<>();
         this.currentWaypointIndex = 0;
+        this.name = name;
+
 
         this.x = 100;
         this.y = 100;
@@ -93,12 +99,12 @@ abstract public class AHero {
         float deltaY = endY - this.y;
         float totalDistance = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-        if (totalDistance < 5.0f) {
+        if (totalDistance < 3.0f) {
+            this.x = endX;
+            this.y = endY;
             currentWaypointIndex++;
 
             if (currentWaypointIndex >= pathWaypoints.size()) {
-                this.x = targetLocation.getCenterX();
-                this.y = targetLocation.getCenterY();
                 this.currentLocation = targetLocation;
                 this.isMoving = false;
                 this.targetLocation = null;
@@ -126,45 +132,94 @@ abstract public class AHero {
         List<Vector2> path = new ArrayList<>();
 
         if (from == null || to == null) {
-            path.add(new Vector2(to.getCenterX(), to.getCenterY()));
+            path.add(new Vector2(to.getCenterX(), to.getCenterY() - 40));
             return path;
         }
 
-        String fromName = from.getName();
-        String toName = to.getName();
+        final float ROUTE_NORD = 750f;
+        final float ROUTE_CENTRALE = 350f;
+        final float ROUTE_SUD = 200f;
+        final float AVENUE_OUEST = 32f;
+        final float AVENUE_EST = 1100f;
 
-        if (fromName.equals("Maison") && toName.equals("FitnessClub")) {
-            path.add(new Vector2(48, 230));
-            path.add(new Vector2(48, 640));
-            path.add(new Vector2(780, 640));
-            path.add(new Vector2(to.getCenterX(), to.getY() - 40));
-        }
-        else if (fromName.equals("FitnessClub") && toName.equals("Maison")) {
-            path.add(new Vector2(780, 640));
-            path.add(new Vector2(48, 640));
-            path.add(new Vector2(48, 230));
-            path.add(new Vector2(to.getCenterX(), to.getY() - 40));
-        }
-        else {
-            path.add(new Vector2(to.getCenterX(), to.getY() - 40));
+        float fromX = from.getCenterX();
+        float fromY = from.getCenterY() - 40;
+        float toX = to.getCenterX() - 20;
+        float toY = to.getCenterY() - 40;
+
+        float fromRouteY = getClosestRoute(fromY);
+        float toRouteY = getClosestRoute(toY);
+
+        if (Math.abs(fromRouteY - toRouteY) < 50) {
+            path.add(new Vector2(fromX, fromRouteY));
+            path.add(new Vector2(toX, toRouteY));
+            path.add(new Vector2(toX, toY));
+        } else {
+            path.add(new Vector2(fromX, fromRouteY));
+
+            float avenue = (fromX > 640 || toX > 640) ? AVENUE_EST : AVENUE_OUEST;
+
+            if (fromRouteY >= ROUTE_NORD - 50) {
+                path.add(new Vector2(avenue, fromRouteY));
+                if (toRouteY >= ROUTE_CENTRALE - 50 && toRouteY < ROUTE_NORD - 50) {
+                    path.add(new Vector2(avenue, ROUTE_CENTRALE));
+                    path.add(new Vector2(toX, ROUTE_CENTRALE));
+                } else if (toRouteY < ROUTE_SUD + 50) {
+                    path.add(new Vector2(avenue, ROUTE_SUD));
+                    path.add(new Vector2(toX, ROUTE_SUD));
+                }
+            } else if (fromRouteY >= ROUTE_CENTRALE - 50 && fromRouteY < ROUTE_NORD - 50) {
+                path.add(new Vector2(avenue, fromRouteY));
+                if (toRouteY >= ROUTE_NORD - 50) {
+                    path.add(new Vector2(avenue, ROUTE_NORD));
+                    path.add(new Vector2(toX, ROUTE_NORD));
+                } else if (toRouteY < ROUTE_SUD + 50) {
+                    path.add(new Vector2(avenue, ROUTE_SUD));
+                    path.add(new Vector2(toX, ROUTE_SUD));
+                } else {
+                    path.add(new Vector2(toX, ROUTE_CENTRALE));
+                }
+            } else if (fromRouteY < ROUTE_SUD + 50) {
+                path.add(new Vector2(avenue, fromRouteY));
+                if (toRouteY >= ROUTE_NORD - 50) {
+                    path.add(new Vector2(avenue, ROUTE_NORD));
+                    path.add(new Vector2(toX, ROUTE_NORD));
+                } else if (toRouteY >= ROUTE_CENTRALE - 50) {
+                    path.add(new Vector2(avenue, ROUTE_CENTRALE));
+                    path.add(new Vector2(toX, ROUTE_CENTRALE));
+                }
+            }
+            path.add(new Vector2(toX, toY));
         }
 
         return path;
     }
 
-    public void setInitialLocation(Location location) {
-        this.currentLocation = location;
-        if (location.getName().equals("Maison")) {
-            this.x = location.getCenterX();
-            this.y = location.getY() - 40;
-        } else if (location.getName().equals("FitnessClub")) {
-            this.x = location.getCenterX();
-            this.y = location.getY() - 40;
+    private float getClosestRoute(float y) {
+        final float ROUTE_NORD = 702f;
+        final float ROUTE_CENTRALE = 350f;
+        final float ROUTE_SUD = 200f;
+
+        float distNord = Math.abs(y - ROUTE_NORD);
+        float distCentrale = Math.abs(y - ROUTE_CENTRALE);
+        float distSud = Math.abs(y - ROUTE_SUD);
+
+        if (distNord <= distCentrale && distNord <= distSud) {
+            return ROUTE_NORD;
+        } else if (distCentrale <= distSud) {
+            return ROUTE_CENTRALE;
         } else {
-            this.x = location.getCenterX();
-            this.y = location.getCenterY();
+            return ROUTE_SUD;
         }
     }
+
+
+    public void setInitialLocation(Location location) {
+        this.currentLocation = location;
+        this.x = location.getCenterX();
+        this.y = location.getY() - 40;
+    }
+
 
 
     public void moveTo(Location destination) {
@@ -194,11 +249,13 @@ abstract public class AHero {
         batch.draw(texture,x,y,40,40);
     }
 
-    // public abstract int energyLeft(int endurance);
-    // public abstract boolean hasEnoughTime(Activity activity, Day day);
-    // public abstract int fatigue();
+    public void newEnergy(int endurance){
+        this.setEnergy(Math.round(endurance * 1.5f));
+    };
+
+
     // public abstract Object postuler(Entreprise entreprise);
-    // public abstract void allerVers(Lieu lieu);
+
     public Location getCurrentLocation() {return currentLocation;}
     public boolean isMoving() {return isMoving;}
 

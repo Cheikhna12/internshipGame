@@ -4,7 +4,7 @@ import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.screens.NightScreen;
 
 public class Day {
-    private Hero hero;
+    private AHero hero;
     private InternshipQuestGame game;
     private int day = 0;
     private int hour;
@@ -12,7 +12,7 @@ public class Day {
     private int hourAfterMidnight = 0;
     private boolean nightTriggered = false; // nouveau flag
 
-    public Day(InternshipQuestGame game, Hero hero) {
+    public Day(InternshipQuestGame game, AHero hero) {
         this.hero = hero;
         this.game = game;
         day += 1;

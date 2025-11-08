@@ -20,7 +20,7 @@ public class LocationScreen implements Screen {
     private InternshipQuestGame game;
     private Location location;
     private WorldMapScreen mapScreen;
-    private Hero hero;
+    private AHero hero;
 
     private ALieuVisitable lieu;
     private Maison maison;

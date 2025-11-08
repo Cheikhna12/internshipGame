@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 
 public class DevWait16h extends AActivity {
     // name, duration, cost
@@ -10,7 +10,7 @@ public class DevWait16h extends AActivity {
     }
 
     @Override
-    public void doIt(Hero hero, Day day) {
+    public void doIt(AHero hero, Day day) {
         day.addHour(duration);
 
         message = "You wait " + duration + " hour(s). As they say: 'everything comes to those who wait'.";
