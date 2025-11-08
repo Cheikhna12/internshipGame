@@ -75,8 +75,7 @@ public class LocationScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        float[] color = location.getColor();
-        Gdx.gl.glClearColor(color[0] * 0.3f, color[1] * 0.3f, color[2] * 0.3f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
