@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 
 public abstract class AActivity {
     protected String name;       // Nom de l'activité
@@ -34,5 +34,5 @@ public abstract class AActivity {
         return energyUse;
     }
 
-    public abstract void doIt(Hero hero, Day day);
+    public abstract void doIt(AHero hero, Day day);
 }

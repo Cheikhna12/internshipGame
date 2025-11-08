@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 
 public class Sleep extends AActivity {
     // name, duration, cost
@@ -10,7 +10,7 @@ public class Sleep extends AActivity {
     }
 
     @Override
-    public void doIt(Hero hero, Day day) {
+    public void doIt(AHero hero, Day day) {
         day.setDay(day.getDay()+ 1);
         hero.setEnergy(hero.getEndurance()*2);
 //        hero.newEnergy(hero.getEndurance());

@@ -58,7 +58,7 @@ public abstract class ALieuVisitable {
         return showingMessage;
     }
 
-    public void performActivity(int index, Hero hero, Day day) {
+    public void performActivity(int index, AHero hero, Day day) {
         if (index < 0 || index >= activities.size()) return;
 
         AActivity activity = activities.get(index);

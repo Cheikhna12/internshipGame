@@ -14,19 +14,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 import com.internshipquest.InternshipQuestGame;
 
 public class NightScreen implements Screen {
 
     private final InternshipQuestGame game;
-    private final Hero hero;
+    private final AHero hero;
     private final Stage stage;
     private final Texture background;
     private final Label messageLabel;
     private float timeElapsed = 0f;
 
-    public NightScreen(InternshipQuestGame game, Hero hero) {
+    public NightScreen(InternshipQuestGame game, AHero hero) {
         this.game = game;
         this.hero = hero;
 
