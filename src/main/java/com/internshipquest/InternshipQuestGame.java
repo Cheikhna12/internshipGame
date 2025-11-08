@@ -3,23 +3,23 @@ package com.internshipquest;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.internshipquest.screens.WorldMapScreen;
+import com.internshipquest.screens.Menu;
 import com.internshipquest.model.*;
 
 
 public class InternshipQuestGame extends Game {
     public SpriteBatch batch;
     public BitmapFont font;
-    private Hero hero;
+    private AHero hero;
     protected Day day;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        hero = new Hero();
-        day = new Day(this,hero);
-        setScreen(new WorldMapScreen(this));
+        hero = null;
+        day = null ;
+        setScreen(new Menu(this));
     }
 
     @Override
@@ -34,11 +34,17 @@ public class InternshipQuestGame extends Game {
         if (getScreen() != null) getScreen().dispose();
     }
 
-    public Hero getHero() {
+    public AHero getHero() {
         return hero;
     }
 
     public Day getDay() {
         return day;
     }
+
+    public void setHero(AHero hero) {
+        this.hero = hero;
+        this.day = new Day(this, hero);
+    }
+
 }

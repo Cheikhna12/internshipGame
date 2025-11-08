@@ -3,7 +3,6 @@ package com.internshipquest.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
@@ -22,11 +21,8 @@ public class WorldMapScreen implements Screen {
     private Location hoveredLocation;
 
     private SpriteBatch heroBatch;
-    private Hero hero;
+    private AHero hero;
     private Day day;
-
-    private Texture iconHome;
-    private Texture iconFitnessClub;
 
     private String temporaryMessage = null;
     private float messageTimer = 0f;
@@ -38,20 +34,13 @@ public class WorldMapScreen implements Screen {
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
-        iconHome = new Texture("assets/icon_home.png");
-        iconFitnessClub = new Texture("assets/icon_fitness.png");
-
-        // Création des lieux graphiques
-        Location maisonLoc = new Location("Maison", "assets/icon_home.png", 150, 230);
-        Location fitnessLoc = new Location("FitnessClub", "assets/icon_fitness.png", 780, 450);
-
-
-        // Crée les ALieuVisitable correspondants
-        maisonLoc.setLieu(new Maison(game));
-        fitnessLoc.setLieu(new FitnessClub(game));
-
-        locations.add(maisonLoc);
-        locations.add(fitnessLoc);
+        locations.add(new Location("Zone industrielle", "", 64, 704, 448, 256, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Epitech", "", 768, 720, 256, 128, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Carrefour", "", 96, 352, 224, 224, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("FitnessClub", "", 640, 320, 256, 256, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Marabou", "", 928, 320, 256, 256, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Maison", "", 64, 205, 256, 64, new float[]{1f, 1f, 1f}));
+        locations.add(new Location("Bar", "", 1024, 720, 256, 128, new float[]{1f, 1f, 1f}));
     }
 
     @Override
@@ -64,42 +53,17 @@ public class WorldMapScreen implements Screen {
         cityMap.render(game.batch, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         game.batch.begin();
-        
+
+        // Affichage de la date et l'heure
         game.font.getData().setScale(1.8f);
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
-        for (Location loc : locations) {
-            float x = loc.getX();
-            float y = loc.getY();
-            float size = (loc == hoveredLocation) ? 60 : 50;
-            float offset = (loc == hoveredLocation) ? -5 : 0;
-
-            Texture icon = loc.getName().equals("Maison") ? iconHome : iconFitnessClub;
-
-            if (icon != null) {
-                if (hero.getCurrentLocation() == loc && !hero.isMoving()) {
-                    float pulse = (float) (Math.sin(System.currentTimeMillis() / 200.0) * 0.5 + 0.5);
-                    float pulseSize = size + pulse * 5;
-                    float pulseOffset = offset - pulse * 2.5f;
-                    game.batch.setColor(1f, 1f, 1f, 0.3f + pulse * 0.3f);
-                    game.batch.draw(icon, x + pulseOffset, y + pulseOffset, pulseSize, pulseSize);
-                    game.batch.setColor(1f, 1f, 1f, 1f);
-                }
-                game.batch.draw(icon, x + offset, y + offset, size, size);
-            }
-
-            game.font.getData().setScale(1.2f);
-            game.font.setColor(0f, 0f, 0f, 0.8f);
-            game.font.draw(game.batch, loc.getName(), x - 10 + 1, y - 10 - 1);
-            game.font.setColor(1f, 1f, 1f, 1f);
-            game.font.draw(game.batch, loc.getName(), x - 10, y - 10);
-        }
-
+        // Affichage du nom du lieu uniquement au survol (en bas de l'écran)
         if (hoveredLocation != null) {
-            game.font.getData().setScale(1.8f);
+            game.font.getData().setScale(2.0f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
-            
+
             String message;
             if (hero.getCurrentLocation() == hoveredLocation) {
                 message = hoveredLocation.getName() + " - Cliquez pour entrer";
@@ -108,7 +72,7 @@ public class WorldMapScreen implements Screen {
             } else {
                 message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
             }
-            
+
             game.font.draw(game.batch, message, 20, 40);
         } else if (hero.isMoving()) {
             game.font.getData().setScale(1.5f);
@@ -178,10 +142,6 @@ public class WorldMapScreen implements Screen {
     public void show() {
         heroBatch = new SpriteBatch();
 
-
-        //if (hero == null) {
-        //  hero = new Hero();
-        //}
         
         if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
             hero.setInitialLocation(locations.get(0));
@@ -204,8 +164,6 @@ public class WorldMapScreen implements Screen {
     @Override
     public void dispose() {
         cityMap.dispose();
-        iconHome.dispose();
-        iconFitnessClub.dispose();
         heroBatch.dispose();
     }
 }
