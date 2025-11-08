@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 import com.internshipquest.model.ALieuVisitable;
 
 public class AskOpeningHours extends AActivity {
@@ -13,7 +13,7 @@ public class AskOpeningHours extends AActivity {
     }
 
     @Override
-    public void doIt(Hero hero, Day day) {
+    public void doIt(AHero hero, Day day) {
         day.addHour(duration);
         String weekendInfo = lieu.isOpenWeekend() ? "Also open on weekends." : "Closed on weekends.";
         message = "You head towards the reception desk to find out the opening hours.\n" +

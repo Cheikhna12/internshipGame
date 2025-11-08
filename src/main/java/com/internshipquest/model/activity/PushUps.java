@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.AHero;
 
 public class PushUps extends AActivity {
     // name, duration, cost
@@ -10,7 +10,7 @@ public class PushUps extends AActivity {
     }
 
     @Override
-    public void doIt(Hero hero, Day day) {
+    public void doIt(AHero hero, Day day) {
         int newEndurance = hero.getEndurance() + 3;
         int newEnergy = hero.getEnergy() - energyUse;
 
