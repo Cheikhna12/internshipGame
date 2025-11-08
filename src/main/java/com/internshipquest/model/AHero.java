@@ -136,16 +136,16 @@ abstract public class AHero {
             return path;
         }
 
-        final float ROUTE_NORD = 750f;
+        final float ROUTE_NORD = 730f;
         final float ROUTE_CENTRALE = 350f;
         final float ROUTE_SUD = 200f;
         final float AVENUE_OUEST = 32f;
         final float AVENUE_EST = 1100f;
 
         float fromX = from.getCenterX();
-        float fromY = from.getCenterY() - 40;
-        float toX = to.getCenterX() - 20;
-        float toY = to.getCenterY() - 40;
+        float fromY = from.getY() - 20;
+        float toX = to.getCenterX();
+        float toY = to.getY() - 20;
 
         float fromRouteY = getClosestRoute(fromY);
         float toRouteY = getClosestRoute(toY);
