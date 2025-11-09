@@ -6,7 +6,7 @@ import com.internshipquest.model.AHero;
 public class Wait extends AActivity {
     // name, duration, cost
     public Wait() {
-        super("Wait one hour", 1, 0);
+        super("Wait one hour", 1, 0, 0);
     }
 
     @Override

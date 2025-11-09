@@ -6,7 +6,7 @@ import com.internshipquest.model.AHero;
 public class Sleep extends AActivity {
     // name, duration, cost
     public Sleep() {
-        super("Sleep until tomorrow", 0, 0);
+        super("Sleep until tomorrow", 0, 0,0);
     }
 
     @Override

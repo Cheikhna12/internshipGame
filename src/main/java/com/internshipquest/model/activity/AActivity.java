@@ -4,19 +4,24 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.AHero;
 
 public abstract class AActivity {
-    protected String name;       // Nom de l'activité
-    protected int duration;      // Durée en heures
-    protected int energyUse;     // Energie consommée
-    protected String message;    // Message afficher par l'activité
+    protected String name;
+    protected int duration;
+    protected int energyUse;
+    protected String message;
+    protected int cost;
 
 
-    public AActivity(String name, int duration, int energyUse) {
+    public AActivity(String name, int duration, int energyUse, int cost) {
         this.name = name;
         this.duration = duration;
         this.energyUse = energyUse;
+        this.cost = cost;
     }
 
 
+    public int getCost() {
+        return cost;
+    }
 
     public String getName() {
         return name;
