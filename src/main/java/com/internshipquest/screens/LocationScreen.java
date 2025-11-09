@@ -11,6 +11,7 @@ import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.*;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
+import com.internshipquest.utils.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,10 @@ public class LocationScreen implements Screen {
         }
         if (location.getName().equals("Maison")) {
             background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
+        }
+        // lance la musique quand on rentre dans un lieu
+        if (lieu != null) {
+            lieu.onEnter();
         }
     }
 
@@ -198,8 +203,11 @@ public class LocationScreen implements Screen {
     public void resume() {
     }
 
-    @Override
     public void hide() {
+        // pour stopper la musique
+        if (lieu != null) {
+            lieu.onExit();
+        }
     }
 
     @Override

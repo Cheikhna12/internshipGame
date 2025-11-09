@@ -2,6 +2,7 @@ package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
 import com.internshipquest.model.AHero;
+import com.internshipquest.utils.SoundManager;
 
 public class PushUps extends AActivity {
     // name, duration, cost
@@ -11,6 +12,7 @@ public class PushUps extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
+        SoundManager.playSound("pushup",0.4f);
         int newEndurance = hero.getEndurance() + 3;
         int newEnergy = hero.getEnergy() - energyUse;
 

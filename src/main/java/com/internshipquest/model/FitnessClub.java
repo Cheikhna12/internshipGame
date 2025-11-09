@@ -4,6 +4,8 @@ import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
 import com.badlogic.gdx.graphics.Texture;
+import com.internshipquest.utils.SoundManager;
+
 
 import java.util.List;
 
@@ -18,6 +20,16 @@ public class FitnessClub extends ALieuVisitable {
         this.openOnWeekends = true;
         activities = ActivityFactory.getFitnessActivities(this);
         coachTexture = new Texture("assets/coach.png");
+    }
+    @Override
+    public void onEnter() {
+        // nom, loop or not, volume %
+        SoundManager.playMusic("gym", true, 0.8f);
+    }
+
+    @Override
+    public void onExit() {
+        SoundManager.stopMusic();
     }
 
 
