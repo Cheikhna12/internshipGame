@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.internshipquest.screens.Menu;
 import com.internshipquest.model.*;
+import com.internshipquest.utils.SoundManager;
 
 
 public class InternshipQuestGame extends Game {
@@ -20,6 +21,7 @@ public class InternshipQuestGame extends Game {
         hero = null;
         day = null ;
         setScreen(new Menu(this));
+        SoundManager.loadSounds();
     }
 
     @Override
