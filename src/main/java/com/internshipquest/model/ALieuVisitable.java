@@ -4,6 +4,7 @@ import com.internshipquest.InternshipQuestGame;
 import com.badlogic.gdx.graphics.Texture;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
+import com.internshipquest.utils.SoundManager;
 import java.util.List;
 
 public abstract class ALieuVisitable {
@@ -41,6 +42,8 @@ public abstract class ALieuVisitable {
     public int getOpenHour() {
         return openHour;
     }
+    public abstract void onEnter();
+    public abstract void onExit();
 
 
     public void update(float delta) {
