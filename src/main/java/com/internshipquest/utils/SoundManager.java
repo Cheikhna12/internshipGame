@@ -24,6 +24,7 @@ public class SoundManager {
         //  Effets courts
         sounds.put("pushup", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("deadlift", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
+        sounds.put("machine_nourriture", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/MachineANourriture.wav")));
     }
 
 

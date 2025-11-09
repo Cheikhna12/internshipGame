@@ -9,7 +9,7 @@ public class AskOpeningHours extends AActivity {
     private ALieuVisitable lieu;
     // name, duration, cost
     public AskOpeningHours(ALieuVisitable lieu) {
-        super("Ask Opening Hours", 0, 2); this.lieu=lieu;
+        super("Ask Opening Hours", 0, 2, 0); this.lieu=lieu;
     }
 
     @Override
