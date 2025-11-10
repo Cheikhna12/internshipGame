@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.Hero;
 import com.internshipquest.model.Chad;
@@ -23,15 +25,6 @@ public class Menu implements Screen {
     private Texture background;
 
     private AHero selectedHero;
-
-
-//    // positions des icônes
-//    private final int nerdX = 200;
-//    private final int nerdY = 400;
-//    private final int chadX = 600;
-//    private final int chadY = 400;
-//    private final int heroX = 1000;
-//    private final int heroY = 400;
 
     public Menu(InternshipQuestGame game) {
         this.game = game;
@@ -52,15 +45,25 @@ public class Menu implements Screen {
         game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         // Draw character icons
-        game.batch.draw(nerdIcon, 170, 300, 200, 200);
-        game.batch.draw(chadIcon, 540, 300, 200, 200);
-        game.batch.draw(heroIcon, 910, 300, 200, 200);
-        game.batch.draw(gameLogo, 430, 550, 400, 400);
+        game.batch.draw(nerdIcon, 207, 425, 150, 200);
+        game.batch.draw(chadIcon, 564, 425, 150, 200);
+        game.batch.draw(heroIcon, 921, 425, 150, 200);
 
+        game.batch.draw(gameLogo, 490, 650, 300, 300);
         // Highlight selected hero
         if (selectedHero != null) {
-            game.font.draw(game.batch, "Selected: " + selectedHero.getName(), 590, 250);
-            game.font.draw(game.batch, "Click to Start Adventure", 590, 200);
+            game.font.setColor(Color.WHITE);
+
+            game.font.draw(game.batch, "Selected: " + selectedHero.getName(), 500, 375);
+            // sert à centrer la description (glyph calcul la taille du texte en fonction de la police)
+            String description = selectedHero.getHeroDescription();
+            GlyphLayout layout = new GlyphLayout(game.font, description);
+            float x = (Gdx.graphics.getWidth() - layout.width) / 2;
+            game.font.draw(game.batch, layout, x, 325);
+            game.font.getData().setScale(1.2f);
+            game.font.setColor(Color.BLUE);
+            game.font.draw(game.batch, "Click to Start Adventure", 400, 200);
+            game.font.setColor(Color.WHITE);
         }
 
         game.batch.end();
@@ -70,15 +73,15 @@ public class Menu implements Screen {
             int x = Gdx.input.getX();
             int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (x > 170 && x < 370 && y > 300 && y < 500) {
+            if (x > 207 && x < 357 && y > 425 && y < 625) {
                 selectedHero = new Nerd();
             }
 
-            if (x > 540 && x < 740 && y > 300 && y < 500) {
+            if (x > 564 && x < 714 && y > 425 && y < 625) {
                 selectedHero = new Chad();
             }
 
-            if (x > 910 && x < 1100 && y > 300 && y < 500) {
+            if (x > 921 && x < 1071 && y > 425 && y < 625) {
                 selectedHero = new Hero();
             }
 

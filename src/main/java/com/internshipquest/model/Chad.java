@@ -8,7 +8,8 @@ public class Chad extends AHero{
     // int skills, int motivation, int money, int energy, Texture texture)
     public Chad(){
       
-        super("zeldi",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Chad.png"));
+        super("zeldi",35, 15, 5, 15, 30, 30, 70, new Texture("assets/Chad.png"));
+        this.heroDescription= "A mountain of muscle to 'hit' the code";
     }
 
 
