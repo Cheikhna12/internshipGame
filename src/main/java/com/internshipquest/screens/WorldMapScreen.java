@@ -17,10 +17,12 @@ import java.util.List;
 
 public class WorldMapScreen implements Screen {
 
-    private final InternshipQuestGame game;
-    private final List<Location> locations;
-    private final CityMapRenderer cityMap;
+    private InternshipQuestGame game;
+    private List<Location> locations;
+    private LocationFactory locationFactory;
+    private CityMapRenderer cityMap;
     private Location hoveredLocation;
+
 
     private SpriteBatch heroBatch;
     private AHero hero;
@@ -30,20 +32,13 @@ public class WorldMapScreen implements Screen {
     private float messageTimer = 0f;
 
     public WorldMapScreen(InternshipQuestGame game) {
+        this.game = game;
         this.day = game.getDay();
         this.hero = game.getHero();
-        this.game = game;
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-        // x , y largeur hauteur
-        locations.add(new Location("Industrial Zone", 64, 704, 448, 256));
-        locations.add(new Location("Clover Field", 554, 720, 160, 160));
-        locations.add(new Location("Bar", 768, 720, 224, 128));
-        locations.add(new Location("Store", 96, 352, 224, 224));
-        locations.add(new Location("FitnessClub", 640, 352, 256, 256));
-        locations.add(new Location("Sorcerer", 928, 352, 256, 256));
-        locations.add(new Location("Your House", 96, 128, 160, 160));
-        locations.add(new Location("Epitech", 992, 720, 256, 128));
+        this.locationFactory = new LocationFactory(game);
+        this.locations = locationFactory.createAllLocations();
     }
 
     @Override
@@ -136,30 +131,35 @@ public class WorldMapScreen implements Screen {
     }
 
 
-
-
     @Override
     public void show() {
         heroBatch = new SpriteBatch();
 
-        
-        if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
-            hero.setInitialLocation(locations.get(6));
-            System.out.println("[WORLDMAP] Héros placé à " + locations.get(6).getName());
+
+        for (Location loc : locations) {
+            if ("Your House".equals(loc.getName())) {
+                hero.setInitialLocation(loc);
+                System.out.println("[WORLDMAP] Héros placé à " + loc.getName());
+                break;
+            }
         }
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void resize(int width, int height) {
+    }
 
     @Override
-    public void pause() {}
+    public void pause() {
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+    }
 
     @Override
-    public void hide() {}
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
