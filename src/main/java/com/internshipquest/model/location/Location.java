@@ -1,4 +1,4 @@
-package com.internshipquest.model;
+package com.internshipquest.model.location;
 
 public class Location {
 

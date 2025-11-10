@@ -1,8 +1,8 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
-import com.internshipquest.model.ALieuVisitable;
+import com.internshipquest.model.hero.AHero;
+import com.internshipquest.model.location.ALieuVisitable;
 
 public class AskOpeningHours extends AActivity {
 

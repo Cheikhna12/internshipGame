@@ -1,5 +1,6 @@
-package com.internshipquest.model;
+package com.internshipquest.model.hero;
 
+import com.internshipquest.model.location.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -62,7 +63,7 @@ abstract public class AHero {
     public void setEnergy(int energy) {this.energy = energy;}
     public void setSocial(int social) {this.social = social;}
     public void setLuck(int luck) {this.luck = luck;}
-    public void setSkills(int skills) {this.codingSkills = skills;}
+    public void setCodingSkills(int skills) {this.codingSkills = skills;}
     public void setMotivation(int motivation) {this.motivation = motivation;}
     public void setMoney(int money) {this.money = money;}
 
