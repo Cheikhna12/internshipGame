@@ -5,7 +5,7 @@ import com.internshipquest.model.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class PushUps extends AActivity {
-    // name, duration, cost
+    // name, duration, costEnergy, costMoney
     public PushUps() {
         super("Do some push-Ups", 1, 5,0);
     }
@@ -21,7 +21,7 @@ public class PushUps extends AActivity {
 
         day.addHour(duration);
 
-        message = "After " + duration + " hour(s) of push-ups, your endurance increased to "
+        message = "After " + duration + " hour of push-ups, your endurance increased to "
                 + newEndurance + " and energy decreased to " + newEnergy;
     }
 }

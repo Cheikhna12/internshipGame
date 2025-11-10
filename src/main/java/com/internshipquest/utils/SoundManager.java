@@ -8,11 +8,11 @@ import java.util.HashMap;
 
 public class SoundManager {
 
-    // 🌟 Musiques d'ambiance par zone
+    // Musiques d'ambiance par zone
     private static HashMap<String, Music> musics = new HashMap<>();
     private static String currentMusicKey = null;
 
-    // 🌟 Effets courts
+    //  Effets courts
     private static HashMap<String, Sound> sounds = new HashMap<>();
 
 

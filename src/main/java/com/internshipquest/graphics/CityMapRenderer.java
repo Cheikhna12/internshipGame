@@ -14,7 +14,7 @@ public class CityMapRenderer {
     public CityMapRenderer(int width, int height) {
         tiledMap = new TmxMapLoader().load("assets/city_map.tmx");
         mapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-        
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, width, height);
         camera.position.set(width / 2f, height / 2f, 0);
@@ -24,7 +24,7 @@ public class CityMapRenderer {
         mapRenderer.setView(camera);
         mapRenderer.render();
     }
-    
+
     public void dispose() {
         tiledMap.dispose();
         mapRenderer.dispose();
