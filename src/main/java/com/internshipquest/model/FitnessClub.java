@@ -24,7 +24,7 @@ public class FitnessClub extends ALieuVisitable {
     @Override
     public void onEnter() {
         // nom, loop or not, volume %
-        SoundManager.playMusic("gym", true, 0.8f);
+        SoundManager.playMusic("gym", true, 1.0f);
     }
 
     @Override
