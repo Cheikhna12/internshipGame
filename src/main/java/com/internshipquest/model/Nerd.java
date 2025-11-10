@@ -8,7 +8,8 @@ public class Nerd extends AHero{
     // int skills, int motivation, int money, int energy, Texture texture)
     public Nerd(){
       
-        super("zeldu",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Nerd.png"));
+        super("zeldu",15, 5, 15, 35, 30, 50, 55, new Texture("assets/Nerd.png"));
+        this.heroDescription= "Actually, I am the smartest (...and the weakest).";
     }
 
 
