@@ -6,7 +6,7 @@ import com.internshipquest.model.AHero;
 public class DevWait16h extends AActivity {
     // name, duration, cost
     public DevWait16h() {
-        super("Wait 8 hour (dev function)", 8, 0);
+        super("Wait 8 hour (dev function)", 8, 0,0);
     }
 
     @Override

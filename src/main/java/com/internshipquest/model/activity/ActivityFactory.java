@@ -10,6 +10,7 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new PushUps());
         list.add(new DeadLifts());
+        list.add(new SnackDispenser());
         list.add(new AskOpeningHours(lieu));
         return list;
     }

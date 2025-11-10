@@ -6,7 +6,7 @@ import com.internshipquest.model.AHero;
 public class DisplayStat extends AActivity {
     // name, duration, cost
     public DisplayStat() {
-        super("looking at oneself in the mirror", 0, 0);
+        super("looking at oneself in the mirror", 0, 0,0);
     }
 
     @Override
