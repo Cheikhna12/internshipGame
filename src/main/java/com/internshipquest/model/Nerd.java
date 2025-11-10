@@ -8,7 +8,7 @@ public class Nerd extends AHero{
     // int skills, int motivation, int money, int energy, Texture texture)
     public Nerd(){
       
-        super("zeldu",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Nerd.png"));
+        super("zeldu",35, 20, 5, 0, 50, 55, 100, new Texture("assets/Nerd.png"));
     }
 
 

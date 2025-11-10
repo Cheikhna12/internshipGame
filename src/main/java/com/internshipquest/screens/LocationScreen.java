@@ -10,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.*;
 import com.internshipquest.model.activity.AActivity;
-import com.internshipquest.model.activity.ActivityFactory;
-import com.internshipquest.utils.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,6 @@ public class LocationScreen implements Screen {
     private AHero hero;
 
     private ALieuVisitable lieu;
-    private Maison maison;
     private Texture background;
     private BitmapFont font;
     private List<AActivity> activities = new ArrayList<>();
@@ -49,8 +46,11 @@ public class LocationScreen implements Screen {
         if (location.getName().equals("FitnessClub")) {
             lieu = new FitnessClub(game);
         }
-        if (location.getName().equals("Maison")) {
+        if (location.getName().equals("Your House")) {
             lieu = new Maison(game);
+        }
+        if (location.getName().equals("Clover Field")) {
+            lieu = new CloverField(game);
         }
 
         font = new BitmapFont();
@@ -69,8 +69,11 @@ public class LocationScreen implements Screen {
         if (location.getName().equals("FitnessClub")) {
             background = new Texture(Gdx.files.internal("assets/images/gym_background.png"));
         }
-        if (location.getName().equals("Maison")) {
+        if (location.getName().equals("Your House")) {
             background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
+        }
+        if (location.getName().equals("Clover Field")) {
+            background = new Texture(Gdx.files.internal("assets/images/maison_background.png")); // image à générer
         }
         // lance la musique quand on rentre dans un lieu
         if (lieu != null) {
@@ -116,24 +119,16 @@ public class LocationScreen implements Screen {
                 actions.clear();
                 int yPos = 700;
 
-                // On détermine quelles activités charger selon le lieu
-                if (lieu instanceof FitnessClub) {
-                    activities = ActivityFactory.getFitnessActivities(lieu);
-                } else if (lieu instanceof Maison) {
-                    activities = ActivityFactory.getMaisonActivities();
-                }
+            // On charge les activités qui sont défini dans les classe lieu
+            activities = lieu.getActivities();
+
 
                 // Boucle unique pour créer les boutons d’action
                 for (int i = 0; i < activities.size(); i++) {
                     final int index = i;
                     AActivity activity = activities.get(i);
-
                     addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
-                                if (lieu instanceof FitnessClub club) {
-                                    club.performActivity(index, hero, day);
-                                } else if (lieu instanceof Maison maison) {
-                                    maison.performActivity(index, hero, day);
-                                }
+                                lieu.performActivity(index, hero, day);
                             }
                     );
                 }

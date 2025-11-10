@@ -26,7 +26,7 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getCloverFieldsActivities() {
+    public static List<AActivity> getCloverFieldActivities() {
         List<AActivity> list = new ArrayList<>();
         list.add(new FindClover());
         list.add(new Rest());
