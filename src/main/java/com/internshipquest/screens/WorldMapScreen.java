@@ -33,14 +33,15 @@ public class WorldMapScreen implements Screen {
         this.game = game;
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-
-        locations.add(new Location("Zone industrielle", 64, 704, 448, 256));
-        locations.add(new Location("Epitech", 768, 720, 256, 128));
-        locations.add(new Location("Carrefour", 96, 352, 224, 224));
-        locations.add(new Location("FitnessClub", 640, 320, 256, 256));
-        locations.add(new Location("Marabou", 928, 320, 256, 256));
-        locations.add(new Location("Maison", 64, 205, 256, 64));
-        locations.add(new Location("Bar", 1024, 720, 256, 128));
+        // x , y largeur hauteur
+        locations.add(new Location("Industrial Zone", 64, 704, 448, 256));
+        locations.add(new Location("Clover Fields", 554, 720, 160, 160));
+        locations.add(new Location("Bar", 768, 720, 224, 128));
+        locations.add(new Location("magasin", 96, 352, 224, 224));
+        locations.add(new Location("FitnessClub", 640, 352, 256, 256));
+        locations.add(new Location("Marabou", 928, 352, 256, 256));
+        locations.add(new Location("Maison", 96, 128, 160, 160));
+        locations.add(new Location("Epitech", 992, 720, 256, 128));
     }
 
     @Override
@@ -73,11 +74,8 @@ public class WorldMapScreen implements Screen {
                 message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
             }
 
+
             game.font.draw(game.batch, message, 20, 40);
-        } else if (hero.isMoving()) {
-            game.font.getData().setScale(1.5f);
-            game.font.setColor(0.7f, 0.7f, 1f, 1f);
-            game.font.draw(game.batch, "En déplacement...", 20, 40);
         }
 
         game.batch.end();
@@ -144,8 +142,8 @@ public class WorldMapScreen implements Screen {
 
         
         if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
-            hero.setInitialLocation(locations.get(0));
-            System.out.println("[WORLDMAP] Héros placé à " + locations.get(0).getName());
+            hero.setInitialLocation(locations.get(6));
+            System.out.println("[WORLDMAP] Héros placé à " + locations.get(6).getName());
         }
     }
 

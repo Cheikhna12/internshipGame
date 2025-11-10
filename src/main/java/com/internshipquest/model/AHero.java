@@ -31,6 +31,12 @@ abstract public class AHero {
     //texture
     protected Texture texture;
 
+    //roads
+    final float ROUTE_NORD = 668f;
+    final float ROUTE_CENTRALE = 288f;
+    final float ROUTE_SUD = 64f;
+    final float AVENUE_OUEST = 32f;
+    final float AVENUE_EST = 1216f;
 
 
 
@@ -80,8 +86,8 @@ abstract public class AHero {
         this.name = name;
 
 
-        this.x = 100;
-        this.y = 100;
+//        this.x = 100;
+//        this.y = 100;
 
         this.texture = texture;
     }
@@ -136,11 +142,7 @@ abstract public class AHero {
             return path;
         }
 
-        final float ROUTE_NORD = 730f;
-        final float ROUTE_CENTRALE = 350f;
-        final float ROUTE_SUD = 200f;
-        final float AVENUE_OUEST = 32f;
-        final float AVENUE_EST = 1100f;
+
 
         float fromX = from.getCenterX();
         float fromY = from.getY() - 20;
@@ -196,9 +198,7 @@ abstract public class AHero {
     }
 
     private float getClosestRoute(float y) {
-        final float ROUTE_NORD = 702f;
-        final float ROUTE_CENTRALE = 350f;
-        final float ROUTE_SUD = 200f;
+
 
         float distNord = Math.abs(y - ROUTE_NORD);
         float distCentrale = Math.abs(y - ROUTE_CENTRALE);
@@ -217,7 +217,7 @@ abstract public class AHero {
     public void setInitialLocation(Location location) {
         this.currentLocation = location;
         this.x = location.getCenterX();
-        this.y = location.getY() - 40;
+        this.y = location.getY() - 5;
     }
 
 
