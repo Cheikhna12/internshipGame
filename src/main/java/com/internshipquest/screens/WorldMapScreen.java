@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.*;
+import com.internshipquest.model.Day;
+import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
 
