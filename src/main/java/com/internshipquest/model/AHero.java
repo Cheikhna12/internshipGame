@@ -17,6 +17,7 @@ abstract public class AHero {
     protected int money;
     protected int energy;
     protected String name;
+    protected String heroDescription;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -48,7 +49,8 @@ abstract public class AHero {
     public int getMotivation() {return motivation;}
     public int getMoney() {return money;}
     public int getEnergy() {return energy;}
-    public String getName() {return name;    }
+    public String getName() {return name;}
+    public String getHeroDescription() {return heroDescription;}
 
     public float getX() {return x;}
     public float getY() {return y;}

@@ -23,7 +23,6 @@ public class LocationScreen implements Screen {
 
     private ALieuVisitable lieu;
     private Texture background;
-    private BitmapFont font;
     private List<AActivity> activities = new ArrayList<>();
     private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
 
@@ -52,10 +51,6 @@ public class LocationScreen implements Screen {
         if (location.getName().equals("Clover Field")) {
             lieu = new CloverField(game);
         }
-
-        font = new BitmapFont();
-        font.getRegion().getTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-        font.setColor(1f, 1f, 1f, 1f);
 
         if (lieu != null && lieu.getNpcTexture() != null) {
             npcTexture = lieu.getNpcTexture();
@@ -93,14 +88,14 @@ public class LocationScreen implements Screen {
         }
 
         // Texte principal
-        font.getData().setScale(2f);
-        font.draw(game.batch, location.getName(), 50, 900);
-        font.getData().setScale(1.5f);
-        font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
+        game.font.getData().setScale(1.1f);
+        game.font.draw(game.batch, location.getName(), 50, 900);
+        game.font.getData().setScale(1.0f);
+        game.font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
 
         Day day = game.getDay();
         if (day != null) {
-            font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 825);
+            game.font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 825);
         }
 
         if (lieu != null) lieu.update(delta);
@@ -108,13 +103,13 @@ public class LocationScreen implements Screen {
         if (showNpcDialog && npcTexture != null) {
             // Affiche le PNJ et son message
             game.batch.draw(npcTexture, 500, 0, 960, 720);
-            font.getData().setScale(1.6f);
-            font.draw(game.batch, npcMessage, 550, 800);
+            game.font.getData().setScale(1.0f);
+            game.font.draw(game.batch, npcMessage, 550, 800);
         }
 
         if (lieu != null && lieu.isShowingMessage()) {
-            font.getData().setScale(1.5f);
-            font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
+            game.font.getData().setScale(1.0f);
+            game.font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
                 int yPos = 700;
@@ -133,17 +128,17 @@ public class LocationScreen implements Screen {
                     );
                 }
 
-            font.getData().setScale(1.8f);
+            game.font.getData().setScale(1.0f);
             for (ActionZone a : actions) {
-                font.draw(game.batch, a.text, a.x, a.y);
+                game.font.draw(game.batch, a.text, a.x, a.y);
             }
         }
 
         game.batch.end();
 
         game.batch.begin();
-        font.getData().setScale(1.5f);
-        font.draw(game.batch, "Return to world Map", returnX, returnY);
+        game.font.getData().setScale(1.05f);
+        game.font.draw(game.batch, "Return to world Map", returnX, returnY);
         game.batch.end();
 
         handleInput();
@@ -208,7 +203,6 @@ public class LocationScreen implements Screen {
     @Override
     public void dispose() {
         if (background != null) background.dispose();
-        if (font != null) font.dispose();
         if (npcTexture != null) npcTexture.dispose();
     }
 
