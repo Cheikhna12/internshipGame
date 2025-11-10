@@ -78,20 +78,24 @@ abstract public class AHero {
         this.money = money;
         this.energy = energy;
         this.isMoving = false;
-        this.moveSpeed = 200.0f;
+        this.moveSpeed = 400.0f;
         this.currentLocation = null;
         this.targetLocation = null;
         this.pathWaypoints = new ArrayList<>();
         this.currentWaypointIndex = 0;
         this.name = name;
-
-
-//        this.x = 100;
-//        this.y = 100;
-
         this.texture = texture;
     }
 
+    public void newEnergy(int endurance){
+        this.setEnergy(Math.round(endurance * 1.5f));
+    };
+
+
+    // public abstract Object postuler(Entreprise entreprise);
+
+
+    // fonction deplacement
     public void update(float delta) {
         if (!isMoving || pathWaypoints.isEmpty()) {
             return;
@@ -249,12 +253,7 @@ abstract public class AHero {
         batch.draw(texture,x,y,40,40);
     }
 
-    public void newEnergy(int endurance){
-        this.setEnergy(Math.round(endurance * 1.5f));
-    };
 
-
-    // public abstract Object postuler(Entreprise entreprise);
 
     public Location getCurrentLocation() {return currentLocation;}
     public boolean isMoving() {return isMoving;}

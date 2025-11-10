@@ -35,12 +35,12 @@ public class WorldMapScreen implements Screen {
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         // x , y largeur hauteur
         locations.add(new Location("Industrial Zone", 64, 704, 448, 256));
-        locations.add(new Location("Clover Fields", 554, 720, 160, 160));
+        locations.add(new Location("Clover Field", 554, 720, 160, 160));
         locations.add(new Location("Bar", 768, 720, 224, 128));
-        locations.add(new Location("magasin", 96, 352, 224, 224));
+        locations.add(new Location("Store", 96, 352, 224, 224));
         locations.add(new Location("FitnessClub", 640, 352, 256, 256));
-        locations.add(new Location("Marabou", 928, 352, 256, 256));
-        locations.add(new Location("Maison", 96, 128, 160, 160));
+        locations.add(new Location("Sorcerer", 928, 352, 256, 256));
+        locations.add(new Location("Your House", 96, 128, 160, 160));
         locations.add(new Location("Epitech", 992, 720, 256, 128));
     }
 
@@ -67,11 +67,11 @@ public class WorldMapScreen implements Screen {
 
             String message;
             if (hero.getCurrentLocation() == hoveredLocation) {
-                message = hoveredLocation.getName() + " - Cliquez pour entrer";
+                message = hoveredLocation.getName() + " - Click to enter";
             } else if (hero.isMoving()) {
-                message = "En déplacement...";
+                message = "While traveling...";
             } else {
-                message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
+                message = hoveredLocation.getName() + " - Click to move";
             }
 
 
