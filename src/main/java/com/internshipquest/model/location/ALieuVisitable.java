@@ -1,9 +1,11 @@
-package com.internshipquest.model;
+package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
 import com.badlogic.gdx.graphics.Texture;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
+import com.internshipquest.model.hero.AHero;
+import com.internshipquest.model.Day;
 import com.internshipquest.utils.SoundManager;
 import java.util.List;
 

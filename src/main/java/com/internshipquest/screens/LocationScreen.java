@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.*;
+import com.internshipquest.model.Day;
+import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.*;
 import com.internshipquest.model.activity.AActivity;
 
 import java.util.ArrayList;
@@ -51,6 +53,9 @@ public class LocationScreen implements Screen {
         if (location.getName().equals("Clover Field")) {
             lieu = new CloverField(game);
         }
+        if (location.getName().equals("Epitech")) {
+            lieu = new Epitech(game);
+        }
 
         if (lieu != null && lieu.getNpcTexture() != null) {
             npcTexture = lieu.getNpcTexture();
@@ -68,6 +73,9 @@ public class LocationScreen implements Screen {
             background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
         }
         if (location.getName().equals("Clover Field")) {
+            background = new Texture(Gdx.files.internal("assets/images/maison_background.png")); // image à générer
+        }
+        if (location.getName().equals("Epitech")) {
             background = new Texture(Gdx.files.internal("assets/images/maison_background.png")); // image à générer
         }
         // lance la musique quand on rentre dans un lieu
@@ -95,7 +103,7 @@ public class LocationScreen implements Screen {
 
         Day day = game.getDay();
         if (day != null) {
-            game.font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 825);
+            game.font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 820);
         }
 
         if (lieu != null) lieu.update(delta);
