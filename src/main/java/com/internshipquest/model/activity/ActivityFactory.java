@@ -20,8 +20,16 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new Sleep());
         list.add(new Wait());
+        list.add(new Rest());
         list.add(new DevWait16h());
         list.add(new DisplayStat());
+        return list;
+    }
+
+    public static List<AActivity> getCloverFieldsActivities() {
+        List<AActivity> list = new ArrayList<>();
+        list.add(new FindClover());
+        list.add(new Rest());
         return list;
     }
 }
