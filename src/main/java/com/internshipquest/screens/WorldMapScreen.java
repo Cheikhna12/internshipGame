@@ -56,13 +56,13 @@ public class WorldMapScreen implements Screen {
         game.batch.begin();
 
         // Affichage de la date et l'heure
-        game.font.getData().setScale(1.8f);
+        game.font.getData().setScale(1f);
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
         // Affichage du nom du lieu uniquement au survol (en bas de l'écran)
         if (hoveredLocation != null) {
-            game.font.getData().setScale(2.0f);
+            game.font.getData().setScale(1.0f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
 
             String message;
@@ -83,7 +83,7 @@ public class WorldMapScreen implements Screen {
         if (temporaryMessage != null) {
             messageTimer += delta;
             game.batch.begin();
-            game.font.getData().setScale(1.6f);
+            game.font.getData().setScale(1f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
             game.font.draw(game.batch, temporaryMessage, 800, 80);
             game.batch.end();
