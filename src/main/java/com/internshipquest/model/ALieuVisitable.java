@@ -79,6 +79,13 @@ public abstract class ALieuVisitable {
             return;
         }
 
+        if (hero.getMoney() < activity.getCost() ) {
+            currentMessage = "I'm too broke for buy that...";
+            showingMessage = true;
+            messageTimer = 0f;
+            return;
+        }
+
         activity.doIt(hero, day);
 
         // Affichage du message

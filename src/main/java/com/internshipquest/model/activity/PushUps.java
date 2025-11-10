@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class PushUps extends AActivity {
     // name, duration, cost
     public PushUps() {
-        super("Do some push-Ups", 1, 5);
+        super("Do some push-Ups", 1, 5,0);
     }
 
     @Override
