@@ -2,7 +2,7 @@ package com.internshipquest.model.activity;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.internshipquest.model.*;
+import com.internshipquest.model.location.*;
 
 public class ActivityFactory {
 
@@ -30,6 +30,12 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new FindClover());
         list.add(new Rest());
+        return list;
+    }
+
+    public static List<AActivity> getEpitechActivities() {
+        List<AActivity> list = new ArrayList<>();
+        list.add(new Study());
         return list;
     }
 }

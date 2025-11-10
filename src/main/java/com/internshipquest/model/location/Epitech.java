@@ -1,4 +1,4 @@
-package com.internshipquest.model;
+package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;
@@ -7,21 +7,21 @@ import com.internshipquest.utils.SoundManager;
 
 import java.util.List;
 
-public class CloverField extends ALieuVisitable {
+public class Epitech extends ALieuVisitable {
 
 
-    public CloverField(InternshipQuestGame game) {
+    public Epitech(InternshipQuestGame game) {
         super(game);
-        this.openHour = 0;
-        this.closedHour = 24;
-        this.openOnWeekends = true;
-        activities = ActivityFactory.getCloverFieldActivities();
+        this.openHour = 8;
+        this.closedHour = 19;
+        this.openOnWeekends = false;
+        activities = ActivityFactory.getEpitechActivities();
     }
 
     @Override
     public void onEnter() {
         // nom, loop or not, volume %
-        SoundManager.playMusic("house", true, 0.4f); // need change musique
+        SoundManager.playMusic("house", true, 0.4f);
     }
 
     @Override

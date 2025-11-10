@@ -8,11 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.Hero;
-import com.internshipquest.model.Chad;
-import com.internshipquest.model.Nerd;
-import com.internshipquest.model.Hero;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.*;
 import com.internshipquest.model.Day;
 
 public class Menu implements Screen {

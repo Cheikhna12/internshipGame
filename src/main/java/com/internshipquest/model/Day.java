@@ -2,6 +2,7 @@ package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.screens.NightScreen;
+import com.internshipquest.model.hero.AHero;
 
 public class Day {
     private AHero hero;
