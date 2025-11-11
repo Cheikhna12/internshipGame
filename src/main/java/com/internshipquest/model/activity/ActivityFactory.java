@@ -20,7 +20,6 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new Sleep());
         list.add(new Wait());
-        list.add(new Rest());
         list.add(new DevWait16h());
         list.add(new DisplayStat());
         return list;
@@ -36,6 +35,21 @@ public class ActivityFactory {
     public static List<AActivity> getEpitechActivities() {
         List<AActivity> list = new ArrayList<>();
         list.add(new Study());
+        return list;
+    }
+
+    public static List<AActivity> getBarActivities() {
+        List<AActivity> list = new ArrayList<>();
+        return list;
+    }
+
+    public static List<AActivity> getShopActivities() {
+        List<AActivity> list = new ArrayList<>();
+        return list;
+    }
+
+    public static List<AActivity> getSorcererActivities() {
+        List<AActivity> list = new ArrayList<>();
         return list;
     }
 }
