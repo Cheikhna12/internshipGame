@@ -36,7 +36,7 @@ public class LocationScreen implements Screen {
     // zone "Return to world Map"
     private final float returnX = 50;
     private final float returnY = 80;
-    private final float returnWidth = 250;
+    private final float returnWidth =  400;
     private final float returnHeight = 30;
 
     public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen) {
@@ -90,19 +90,14 @@ public class LocationScreen implements Screen {
 
         if (lieu != null) lieu.update(delta);
 
-        if (showNpcDialog && npcTexture != null) {
-            // Affiche le PNJ et son message
-            game.batch.draw(npcTexture, 500, 0, 960, 720);
-            game.font.getData().setScale(1.0f);
-            game.font.draw(game.batch, npcMessage, 550, 800);
-        }
+
 
         if (lieu != null && lieu.isShowingMessage()) {
             game.font.getData().setScale(1.0f);
             game.font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
-                int yPos = 700;
+                    int yPos = 700;
 
             // On charge les activités qui sont défini dans les classe lieu
             activities = lieu.getActivities();
@@ -121,6 +116,15 @@ public class LocationScreen implements Screen {
             game.font.getData().setScale(1.0f);
             for (ActionZone a : actions) {
                 game.font.draw(game.batch, a.text, a.x, a.y);
+            }
+
+            if (showNpcDialog && npcTexture != null) {
+                // Affiche le PNJ et son message
+                game.batch.draw(npcTexture, 500, 0, 960, 720);
+                game.font.getData().setScale(1.1f);
+                game.font.setColor(0f, 0.7f, 1f, 1f);
+                game.font.draw(game.batch, npcMessage, 550, 800);
+                game.font.setColor(1f, 0.8f, 0f, 1f);
             }
         }
 

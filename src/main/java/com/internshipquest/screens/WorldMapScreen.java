@@ -23,6 +23,7 @@ public class WorldMapScreen implements Screen {
     private LocationFactory locationFactory;
     private CityMapRenderer cityMap;
     private Location hoveredLocation;
+    private Location lastLocationVisited;
 
 
     private SpriteBatch heroBatch;
@@ -120,6 +121,7 @@ public class WorldMapScreen implements Screen {
                             temporaryMessage = "The " + loc.getName() + " is currently closed.";
                             messageTimer = 0f;
                         } else {
+                            lastLocationVisited = loc;
                             game.setScreen(new LocationScreen(game, loc, this));
                         }
                     } else if (!hero.isMoving()) {
@@ -133,18 +135,21 @@ public class WorldMapScreen implements Screen {
     }
 
 
-    @Override
     public void show() {
         heroBatch = new SpriteBatch();
 
-
-        for (Location loc : locations) {
-            if ("Your House".equals(loc.getName())) {
-                hero.setInitialLocation(loc);
-                System.out.println("[WORLDMAP] Héros placé à " + loc.getName());
-                break;
-            }
+        Location initialLoc = lastLocationVisited != null ? lastLocationVisited : getLocationByName("Your House");
+        if (initialLoc != null) {
+            hero.setInitialLocation(initialLoc);
+            System.out.println("[WORLDMAP] Héros placé à " + initialLoc.getName());
         }
+    }
+
+    private Location getLocationByName(String name) {
+        for (Location loc : locations) {
+            if (loc.getName().equals(name)) return loc;
+        }
+        return null;
     }
 
     @Override
