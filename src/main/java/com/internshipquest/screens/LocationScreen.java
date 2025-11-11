@@ -13,6 +13,7 @@ import com.internshipquest.model.location.*;
 import com.internshipquest.model.hero.*;
 import com.internshipquest.model.activity.AActivity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,18 +45,8 @@ public class LocationScreen implements Screen {
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
 
-        if (location.getName().equals("FitnessClub")) {
-            lieu = new FitnessClub(game);
-        }
-        if (location.getName().equals("Your House")) {
-            lieu = new Maison(game);
-        }
-        if (location.getName().equals("Clover Field")) {
-            lieu = new CloverField(game);
-        }
-        if (location.getName().equals("Epitech")) {
-            lieu = new Epitech(game);
-        }
+        LocationFactory factory = new LocationFactory(game);
+        this.lieu = factory.getVisitableLocation(location.getName());
 
         if (lieu != null && lieu.getNpcTexture() != null) {
             npcTexture = lieu.getNpcTexture();
@@ -66,18 +57,9 @@ public class LocationScreen implements Screen {
 
     @Override
     public void show() {
-        if (location.getName().equals("FitnessClub")) {
-            background = new Texture(Gdx.files.internal("assets/images/gym_background.png"));
-        }
-        if (location.getName().equals("Your House")) {
-            background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
-        }
-        if (location.getName().equals("Clover Field")) {
-            background = new Texture(Gdx.files.internal("assets/images/maison_background.png")); // image à générer
-        }
-        if (location.getName().equals("Epitech")) {
-            background = new Texture(Gdx.files.internal("assets/images/maison_background.png")); // image à générer
-        }
+
+        // on gère maintenant le background dans la factory :)
+        background = LocationFactory.createBackground(location.getName());
         // lance la musique quand on rentre dans un lieu
         if (lieu != null) {
             lieu.onEnter();

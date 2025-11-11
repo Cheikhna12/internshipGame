@@ -1,6 +1,10 @@
 package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.location.*;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -20,11 +24,20 @@ public class LocationFactory {
 
         ALieuVisitable lieu = null;
         switch (name) {
-            case "Your House": lieu = new Maison(game); break;
-            case "FitnessClub": lieu = new FitnessClub(game); break;
-            case "Clover Field": lieu = new CloverField(game); break;
-            case "Epitech": lieu = new Epitech(game); break;
-            default: break; // Non visitable = null
+            case "Your House":
+                lieu = new Maison(game);
+                break;
+            case "FitnessClub":
+                lieu = new FitnessClub(game);
+                break;
+            case "Clover Field":
+                lieu = new CloverField(game);
+                break;
+            case "Epitech":
+                lieu = new Epitech(game);
+                break;
+            default:
+                break; // Non visitable = null
         }
 
         if (lieu != null) locationMap.put(name, lieu);
@@ -52,4 +65,23 @@ public class LocationFactory {
         loc.setLieu(getVisitableLocation(name));
         return loc;
     }
+
+    public static Texture createBackground(String locationName) {
+        switch (locationName) {
+            case "FitnessClub":
+                return new Texture(Gdx.files.internal("assets/images/gym_background.png"));
+            case "Your House":
+                return new Texture(Gdx.files.internal("assets/images/maison_background.png"));
+            case "Clover Field":
+                return new Texture(Gdx.files.internal("assets/images/clover_field_background.png"));
+            case "Epitech":
+                return new Texture(Gdx.files.internal("assets/images/epitech_background.png"));
+            case "Bar":
+                return new Texture(Gdx.files.internal("assets/images/bar_background.png"));
+                default:
+                return new Texture(Gdx.files.internal("assets/images/default_background.png"));
+        }
+    }
 }
+
+
