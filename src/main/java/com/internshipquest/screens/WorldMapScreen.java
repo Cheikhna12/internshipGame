@@ -3,6 +3,7 @@ package com.internshipquest.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
@@ -80,9 +81,10 @@ public class WorldMapScreen implements Screen {
         if (temporaryMessage != null) {
             messageTimer += delta;
             game.batch.begin();
-            game.font.getData().setScale(1f);
+            GlyphLayout layout = new GlyphLayout(game.font, temporaryMessage);
+            float x = (Gdx.graphics.getWidth() - layout.width-32f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
-            game.font.draw(game.batch, temporaryMessage, 800, 80);
+            game.font.draw(game.batch, temporaryMessage, x, 80);
             game.batch.end();
 
             if (messageTimer > 3.5f) { // 3,5 secondes affichées
