@@ -1,5 +1,6 @@
-package com.internshipquest.model;
+package com.internshipquest.model.hero;
 
+import com.internshipquest.model.location.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -17,6 +18,7 @@ abstract public class AHero {
     protected int money;
     protected int energy;
     protected String name;
+    protected String heroDescription;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -48,7 +50,8 @@ abstract public class AHero {
     public int getMotivation() {return motivation;}
     public int getMoney() {return money;}
     public int getEnergy() {return energy;}
-    public String getName() {return name;    }
+    public String getName() {return name;}
+    public String getHeroDescription() {return heroDescription;}
 
     public float getX() {return x;}
     public float getY() {return y;}
@@ -60,7 +63,7 @@ abstract public class AHero {
     public void setEnergy(int energy) {this.energy = energy;}
     public void setSocial(int social) {this.social = social;}
     public void setLuck(int luck) {this.luck = luck;}
-    public void setSkills(int skills) {this.codingSkills = skills;}
+    public void setCodingSkills(int skills) {this.codingSkills = skills;}
     public void setMotivation(int motivation) {this.motivation = motivation;}
     public void setMoney(int money) {this.money = money;}
 
@@ -78,20 +81,24 @@ abstract public class AHero {
         this.money = money;
         this.energy = energy;
         this.isMoving = false;
-        this.moveSpeed = 200.0f;
+        this.moveSpeed = 400.0f;
         this.currentLocation = null;
         this.targetLocation = null;
         this.pathWaypoints = new ArrayList<>();
         this.currentWaypointIndex = 0;
         this.name = name;
-
-
-//        this.x = 100;
-//        this.y = 100;
-
         this.texture = texture;
     }
 
+    public void newEnergy(int endurance){
+        this.setEnergy(Math.round(endurance * 1.5f));
+    };
+
+
+    // public abstract Object postuler(Entreprise entreprise);
+
+
+    // fonction deplacement
     public void update(float delta) {
         if (!isMoving || pathWaypoints.isEmpty()) {
             return;
@@ -249,12 +256,7 @@ abstract public class AHero {
         batch.draw(texture,x,y,40,40);
     }
 
-    public void newEnergy(int endurance){
-        this.setEnergy(Math.round(endurance * 1.5f));
-    };
 
-
-    // public abstract Object postuler(Entreprise entreprise);
 
     public Location getCurrentLocation() {return currentLocation;}
     public boolean isMoving() {return isMoving;}

@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 import com.internshipquest.InternshipQuestGame;
 
 public class NightScreen implements Screen {

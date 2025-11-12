@@ -3,7 +3,7 @@ package com.internshipquest.model.activity;
 import java.util.Random;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class Rest extends AActivity {

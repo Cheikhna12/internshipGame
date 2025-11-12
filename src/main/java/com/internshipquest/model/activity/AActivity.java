@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 
 public abstract class AActivity {
     protected String name;
