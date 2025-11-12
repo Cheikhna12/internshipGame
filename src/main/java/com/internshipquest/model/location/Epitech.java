@@ -15,7 +15,7 @@ public class Epitech extends ALieuVisitable {
         this.openHour = 8;
         this.closedHour = 19;
         this.openOnWeekends = false;
-        activities = ActivityFactory.getEpitechActivities();
+        activities = ActivityFactory.getEpitechActivities(this);
     }
 
     @Override

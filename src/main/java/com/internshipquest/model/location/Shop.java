@@ -15,7 +15,7 @@ public class Shop extends ALieuVisitable {
         this.openHour =9;
         this.closedHour =20;
        this.openOnWeekends = true;
-        activities = ActivityFactory.getShopActivities();
+        activities = ActivityFactory.getShopActivities(this);
     }
 
     @Override
