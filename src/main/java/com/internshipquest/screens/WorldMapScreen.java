@@ -145,7 +145,7 @@ public class WorldMapScreen implements Screen {
         }
     }
 
-    private Location getLocationByName(String name) {
+    public Location getLocationByName(String name) {
         for (Location loc : locations) {
             if (loc.getName().equals(name)) return loc;
         }
