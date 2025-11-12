@@ -10,7 +10,7 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new PushUps());
         list.add(new DeadLifts());
-        list.add(new SnackDispenser());
+        list.add(new SnackDispenserGym());
         list.add(new AskOpeningHours(lieu));
         return list;
     }
@@ -32,24 +32,31 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getEpitechActivities() {
+    public static List<AActivity> getEpitechActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
         list.add(new Study());
+        list.add(new ChessClub());
+        list.add(new SnackDispenserEpitech());
+        list.add(new AskOpeningHours(lieu));
         return list;
     }
 
-    public static List<AActivity> getBarActivities() {
+    public static List<AActivity> getBarActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new DrinkAlcool());
+        list.add(new AskOpeningHours(lieu));
         return list;
     }
 
-    public static List<AActivity> getShopActivities() {
+    public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new AskOpeningHours(lieu));
         return list;
     }
 
-    public static List<AActivity> getSorcererActivities() {
+    public static List<AActivity> getSorcererActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new AskOpeningHours(lieu));
         return list;
     }
 }

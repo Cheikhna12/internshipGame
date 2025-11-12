@@ -15,7 +15,7 @@ public class Sorcerer extends ALieuVisitable {
         this.openHour = 8;
         this.closedHour = 19;
         this.openOnWeekends = true;
-        activities = ActivityFactory.getSorcererActivities();
+        activities = ActivityFactory.getSorcererActivities(this);
     }
 
     @Override

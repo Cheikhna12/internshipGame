@@ -15,7 +15,7 @@ public class Bar extends ALieuVisitable {
         this.openHour =20;
         this.closedHour =24;
        this.openOnWeekends = true;
-        activities = ActivityFactory.getBarActivities();
+        activities = ActivityFactory.getBarActivities(this);
     }
 
     @Override
