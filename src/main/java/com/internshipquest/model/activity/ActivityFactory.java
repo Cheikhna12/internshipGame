@@ -53,13 +53,14 @@ public class ActivityFactory {
 
     public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
-        list.add(new AskOpeningHours(lieu));
         list.add(new StoreWork());
+        list.add(new AskOpeningHours(lieu));
         return list;
     }
 
     public static List<AActivity> getSorcererActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new Bewitchment());
         list.add(new AskOpeningHours(lieu));
         return list;
     }

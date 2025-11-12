@@ -81,7 +81,7 @@ public class LocationScreen implements Screen {
         game.font.getData().setScale(1.1f);
         game.font.draw(game.batch, location.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
-        game.font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
+        game.font.draw(game.batch, "Your current energy is " + hero.getEnergy() + " and you got "+hero.getMoney()+"euro.", 50, 850);
 
         Day day = game.getDay();
         if (day != null) {

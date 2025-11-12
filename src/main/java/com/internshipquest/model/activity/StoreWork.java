@@ -20,7 +20,7 @@ public class StoreWork extends AActivity {
         hero.setEndurance(newEndurance);
         hero.setSocial(newSocial);
         hero.setEnergy(newEnergy);
-        hero.setMoney(money);
+        hero.setMoney(hero.getMoney()+money);
 
         day.addHour(duration);
 
