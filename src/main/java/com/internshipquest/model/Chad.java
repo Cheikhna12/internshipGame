@@ -8,7 +8,7 @@ public class Chad extends AHero{
     // int skills, int motivation, int money, int energy, Texture texture)
     public Chad(){
       
-        super("zeldi",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Chad.png"));
+        super("Giovanni",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Chad.png"));
     }
 
 
