@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.*;
+import com.internshipquest.model.Day;
+import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,10 +23,12 @@ import java.util.List;
 
 public class WorldMapScreen implements Screen {
 
-    private final InternshipQuestGame game;
-    private final List<Location> locations;
-    private final CityMapRenderer cityMap;
+    private InternshipQuestGame game;
+    private List<Location> locations;
+    private LocationFactory locationFactory;
+    private CityMapRenderer cityMap;
     private Location hoveredLocation;
+
 
     private SpriteBatch heroBatch;
     private AHero hero;
@@ -39,20 +43,13 @@ public class WorldMapScreen implements Screen {
     private float messageTimer = 0f;
 
     public WorldMapScreen(InternshipQuestGame game) {
+        this.game = game;
         this.day = game.getDay();
         this.hero = game.getHero();
-        this.game = game;
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-        // x , y largeur hauteur
-        locations.add(new Location("Industrial Zone", 64, 704, 448, 256));
-        locations.add(new Location("Clover Fields", 554, 720, 160, 160));
-        locations.add(new Location("Bar", 768, 720, 224, 128));
-        locations.add(new Location("magasin", 96, 352, 224, 224));
-        locations.add(new Location("FitnessClub", 640, 352, 256, 256));
-        locations.add(new Location("Marabou", 928, 352, 256, 256));
-        locations.add(new Location("Maison", 96, 128, 160, 160));
-        locations.add(new Location("Epitech", 992, 720, 256, 128));
+        this.locationFactory = new LocationFactory(game);
+        this.locations = locationFactory.createAllLocations();
     }
 
     @Override
@@ -67,22 +64,22 @@ public class WorldMapScreen implements Screen {
         game.batch.begin();
 
         // Affichage de la date et l'heure
-        game.font.getData().setScale(1.8f);
+        game.font.getData().setScale(1f);
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
         // Affichage du nom du lieu uniquement au survol (en bas de l'écran)
         if (hoveredLocation != null) {
-            game.font.getData().setScale(2.0f);
+            game.font.getData().setScale(1.0f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
 
             String message;
             if (hero.getCurrentLocation() == hoveredLocation) {
-                message = hoveredLocation.getName() + " - Cliquez pour entrer";
+                message = hoveredLocation.getName() + " - Click to enter";
             } else if (hero.isMoving()) {
-                message = "En déplacement...";
+                message = "While traveling...";
             } else {
-                message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
+                message = hoveredLocation.getName() + " - Click to move";
             }
 
 
@@ -94,7 +91,7 @@ public class WorldMapScreen implements Screen {
         if (temporaryMessage != null) {
             messageTimer += delta;
             game.batch.begin();
-            game.font.getData().setScale(1.6f);
+            game.font.getData().setScale(1f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
             game.font.draw(game.batch, temporaryMessage, 800, 80);
             game.batch.end();
@@ -147,8 +144,6 @@ public class WorldMapScreen implements Screen {
     }
 
 
-
-
     @Override
     public void show() {
         heroBatch = new SpriteBatch();
@@ -172,10 +167,12 @@ public class WorldMapScreen implements Screen {
 
         stage.addActor(settingsButton);
 
-        
-        if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
-            hero.setInitialLocation(locations.get(6));
-            System.out.println("[WORLDMAP] Héros placé à " + locations.get(6).getName());
+        for (Location loc : locations) {
+            if ("Your House".equals(loc.getName())) {
+                hero.setInitialLocation(loc);
+                System.out.println("[WORLDMAP] Héros placé à " + loc.getName());
+                break;
+            }
         }
     }
 

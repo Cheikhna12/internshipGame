@@ -1,4 +1,4 @@
-package com.internshipquest.model;
+package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;

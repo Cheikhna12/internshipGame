@@ -1,14 +1,16 @@
-package com.internshipquest.model;
+package com.internshipquest.model.hero;
+
 import com.badlogic.gdx.graphics.Texture;
 
 
-public class Nerd extends AHero{
+public class Chad extends AHero{
      // constructor
     // template : public Hero(name, int endurance,  int social, int luck,
     // int skills, int motivation, int money, int energy, Texture texture)
-    public Nerd(){
+    public Chad(){
       
-        super("Elmüt",35, 20, 5, 0, 50, 500, 100, new Texture("assets/Nerd.png"));
+        super("Giovanni",35, 15, 15, 5, 30, 30, 70, new Texture("assets/Chad.png"));
+        this.heroDescription= "A mountain of muscle to 'hit' the code";
     }
 
 
