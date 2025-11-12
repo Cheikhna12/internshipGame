@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 
 public class Sleep extends AActivity {
     // name, duration, cost
@@ -17,7 +17,6 @@ public class Sleep extends AActivity {
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
         day.setNightTriggered(false);
-
         message = "After a good night, you regenere your energie to "+hero.getEnergy()+".";
     }
 }

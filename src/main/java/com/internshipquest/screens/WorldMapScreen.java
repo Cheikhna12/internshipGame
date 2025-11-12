@@ -3,45 +3,55 @@ package com.internshipquest.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.model.*;
+import com.internshipquest.model.Day;
+import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorldMapScreen implements Screen {
 
-    private final InternshipQuestGame game;
-    private final List<Location> locations;
-    private final CityMapRenderer cityMap;
+    private InternshipQuestGame game;
+    private List<Location> locations;
+    private LocationFactory locationFactory;
+    private CityMapRenderer cityMap;
     private Location hoveredLocation;
+    private Location lastLocationVisited;
+
 
     private SpriteBatch heroBatch;
     private AHero hero;
     private Day day;
 
+    // Attributes for settings
+    private Stage stage;
+    private Skin skin;
+    private TextButton settingsButton;
+
     private String temporaryMessage = null;
     private float messageTimer = 0f;
 
     public WorldMapScreen(InternshipQuestGame game) {
+        this.game = game;
         this.day = game.getDay();
         this.hero = game.getHero();
-        this.game = game;
         this.locations = new ArrayList<>();
         this.cityMap = new CityMapRenderer(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-        // x , y largeur hauteur
-        locations.add(new Location("Industrial Zone", 64, 704, 448, 256));
-        locations.add(new Location("Clover Fields", 554, 720, 160, 160));
-        locations.add(new Location("Bar", 768, 720, 224, 128));
-        locations.add(new Location("magasin", 96, 352, 224, 224));
-        locations.add(new Location("FitnessClub", 640, 352, 256, 256));
-        locations.add(new Location("Marabou", 928, 352, 256, 256));
-        locations.add(new Location("Maison", 96, 128, 160, 160));
-        locations.add(new Location("Epitech", 992, 720, 256, 128));
+        this.locationFactory = new LocationFactory(game);
+        this.locations = locationFactory.createAllLocations();
     }
 
     @Override
@@ -56,22 +66,22 @@ public class WorldMapScreen implements Screen {
         game.batch.begin();
 
         // Affichage de la date et l'heure
-        game.font.getData().setScale(1.8f);
+        game.font.getData().setScale(1f);
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
         // Affichage du nom du lieu uniquement au survol (en bas de l'écran)
         if (hoveredLocation != null) {
-            game.font.getData().setScale(2.0f);
+            game.font.getData().setScale(1.0f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
 
             String message;
             if (hero.getCurrentLocation() == hoveredLocation) {
-                message = hoveredLocation.getName() + " - Cliquez pour entrer";
+                message = hoveredLocation.getName() + " - Click to enter";
             } else if (hero.isMoving()) {
-                message = "En déplacement...";
+                message = "While traveling...";
             } else {
-                message = hoveredLocation.getName() + " - Cliquez pour vous déplacer";
+                message = hoveredLocation.getName() + " - Click to move";
             }
 
 
@@ -83,9 +93,10 @@ public class WorldMapScreen implements Screen {
         if (temporaryMessage != null) {
             messageTimer += delta;
             game.batch.begin();
-            game.font.getData().setScale(1.6f);
+            GlyphLayout layout = new GlyphLayout(game.font, temporaryMessage);
+            float x = (Gdx.graphics.getWidth() - layout.width-32f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
-            game.font.draw(game.batch, temporaryMessage, 800, 80);
+            game.font.draw(game.batch, temporaryMessage, x, 80);
             game.batch.end();
 
             if (messageTimer > 3.5f) { // 3,5 secondes affichées
@@ -99,6 +110,8 @@ public class WorldMapScreen implements Screen {
         heroBatch.end();
 
         checkMouse();
+        stage.act(delta);
+        stage.draw();
     }
 
     private void checkMouse() {
@@ -121,6 +134,7 @@ public class WorldMapScreen implements Screen {
                             temporaryMessage = "The " + loc.getName() + " is currently closed.";
                             messageTimer = 0f;
                         } else {
+                            lastLocationVisited = loc;
                             game.setScreen(new LocationScreen(game, loc, this));
                         }
                     } else if (!hero.isMoving()) {
@@ -134,17 +148,42 @@ public class WorldMapScreen implements Screen {
     }
 
 
-
-
-    @Override
     public void show() {
         heroBatch = new SpriteBatch();
 
-        
-        if (!locations.isEmpty() && hero.getCurrentLocation() == null) {
-            hero.setInitialLocation(locations.get(6));
-            System.out.println("[WORLDMAP] Héros placé à " + locations.get(6).getName());
+
+        Location initialLoc = lastLocationVisited != null ? lastLocationVisited : getLocationByName("Your House");
+        if (initialLoc != null) {
+            hero.setInitialLocation(initialLoc);
+            System.out.println("[WORLDMAP] Héros placé à " + initialLoc.getName());
         }
+    
+
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
+
+        settingsButton = new TextButton("Settings", skin);
+        settingsButton.setPosition(Constants.WINDOW_WIDTH - 180, Constants.WINDOW_HEIGHT - 80);
+        settingsButton.setSize(150, 50);
+
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("[WORLDMAP] Settings button clicked!");
+                game.setScreen(new SettingsScreen(game, WorldMapScreen.this));
+            }
+        });
+
+        stage.addActor(settingsButton);}
+
+
+    public Location getLocationByName(String name) {
+        for (Location loc : locations) {
+            if (loc.getName().equals(name)) return loc;
+        }
+        return null;
     }
 
     @Override
@@ -161,6 +200,8 @@ public class WorldMapScreen implements Screen {
 
     @Override
     public void dispose() {
+        stage.dispose();
+        skin.dispose();
         cityMap.dispose();
         heroBatch.dispose();
     }

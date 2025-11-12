@@ -2,6 +2,7 @@ package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.screens.NightScreen;
+import com.internshipquest.model.hero.AHero;
 
 public class Day {
     private AHero hero;
@@ -64,16 +65,6 @@ public class Day {
             nightTriggered = false;
         }
     }
-
-//    public void verifHour() {
-//        if (!nightTriggered && hourAfterMidnight >= 3) {
-//            nightTriggered = true;
-//            game.setScreen(new NightScreen(game, hero));
-//            day += 1;
-//            hour = 10;
-//            hourAfterMidnight = 0;
-//        }
-//    }
 
     public void setDay(int day) {
         this.day = day;

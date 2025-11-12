@@ -1,7 +1,7 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class DeadLifts extends AActivity {
@@ -20,7 +20,7 @@ public class DeadLifts extends AActivity {
         hero.setEnergy(newEnergy);
         day.addHour(duration);
 
-        message = "After " + duration + " hour(s) of deadlifts, your endurance increased to "
+        message = "After " + duration + " hour(s) of deadlifts, your endurance increased \nto "
                 + newEndurance + " and energy decreased to " + newEnergy;
     }
 }
