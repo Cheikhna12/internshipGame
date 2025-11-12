@@ -4,9 +4,9 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
-public class SnackDispenser extends AActivity {
+public class SnackDispenserGym extends AActivity {
     // name, duration, cost
-    public SnackDispenser() {
+    public SnackDispenserGym() {
         super("buy a protein bar from the snack vending machine", 0, 0, 5);
     }
 
@@ -15,7 +15,7 @@ public class SnackDispenser extends AActivity {
         SoundManager.playSound("machine_nourriture",0.6f);
         int newEndurance = hero.getEndurance() + 1;
         int newEnergy= hero.getEnergy()+2;
-        int newMoney= hero.getMoney()-5;
+        int newMoney= hero.getMoney()-cost;
 
         hero.setEndurance(newEndurance);
         hero.setEnergy(newEnergy);
@@ -23,6 +23,6 @@ public class SnackDispenser extends AActivity {
 
         day.addHour(duration);
 
-        message = "You pay 5 euros for the protein bar and gain "+newEnergy+" energy and "+newEndurance+" endurance.";
+        message = "You pay "+cost+" euros for the protein bar \nand increase your energy to "+newEnergy+" and your endurance to "+newEndurance+".";
     }
 }

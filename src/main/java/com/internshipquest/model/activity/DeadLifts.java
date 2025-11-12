@@ -20,7 +20,7 @@ public class DeadLifts extends AActivity {
         hero.setEnergy(newEnergy);
         day.addHour(duration);
 
-        message = "After " + duration + " hour(s) of deadlifts, your endurance increased to "
+        message = "After " + duration + " hour(s) of deadlifts, your endurance increased \nto "
                 + newEndurance + " and energy decreased to " + newEnergy;
     }
 }

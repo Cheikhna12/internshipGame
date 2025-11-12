@@ -3,6 +3,7 @@ package com.internshipquest.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.internshipquest.InternshipQuestGame;
@@ -28,6 +29,7 @@ public class WorldMapScreen implements Screen {
     private LocationFactory locationFactory;
     private CityMapRenderer cityMap;
     private Location hoveredLocation;
+    private Location lastLocationVisited;
 
 
     private SpriteBatch heroBatch;
@@ -91,9 +93,10 @@ public class WorldMapScreen implements Screen {
         if (temporaryMessage != null) {
             messageTimer += delta;
             game.batch.begin();
-            game.font.getData().setScale(1f);
+            GlyphLayout layout = new GlyphLayout(game.font, temporaryMessage);
+            float x = (Gdx.graphics.getWidth() - layout.width-32f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
-            game.font.draw(game.batch, temporaryMessage, 800, 80);
+            game.font.draw(game.batch, temporaryMessage, x, 80);
             game.batch.end();
 
             if (messageTimer > 3.5f) { // 3,5 secondes affichées
@@ -131,6 +134,7 @@ public class WorldMapScreen implements Screen {
                             temporaryMessage = "The " + loc.getName() + " is currently closed.";
                             messageTimer = 0f;
                         } else {
+                            lastLocationVisited = loc;
                             game.setScreen(new LocationScreen(game, loc, this));
                         }
                     } else if (!hero.isMoving()) {
@@ -144,9 +148,16 @@ public class WorldMapScreen implements Screen {
     }
 
 
-    @Override
     public void show() {
         heroBatch = new SpriteBatch();
+
+
+        Location initialLoc = lastLocationVisited != null ? lastLocationVisited : getLocationByName("Your House");
+        if (initialLoc != null) {
+            hero.setInitialLocation(initialLoc);
+            System.out.println("[WORLDMAP] Héros placé à " + initialLoc.getName());
+        }
+    
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -165,15 +176,14 @@ public class WorldMapScreen implements Screen {
             }
         });
 
-        stage.addActor(settingsButton);
+        stage.addActor(settingsButton);}
 
+
+    public Location getLocationByName(String name) {
         for (Location loc : locations) {
-            if ("Your House".equals(loc.getName())) {
-                hero.setInitialLocation(loc);
-                System.out.println("[WORLDMAP] Héros placé à " + loc.getName());
-                break;
-            }
+            if (loc.getName().equals(name)) return loc;
         }
+        return null;
     }
 
     @Override
