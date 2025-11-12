@@ -20,7 +20,8 @@ public class DrinkAlcool extends AActivity {
         hero.setStress(newStress);
 
         double chance = Math.random();
-        if (chance < 0.1) {
+        int luck = hero.getLuck();
+        if (chance+(luck/1000) < 0.1) { // la chance aide un peu à éviter les problemes
             int newSocial = hero.getSocial() - 3;
             int newEndurance = hero.getEndurance() - 3;
             hero.setSocial(newSocial);
@@ -30,6 +31,7 @@ public class DrinkAlcool extends AActivity {
             int newSocial = hero.getSocial() + 3;
             int newEnergy = hero.getEnergy() + 5;
             hero.setSocial(newSocial);
+            hero.setEnergy(newEnergy);
             message = "You spend "+ duration +" hours drinking and chatting with the bartender,\n you feel your stress disappear and you become a little more talkative.";
         }
 

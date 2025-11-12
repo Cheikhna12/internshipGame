@@ -3,6 +3,7 @@ package com.internshipquest.model.activity;
 import java.util.ArrayList;
 import java.util.List;
 import com.internshipquest.model.location.*;
+import com.internshipquest.InternshipQuestGame;
 
 public class ActivityFactory {
 
@@ -41,9 +42,10 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getBarActivities(ALieuVisitable lieu) {
+    public static List<AActivity> getBarActivities(ALieuVisitable lieu, InternshipQuestGame game) {
         List<AActivity> list = new ArrayList<>();
         list.add(new DrinkAlcool());
+        list.add(new TalkToStranger(game));
         list.add(new AskOpeningHours(lieu));
         return list;
     }
