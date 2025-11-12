@@ -71,7 +71,6 @@ public class SettingsScreen implements Screen {
         table.add(volumeSlider).width(400).padBottom(50).row();
         table.add(backButton).width(200).height(60);
 
-        // ESC key also returns to the previous screen
         Gdx.input.setCatchKey(com.badlogic.gdx.Input.Keys.ESCAPE, true);
     }
 
