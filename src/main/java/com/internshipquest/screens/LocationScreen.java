@@ -1,0 +1,234 @@
+package com.internshipquest.screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.*;
+import com.internshipquest.model.activity.AActivity;
+import com.internshipquest.model.activity.ActivityFactory;
+import com.internshipquest.utils.SoundManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LocationScreen implements Screen {
+
+    private InternshipQuestGame game;
+    private Location location;
+    private WorldMapScreen mapScreen;
+    private AHero hero;
+
+    private ALieuVisitable lieu;
+    private Maison maison;
+    private Texture background;
+    private BitmapFont font;
+    private List<AActivity> activities = new ArrayList<>();
+    private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
+
+    private Texture npcTexture;
+    private String npcMessage;
+    private boolean showNpcDialog = false;
+
+    // zone "Return to world Map"
+    private final float returnX = 50;
+    private final float returnY = 80;
+    private final float returnWidth = 250;
+    private final float returnHeight = 30;
+
+    public LocationScreen(InternshipQuestGame game, Location location, WorldMapScreen mapScreen) {
+        this.game = game;
+        this.location = location;
+        this.mapScreen = mapScreen;
+        this.hero = game.getHero();
+
+        if (location.getName().equals("FitnessClub")) {
+            lieu = new FitnessClub(game);
+        }
+        if (location.getName().equals("Maison")) {
+            lieu = new Maison(game);
+        }
+
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+        font.setColor(1f, 1f, 1f, 1f);
+
+        if (lieu != null && lieu.getNpcTexture() != null) {
+            npcTexture = lieu.getNpcTexture();
+            npcMessage = lieu.getNpcMessage();
+            showNpcDialog = true;
+        }
+    }
+
+    @Override
+    public void show() {
+        if (location.getName().equals("FitnessClub")) {
+            background = new Texture(Gdx.files.internal("assets/images/gym_background.png"));
+        }
+        if (location.getName().equals("Maison")) {
+            background = new Texture(Gdx.files.internal("assets/images/maison_background.png"));
+        }
+        // lance la musique quand on rentre dans un lieu
+        if (lieu != null) {
+            lieu.onEnter();
+        }
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        game.batch.begin();
+
+        if (background != null) {
+            game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        }
+
+        // Texte principal
+        font.getData().setScale(2f);
+        font.draw(game.batch, location.getName(), 50, 900);
+        font.getData().setScale(1.5f);
+        font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
+
+        Day day = game.getDay();
+        if (day != null) {
+            font.draw(game.batch, "It's " + day.getHour() + "h.", 50, 825);
+        }
+
+        if (lieu != null) lieu.update(delta);
+
+        if (showNpcDialog && npcTexture != null) {
+            // Affiche le PNJ et son message
+            game.batch.draw(npcTexture, 500, 0, 960, 720);
+            font.getData().setScale(1.6f);
+            font.draw(game.batch, npcMessage, 550, 800);
+        }
+
+        if (lieu != null && lieu.isShowingMessage()) {
+            font.getData().setScale(1.5f);
+            font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
+       else {
+                actions.clear();
+                int yPos = 700;
+
+                // On détermine quelles activités charger selon le lieu
+                if (lieu instanceof FitnessClub) {
+                    activities = ActivityFactory.getFitnessActivities(lieu);
+                } else if (lieu instanceof Maison) {
+                    activities = ActivityFactory.getMaisonActivities();
+                }
+
+                // Boucle unique pour créer les boutons d’action
+                for (int i = 0; i < activities.size(); i++) {
+                    final int index = i;
+                    AActivity activity = activities.get(i);
+
+                    addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
+                                if (lieu instanceof FitnessClub club) {
+                                    club.performActivity(index, hero, day);
+                                } else if (lieu instanceof Maison maison) {
+                                    maison.performActivity(index, hero, day);
+                                }
+                            }
+                    );
+                }
+
+            font.getData().setScale(1.8f);
+            for (ActionZone a : actions) {
+                font.draw(game.batch, a.text, a.x, a.y);
+            }
+        }
+
+        game.batch.end();
+
+        game.batch.begin();
+        font.getData().setScale(1.5f);
+        font.draw(game.batch, "Return to world Map", returnX, returnY);
+        game.batch.end();
+
+        handleInput();
+    }
+
+    private void addAction(String text, float x, float y, Runnable action) {
+        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 600, 40), action));
+    }
+
+    private void handleInput() {
+        if (Gdx.input.justTouched()) {
+            float clickX = Gdx.input.getX();
+            float clickY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+            if (showNpcDialog) {
+                showNpcDialog = false;
+                return;
+            }
+
+            if (lieu != null && lieu.isShowingMessage()) {
+                return;
+            }
+
+            // Zone cliquable du texte "Return to world Map avec arret direct pour éviter de pouvoir lancer une autre action pendantle chargement"
+            if (clickX >= returnX && clickX <= returnX + returnWidth &&
+                    clickY >= returnY - returnHeight && clickY <= returnY) {
+                game.setScreen(mapScreen);
+                return;
+            }
+
+            for (ActionZone a : actions) {
+                if (a.bounds.contains(clickX, clickY)) {
+                    a.action.run();
+                }
+            }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(mapScreen);
+        }
+    }
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    public void hide() {
+        // pour stopper la musique
+        if (lieu != null) {
+            lieu.onExit();
+        }
+    }
+
+    @Override
+    public void dispose() {
+        if (background != null) background.dispose();
+        if (font != null) font.dispose();
+        if (npcTexture != null) npcTexture.dispose();
+    }
+
+    private static class ActionZone {
+        String text;
+        float x, y;
+        com.badlogic.gdx.math.Rectangle bounds;
+        Runnable action;
+
+        ActionZone(String text, float x, float y, com.badlogic.gdx.math.Rectangle bounds, Runnable action) {
+            this.text = text;
+            this.x = x;
+            this.y = y;
+            this.bounds = bounds;
+            this.action = action;
+        }
+    }
+}
