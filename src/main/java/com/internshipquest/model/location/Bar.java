@@ -7,21 +7,21 @@ import com.internshipquest.utils.SoundManager;
 
 import java.util.List;
 
-public class Epitech extends ALieuVisitable {
+public class Bar extends ALieuVisitable {
 
 
-    public Epitech(InternshipQuestGame game) {
+    public Bar(InternshipQuestGame game) {
         super(game);
-        this.openHour = 8;
-        this.closedHour = 19;
-        this.openOnWeekends = false;
-        activities = ActivityFactory.getEpitechActivities(this);
+        this.openHour =20;
+        this.closedHour =28;
+       this.openOnWeekends = true;
+        activities = ActivityFactory.getBarActivities(this,game);
     }
 
     @Override
     public void onEnter() {
         // nom, loop or not, volume %
-        SoundManager.playMusic("house", true, 0.4f);
+        SoundManager.playMusic("house", true, 0.4f); // !!! need to change music
     }
 
     @Override

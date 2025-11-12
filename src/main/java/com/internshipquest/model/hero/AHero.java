@@ -14,7 +14,7 @@ abstract public class AHero {
     protected int social;
     protected int luck;
     protected int codingSkills;
-    protected int motivation;
+    protected int stress;
     protected int money;
     protected int energy;
     protected String name;
@@ -47,7 +47,7 @@ abstract public class AHero {
     public int getSocial() {return social;}
     public int getLuck() {return luck;}
     public int getCodingSkills() {return codingSkills;}
-    public int getMotivation() {return motivation;}
+    public int getStress() {return stress;}
     public int getMoney() {return money;}
     public int getEnergy() {return energy;}
     public String getName() {return name;}
@@ -64,20 +64,20 @@ abstract public class AHero {
     public void setSocial(int social) {this.social = social;}
     public void setLuck(int luck) {this.luck = luck;}
     public void setCodingSkills(int skills) {this.codingSkills = skills;}
-    public void setMotivation(int motivation) {this.motivation = motivation;}
+    public void setStress(int stress) {this.stress = stress;}
     public void setMoney(int money) {this.money = money;}
 
     public void setX(float x) {this.x = x;}
     public void setY(float y) {this.y = y;}
 
     // constructor
-    public AHero(String name, int endurance,  int social, int luck, int skills, int motivation, int money, int energy, Texture texture) {
+    public AHero(String name, int endurance,  int social, int luck, int skills, int stress, int money, int energy, Texture texture) {
 
         this.endurance = endurance;
         this.social = social;
         this.luck = luck;
         this.codingSkills = skills;
-        this.motivation = motivation;
+        this.stress = stress;
         this.money = money;
         this.energy = energy;
         this.isMoving = false;

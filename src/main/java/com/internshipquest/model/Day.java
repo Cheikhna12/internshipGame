@@ -66,16 +66,6 @@ public class Day {
         }
     }
 
-//    public void verifHour() {
-//        if (!nightTriggered && hourAfterMidnight >= 3) {
-//            nightTriggered = true;
-//            game.setScreen(new NightScreen(game, hero));
-//            day += 1;
-//            hour = 10;
-//            hourAfterMidnight = 0;
-//        }
-//    }
-
     public void setDay(int day) {
         this.day = day;
     }

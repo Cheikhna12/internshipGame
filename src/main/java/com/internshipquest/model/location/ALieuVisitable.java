@@ -51,7 +51,7 @@ public abstract class ALieuVisitable {
     public void update(float delta) {
         if (showingMessage) {
             messageTimer += delta;
-            if (messageTimer >= 3.5f) { // 3.5 secondes écoulées
+            if (messageTimer >= 5f) { // 5 secondes écoulées
                 showingMessage = false;
                 currentMessage = null;
                 messageTimer = 0f;
