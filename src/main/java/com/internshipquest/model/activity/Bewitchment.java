@@ -20,15 +20,15 @@ public class Bewitchment extends AActivity {
         if (chance+ luck/1000 < 0.2) {
             hero.setMoney(hero.getMoney() - cost);
             hero.setLuck(hero.getLuck()-10);
-            message = "After " + duration + " hour of ritual, you notice that the sorcerer is holding his grimoire upside down. Too late to escape, misfortune strikes.";
+            message = "After " + duration + " hour of ritual, you notice that the sorcerer is holding his grimoire upside down.\n Too late to escape, misfortune strikes.";
 
         } else if (chance +luck/1000 < 0.7 && chance+luck /1000 >=0.2) {
             hero.setMoney(hero.getMoney() - cost);
-            message = "After " + duration + " hour of ritual, you sneeze, interrupting the sorcerer at the critical moment. The spell fails.";
+            message = "After " + duration + " hour of ritual, you sneeze...\n interrupting the sorcerer at the critical moment. The spell fails.";
         } else {
             hero.setMoney(hero.getMoney() - cost);
             hero.setLuck(hero.getLuck() + 25);
-            message = "After " + duration + " hour(s) of ritual, the sorcerer finishes casting his spell, you feel your Karma improving.";
+            message = "After " + duration + " hour(s) of ritual, the sorcerer finishes casting his spell,\n you feel your Karma improving.";
         }
 
         day.addHour(duration);
