@@ -11,6 +11,12 @@ import com.internshipquest.model.location.*;
 import com.internshipquest.model.hero.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,11 @@ public class WorldMapScreen implements Screen {
     private SpriteBatch heroBatch;
     private AHero hero;
     private Day day;
+
+    // Attributes for settings
+    private Stage stage;
+    private Skin skin;
+    private TextButton settingsButton;
 
     private String temporaryMessage = null;
     private float messageTimer = 0f;
@@ -96,6 +107,8 @@ public class WorldMapScreen implements Screen {
         heroBatch.end();
 
         checkMouse();
+        stage.act(delta);
+        stage.draw();
     }
 
     private void checkMouse() {
@@ -135,6 +148,24 @@ public class WorldMapScreen implements Screen {
     public void show() {
         heroBatch = new SpriteBatch();
 
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
+
+        settingsButton = new TextButton("Settings", skin);
+        settingsButton.setPosition(Constants.WINDOW_WIDTH - 180, Constants.WINDOW_HEIGHT - 80);
+        settingsButton.setSize(150, 50);
+
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("[WORLDMAP] Settings button clicked!");
+                game.setScreen(new SettingsScreen(game, WorldMapScreen.this));
+            }
+        });
+
+        stage.addActor(settingsButton);
 
         for (Location loc : locations) {
             if ("Your House".equals(loc.getName())) {
@@ -146,23 +177,21 @@ public class WorldMapScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void pause() {
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {
+        stage.dispose();
+        skin.dispose();
         cityMap.dispose();
         heroBatch.dispose();
     }
