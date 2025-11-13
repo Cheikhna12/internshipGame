@@ -1,5 +1,7 @@
 package com.internshipquest.model;
 
+import com.internshipquest.model.location.*;
+
 public class Location {
 
     private final String name;

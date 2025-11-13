@@ -1,6 +1,6 @@
 package com.internshipquest.model.combat;
 
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.hero.AHero;
 
 public class Entreprise {
 
