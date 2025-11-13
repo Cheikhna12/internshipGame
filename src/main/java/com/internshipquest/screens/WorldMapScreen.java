@@ -12,6 +12,7 @@ import com.internshipquest.model.location.*;
 import com.internshipquest.model.hero.*;
 import com.internshipquest.utils.Constants;
 import com.internshipquest.graphics.CityMapRenderer;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -28,9 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Align;
-
-
-
+import com.internshipquest.utils.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +56,8 @@ public class WorldMapScreen implements Screen {
     private String temporaryMessage = null;
     private float messageTimer = 0f;
 
+    private Texture whitePixel;
+
     public WorldMapScreen(InternshipQuestGame game) {
         this.game = game;
         this.day = game.getDay();
@@ -71,12 +72,30 @@ public class WorldMapScreen implements Screen {
     public void render(float delta) {
         hero.update(delta);
 
+        //gestion du niveau de darkness
+        float hour = day.getHour();
+        float darkness = 0f;
+        if (hour >= 7 && hour < 18) {
+            darkness = 0f;
+        } else if (hour >= 18 && hour < 22) {
+            darkness = 0.3f;
+        } else {
+            darkness = 0.6f;
+        }
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         cityMap.render(game.batch, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         game.batch.begin();
+
+        game.batch.setColor(0, 0, 0, darkness);
+        game.batch.draw(whitePixel, 0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+        game.batch.setColor(1, 1, 1, 1);
+        game.batch.end();
+        game.batch.begin();
+
 
         // Affichage de la date et l'heure
         game.font.getData().setScale(1f);
@@ -110,6 +129,7 @@ public class WorldMapScreen implements Screen {
             float x = (Gdx.graphics.getWidth() - layout.width-32f);
             game.font.setColor(1f, 0.3f, 0.3f, 1f);
             game.font.draw(game.batch, temporaryMessage, x, 80);
+            game.font.setColor(1f, 0.8f, 0f, 1f);
             game.batch.end();
 
             if (messageTimer > 3.5f) { // 3,5 secondes affichées
@@ -163,6 +183,16 @@ public class WorldMapScreen implements Screen {
 
     public void show() {
         heroBatch = new SpriteBatch();
+
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        whitePixel = new Texture(pixmap);
+        pixmap.dispose();
+
+        if (day.getHour()>6 && day.getHour()<18) {
+            SoundManager.playMusic("village", true, 0.6f);
+        } else { SoundManager.playMusic("village-evening", true, 0.6f);}
 
         Location initialLoc = lastLocationVisited != null ? lastLocationVisited : getLocationByName("Your House");
         if (initialLoc != null) {
@@ -219,12 +249,12 @@ public class WorldMapScreen implements Screen {
     public void resume() {}
 
     @Override
-    public void hide() {}
+    public void hide() {SoundManager.stopMusic();}
 
     @Override
     public void dispose() {
         stage.dispose();
-        skin.dispose();
+        if (skin != null) skin.dispose();
         cityMap.dispose();
         heroBatch.dispose();
     }
