@@ -1,7 +1,6 @@
 package com.internshipquest.model.combat;
 
-import com.internshipquest.model.AHero;
-import com.internshipquest.model.Hero;
+import com.internshipquest.model.hero.AHero;
 
 import java.util.Random;
 
@@ -9,7 +8,7 @@ public class Entretien {
     private int questionScore;
     private int reponseScore;
     private RH rh;
-    private Hero hero;
+    private AHero hero;
     private boolean finEntretien;
     private int currentQuestionIndex;
     private static final int totalQuestions = 3;
