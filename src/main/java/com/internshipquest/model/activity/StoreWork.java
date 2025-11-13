@@ -12,7 +12,7 @@ public class StoreWork extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup",0.4f);
+        SoundManager.playSound("StoreWork",0.4f);
         int newEndurance = hero.getEndurance() + 3;
         int newSocial = hero.getSocial() + 3;
         int newEnergy = hero.getEnergy() - energyUse;

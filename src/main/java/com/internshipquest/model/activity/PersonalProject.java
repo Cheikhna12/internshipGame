@@ -12,7 +12,7 @@ public class PersonalProject extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("deadlift", 0.4f); // need to change
+        SoundManager.playSound("keybordTyping", 0.9f);
         int newCodingSkills = hero.getCodingSkills() + 3;
         int newEnergy = hero.getEnergy() - energyUse;
 

@@ -14,6 +14,8 @@ public class AskOpeningHours extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
+        int newEnergy = hero.getEnergy() - energyUse;
+        hero.setEnergy(newEnergy);
         int closedHour = lieu.getClosedHour();
         if (closedHour >23){closedHour-=24;}
         String weekendInfo = lieu.isOpenWeekend() ? "Also open on weekends." : "Closed on weekends.";
