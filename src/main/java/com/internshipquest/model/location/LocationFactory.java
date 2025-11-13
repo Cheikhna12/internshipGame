@@ -88,6 +88,10 @@ public class LocationFactory {
                 return new Texture(Gdx.files.internal("assets/images/epitech_background.png"));
             case "Bar":
                 return new Texture(Gdx.files.internal("assets/images/bar_background.png"));
+            case "Shop":
+                return new Texture(Gdx.files.internal("assets/images/store_background.png"));
+            case "Sorcerer":
+                return new Texture(Gdx.files.internal("assets/images/sorcerer_background.png"));
             default:
                 return new Texture(Gdx.files.internal("assets/images/default_background.png"));
         }

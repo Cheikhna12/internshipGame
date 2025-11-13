@@ -21,7 +21,8 @@ public class TalkToStranger extends AActivity {
     @Override
     public void doIt(AHero hero, Day day) {
         SoundManager.playSound("pushup", 0.4f); // !!!!! need to find some music
-
+        int newEnergy = hero.getEnergy() - energyUse;
+        hero.setEnergy(newEnergy);
 
         double chance = Math.random();
         int luck = hero.getLuck();
@@ -36,6 +37,7 @@ public class TalkToStranger extends AActivity {
             message = "You look around for someone to talk to.\n A pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend " + duration + " hour chatting with her.\n When she gets up to leave, you give her one last knowing \nsmile before she disappears. ";
             day.addHour(duration);
         } else {
+            day.addHour(duration);
             int newSocial = hero.getSocial() + 20;
             hero.setSocial(newSocial);
             day.setDay(day.getDay() + 1);
