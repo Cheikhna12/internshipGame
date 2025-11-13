@@ -63,6 +63,7 @@ public class Day {
             hour = 10;      // réveil à 10h
             hourAfterMidnight = 0;
             nightTriggered = false;
+            hero.newEnergy(hero.getEndurance()/2);
         }
     }
 
