@@ -21,6 +21,7 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new Sleep());
         list.add(new Wait());
+        list.add(new PersonalProject());
         list.add(new DevWait16h());
         list.add(new DisplayStat());
         return list;
@@ -52,12 +53,14 @@ public class ActivityFactory {
 
     public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new StoreWork());
         list.add(new AskOpeningHours(lieu));
         return list;
     }
 
     public static List<AActivity> getSorcererActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
+        list.add(new Bewitchment());
         list.add(new AskOpeningHours(lieu));
         return list;
     }
