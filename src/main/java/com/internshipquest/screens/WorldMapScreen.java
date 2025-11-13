@@ -18,6 +18,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.Align;
+
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,24 +164,33 @@ public class WorldMapScreen implements Screen {
     public void show() {
         heroBatch = new SpriteBatch();
 
-
         Location initialLoc = lastLocationVisited != null ? lastLocationVisited : getLocationByName("Your House");
         if (initialLoc != null) {
             hero.setInitialLocation(initialLoc);
             System.out.println("[WORLDMAP] Héros placé à " + initialLoc.getName());
         }
-    
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        Texture buttonTexture = new Texture(Gdx.files.internal("assets/buttonTexture.png"));
+        TextureRegionDrawable drawable = new TextureRegionDrawable(new TextureRegion(buttonTexture));
+        ImageButton imageButton = new ImageButton(drawable);
 
-        settingsButton = new TextButton("Settings", skin);
-        settingsButton.setPosition(Constants.WINDOW_WIDTH - 180, Constants.WINDOW_HEIGHT - 80);
-        settingsButton.setSize(150, 50);
+        LabelStyle labelStyle = new LabelStyle(game.font, Color.WHITE);
+        Label label = new Label("Settings", labelStyle);
+        label.setFontScale(1.0f);
+        label.setSize(100, 100);
+        label.setAlignment(Align.center);
 
-        settingsButton.addListener(new ClickListener() {
+        Stack buttonStack = new Stack();
+        buttonStack.setSize(150, 80);
+        buttonStack.add(imageButton);
+        buttonStack.add(label);
+
+        buttonStack.setPosition(Constants.WINDOW_WIDTH - 200, Constants.WINDOW_HEIGHT - 100);
+
+        buttonStack.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("[WORLDMAP] Settings button clicked!");
@@ -176,7 +198,8 @@ public class WorldMapScreen implements Screen {
             }
         });
 
-        stage.addActor(settingsButton);}
+        stage.addActor(buttonStack);
+    }
 
 
     public Location getLocationByName(String name) {
