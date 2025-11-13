@@ -44,7 +44,6 @@ com/internshipquest/model/activity/DevWait16h.class
 com/internshipquest/model/activity/TalkToStranger.class
 com/internshipquest/model/location/ALieuVisitable.class
 com/internshipquest/model/location/Epitech.class
-com/internshipquest/model/Location.class
 com/internshipquest/model/activity/ActivityFactory.class
 com/internshipquest/model/location/FitnessClub.class
 com/internshipquest/screens/LocationScreen$ActionZone.class
