@@ -13,7 +13,7 @@ public class Maison extends ALieuVisitable {
     public Maison(InternshipQuestGame game) {
         super(game);
         this.openHour = 0;
-        this.closedHour = 24;
+        this.closedHour = 28;
         this.openOnWeekends = true;
         activities = ActivityFactory.getMaisonActivities();
     }

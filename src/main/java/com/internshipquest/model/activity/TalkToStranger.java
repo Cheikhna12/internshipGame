@@ -41,7 +41,7 @@ public class TalkToStranger extends AActivity {
             int newSocial = hero.getSocial() + 20;
             hero.setSocial(newSocial);
             day.setDay(day.getDay() + 1);
-            hero.setEnergy(hero.getEndurance() * 2 + 20);
+            hero.newEnergy(hero.getEndurance()+ 20);
             day.setHour(7 + day.getHourAfterMidnight());
             day.setHourAfterMidnight(0);
             day.setNightTriggered(false);
