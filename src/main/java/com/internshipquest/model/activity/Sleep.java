@@ -18,6 +18,6 @@ public class Sleep extends AActivity {
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
         day.setNightTriggered(false);
-        message = "After a good night, you regenere your energie to "+hero.getEnergy()+".";
+        message = "After a good night, you regenere your energy to "+hero.getEnergy()+"thanks to your endurance.\n Your stress level affects your sleep";
     }
 }
