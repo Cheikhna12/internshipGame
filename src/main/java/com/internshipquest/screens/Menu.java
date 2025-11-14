@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.hero.*;
 import com.internshipquest.model.Day;
+import com.internshipquest.utils.SoundManager;
 
 public class Menu implements Screen {
 
@@ -89,7 +90,7 @@ public class Menu implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show() { SoundManager.playMusic("intro", true, 0.4f);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class Menu implements Screen {
     }
 
     @Override
-    public void hide() {
+    public void hide() {SoundManager.stopMusic();
     }
 
     @Override

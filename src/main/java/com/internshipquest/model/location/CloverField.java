@@ -13,7 +13,7 @@ public class CloverField extends ALieuVisitable {
     public CloverField(InternshipQuestGame game) {
         super(game);
         this.openHour = 0;
-        this.closedHour = 24;
+        this.closedHour = 28;
         this.openOnWeekends = true;
         activities = ActivityFactory.getCloverFieldActivities();
     }
@@ -21,7 +21,7 @@ public class CloverField extends ALieuVisitable {
     @Override
     public void onEnter() {
         // nom, loop or not, volume %
-        SoundManager.playMusic("house", true, 0.4f); // need change musique
+        SoundManager.playMusic("cloverField", true, 0.4f); // need change musique
     }
 
     @Override
