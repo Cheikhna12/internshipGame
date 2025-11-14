@@ -11,15 +11,6 @@ public class Nerd extends AHero{
         super("Elmüt",15, 5, 15, 35, 30, 50, 30, new Texture("assets/Nerd.png"));
         this.heroDescription= "Actually, I am the smartest (...and the weakest).";
     }
-
-
-
-
-    
-
-
-
-
     //methods
 
 
