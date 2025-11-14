@@ -9,7 +9,7 @@ import com.internshipquest.utils.SoundManager;
 public class FindClover extends AActivity {
     // name, duration, costEnergy, costMoney
     public FindClover() {
-        super("Look for a four-leaf clover", 1, 5,0);
+        super("Look for a four-leaf clover", 2, 5,0);
     }
 
     @Override
