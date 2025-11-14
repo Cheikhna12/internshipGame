@@ -16,11 +16,12 @@ public class DeadLifts extends AActivity {
         int newEndurance = hero.getEndurance() + 6;
         int newEnergy = hero.getEnergy() - energyUse;
 
+        hero.setStress(hero.getStress()-1);
         hero.setEndurance(newEndurance);
         hero.setEnergy(newEnergy);
         day.addHour(duration);
 
         message = "After " + duration + " hour(s) of deadlifts, your endurance increased \nto "
-                + newEndurance + " and energy decreased to " + newEnergy;
+                + newEndurance + " and energy decreased to " + newEnergy+".\nThis workout session helps you de-stress slightly.";
     }
 }

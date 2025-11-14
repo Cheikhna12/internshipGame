@@ -32,6 +32,8 @@ public class ActivityFactory {
         list.add(new Wait());
         list.add(new PersonalProject());
         list.add(new DevWait16h());
+        list.add(new EatFood());
+        list.add(new LookFridge());
         list.add(new DisplayStat());
         return list;
     }
@@ -63,6 +65,7 @@ public class ActivityFactory {
     public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
         List<AActivity> list = new ArrayList<>();
         list.add(new StoreWork());
+        list.add(new BuyFood());
         list.add(new AskOpeningHours(lieu));
         return list;
     }

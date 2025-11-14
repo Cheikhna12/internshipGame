@@ -20,6 +20,8 @@ abstract public class AHero {
     protected String name;
     protected String heroDescription;
     protected boolean licence = false;
+    protected int nbFood = 2;
+    protected int satiety = 0;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -45,6 +47,9 @@ abstract public class AHero {
 
     // getters
 
+
+    public int getNbFood() {return nbFood;}
+    public int getSatiety() {return satiety;}
     public boolean isLicence() {return licence;}
     public int getEndurance() {return endurance;}
     public int getSocial() {return social;}
@@ -63,6 +68,8 @@ abstract public class AHero {
 
     // setters
 
+    public void setNbFood(int food){if (food<0) {this.nbFood=0;}else {this.nbFood =food;}}
+    public void setSatiety(int satiety) {if (satiety>100) {this.satiety=100;} else {this.satiety = satiety;}}
     public void setLicence(boolean licence) {this.licence = licence;}
     public void setEndurance(int endurance) {if (endurance>100){this.endurance=100;} else if (endurance<0){this.endurance =0;} else {this.endurance = endurance;}}
     public void setEnergy(int energy) {if (energy<0){this.energy =0;} else {this.energy = energy;}}
@@ -96,11 +103,9 @@ abstract public class AHero {
     }
 
     public void newEnergy(int endurance){
-        this.setEnergy(Math.round(endurance * 1.5f)-stress);
+        this.setEndurance(this.getEndurance()-Math.round(5*(100-this.getSatiety())/100));this.setSatiety(0);this.setEnergy(Math.round(endurance * 1.5f)-stress);
     };
 
-
-    // public abstract Object postuler(Entreprise entreprise);
 
 
     // fonction deplacement
