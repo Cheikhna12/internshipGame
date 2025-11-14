@@ -24,6 +24,7 @@ public class SoundManager {
         musics.put("sorcerer", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/wizard.mp3")));
         musics.put("village", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/village.mp3")));
         musics.put("village-evening", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/village-evening.mp3")));
+        musics.put("intro", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/intro.mp3")));
 
         sounds.put("pushup", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("deadlift", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));

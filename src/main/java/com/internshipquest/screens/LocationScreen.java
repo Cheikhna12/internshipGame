@@ -120,7 +120,7 @@ public class LocationScreen implements Screen {
 
             if (showNpcDialog && npcTexture != null) {
                 // Affiche le PNJ et son message
-                game.batch.draw(npcTexture, 500, 0, 960, 720);
+                game.batch.draw(npcTexture, 600, 0, 760, 760);
                 game.font.getData().setScale(1.1f);
                 game.font.setColor(0f, 0.7f, 1f, 1f);
                 game.font.draw(game.batch, npcMessage, 550, 800);
