@@ -13,7 +13,7 @@ public class ChessClub extends AActivity {
     @Override
     public void doIt(AHero hero, Day day) {
         SoundManager.playSound("chess",1f);
-        int newSocial = hero.getSocial() + 3;
+        int newSocial = hero.getSocial() + 2;
         int newEnergy = hero.getEnergy() - energyUse;
 
         hero.setSocial(newSocial);

@@ -59,13 +59,13 @@ abstract public class AHero {
     public Texture getTexture() {return texture;}
 
     // setters
-    public void setEndurance(int endurance) {this.endurance = endurance;}
-    public void setEnergy(int energy) {this.energy = energy;}
-    public void setSocial(int social) {this.social = social;}
-    public void setLuck(int luck) {this.luck = luck;}
-    public void setCodingSkills(int skills) {this.codingSkills = skills;}
-    public void setStress(int stress) {this.stress = stress;}
-    public void setMoney(int money) {this.money = money;}
+    public void setEndurance(int endurance) {if (endurance>100){this.endurance=100;} else if (endurance<0){this.endurance =0;} else {this.endurance = endurance;}}
+    public void setEnergy(int energy) {if (energy<0){this.energy =0;} else {this.energy = energy;}}
+    public void setSocial(int social) {if (social>100){this.social=100;} else if (social<0){this.social =0;} else {this.social = social;}}
+    public void setLuck(int luck) {if (luck>100){this.luck=100;} else if (luck<0){this.luck =0;} else {this.luck = luck;}}
+    public void setCodingSkills(int skills) {if (skills>100){this.codingSkills=100;} else if (skills<0){this.codingSkills =0;} else {this.codingSkills = skills;}}
+    public void setStress(int stress) {if (stress>100){this.stress=100;} else if (stress<0){this.stress =0;} else {this.stress = stress;}}
+    public void setMoney(int money) {if (money<0){this.money =0;} else {this.money = money;}}
 
     public void setX(float x) {this.x = x;}
     public void setY(float y) {this.y = y;}
@@ -91,7 +91,7 @@ abstract public class AHero {
     }
 
     public void newEnergy(int endurance){
-        this.setEnergy(Math.round(endurance * 1.5f));
+        this.setEnergy(Math.round(endurance * 1.5f)-stress);
     };
 
 
