@@ -34,6 +34,7 @@ public class ActivityFactory {
         list.add(new DevWait16h());
         list.add(new EatFood());
         list.add(new LookFridge());
+        list.add(new ListenRadio());
         list.add(new DisplayStat());
         return list;
     }
