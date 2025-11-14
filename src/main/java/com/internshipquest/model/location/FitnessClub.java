@@ -5,26 +5,39 @@ import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
 import com.badlogic.gdx.graphics.Texture;
 import com.internshipquest.utils.SoundManager;
+import com.internshipquest.model.hero.AHero;
 
 
 import java.util.List;
 
+
 public class FitnessClub extends ALieuVisitable {
 
+    private AHero hero;
     private Texture coachTexture;
 
     public FitnessClub(InternshipQuestGame game) {
         super(game);
+        this.hero=game.getHero();
         this.openHour = 8;
         this.closedHour = 22;
         this.openOnWeekends = true;
-        activities = ActivityFactory.getFitnessActivities(this);
+        activities = ActivityFactory.getFitnessActivities(this,hero);
         coachTexture = new Texture("assets/coach.png");
     }
     @Override
+    public void reloadActivities() {
+        activities = ActivityFactory.getFitnessActivities(this, hero);
+    }
+
+    @Override
     public void onEnter() {
         // nom, loop or not, volume %
-        SoundManager.playMusic("gym", true, 1.0f);
+        SoundManager.playMusic("gym", true, 0.8f);
+    }
+
+    public AHero getHero() {
+        return hero;
     }
 
     @Override
@@ -40,7 +53,7 @@ public class FitnessClub extends ALieuVisitable {
 
     @Override
     public String getNpcMessage() {
-        return "Hey kid, what do you want to do today ?";
+        if (hero.isLicence()==false){return "You have to pay for a sports license \nif you want to train here.";} else { return "Hey kid, what do you want to do today ?";}
     }
 
 
