@@ -2,6 +2,7 @@ package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.AHero;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +16,6 @@ public class LocationFactory {
 
     private final InternshipQuestGame game;
     private Map<String, ALieuVisitable> locationMap = new HashMap<>();
-
     public LocationFactory(InternshipQuestGame game) {
         this.game = game;
     }
@@ -54,7 +54,7 @@ public class LocationFactory {
         return lieu;
     }
 
-    // 🔹 Nouvelle méthode pour créer toutes les locations
+
     public List<Location> createAllLocations() {
         List<Location> locations = new ArrayList<>();
 

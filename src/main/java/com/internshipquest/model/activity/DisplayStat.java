@@ -6,7 +6,7 @@ import com.internshipquest.model.hero.AHero;
 public class DisplayStat extends AActivity {
     // name, duration, cost
     public DisplayStat() {
-        super("looking at oneself in the mirror", 0, 0,0);
+        super("Looking at oneself in the mirror", 0, 0,0);
     }
 
     @Override
@@ -17,6 +17,8 @@ public class DisplayStat extends AActivity {
                 "Endurance: " + hero.getEndurance() + "\n" +
                 "Luck: " + hero.getLuck() + "\n" +
                 "Coding Skills: " + hero.getCodingSkills() + "\n" +
-                "Social capacity: " + hero.getSocial() + ".";
+                "Social capacity: " + hero.getSocial() + "\n" +
+                "Stress: "+ hero.getStress()+ "\n" +
+                "satiety: "+ hero.getSatiety()+".";
     }
 }

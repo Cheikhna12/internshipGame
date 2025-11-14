@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class Study extends AActivity {
     // name, duration, cost
     public Study() {
-        super("Make the pool of the day", 8, 30 ,0);
+        super("Make the pool of the day", 8, 30, 0);
     }
 
 
@@ -15,13 +15,18 @@ public class Study extends AActivity {
     public void doIt(AHero hero, Day day) {
         SoundManager.playSound("keybordTyping", 0.9f);
         double result = 7 * hero.getCodingSkills() / 100;
-        int exoPoolSuccess =(int) Math.round(result);
-        int gainCodingskill= exoPoolSuccess*5;
-        hero.setCodingSkills(hero.getCodingSkills()+gainCodingskill);
+        int exoPoolSuccess = (int) Math.round(result);
+        int gainCodingskill = exoPoolSuccess * 5;
+        int gainStress = (7 - exoPoolSuccess) * 2;
+        hero.setCodingSkills(hero.getCodingSkills() + gainCodingskill);
         int newEnergy = hero.getEnergy() - energyUse;
         hero.setEnergy(newEnergy);
         day.addHour(duration);
 
-        message = "You successfully solve "+exoPoolSuccess+" pool exercises, increasing your coding skills by "+gainCodingskill+".";
+        if (exoPoolSuccess == 7) {
+            message = "You successfully solve all the pool exercises, increasing your coding skills by " + gainCodingskill + ".";
+        } else {
+            message = "You successfully solve " + exoPoolSuccess + " pool exercises, increasing your coding skills by " + gainCodingskill + ".\nNot having succeeded in all the exercises increases your stress by " + gainStress + ".";
+        }
     }
 }
