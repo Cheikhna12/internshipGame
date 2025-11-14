@@ -7,6 +7,7 @@ import com.internshipquest.model.activity.ActivityFactory;
 import com.internshipquest.model.hero.AHero;
 import com.internshipquest.model.Day;
 import com.internshipquest.utils.SoundManager;
+
 import java.util.List;
 
 public abstract class ALieuVisitable {
@@ -17,14 +18,14 @@ public abstract class ALieuVisitable {
     protected float messageTimer = 0f;
     protected boolean showingMessage = false;
     protected int openHour = 9;
-    protected int closedHour =21;
+    protected int closedHour = 21;
     protected boolean openOnWeekends = true;
     protected List<AActivity> activities;
 
 
-    public ALieuVisitable(InternshipQuestGame game){
-        this.game=game;
-        this.day=game.getDay();
+    public ALieuVisitable(InternshipQuestGame game) {
+        this.game = game;
+        this.day = game.getDay();
     }
 
     public boolean isOpen(Day day) {
@@ -44,7 +45,9 @@ public abstract class ALieuVisitable {
     public int getOpenHour() {
         return openHour;
     }
+
     public abstract void onEnter();
+
     public abstract void onExit();
 
 
@@ -74,14 +77,14 @@ public abstract class ALieuVisitable {
             return;
         }
 
-        if (hero.getEnergy() < activity.getEnergyUse() ) {
+        if (hero.getEnergy() < activity.getEnergyUse()) {
             currentMessage = "Damn !!! I am too tired to do that...";
             showingMessage = true;
             messageTimer = 0f;
             return;
         }
 
-        if (hero.getMoney() < activity.getCost() ) {
+        if (hero.getMoney() < activity.getCost()) {
             currentMessage = "I'm too broke for buy that...";
             showingMessage = true;
             messageTimer = 0f;
@@ -96,11 +99,21 @@ public abstract class ALieuVisitable {
         messageTimer = 0f;
     }
 
+    public void reloadActivities() {
+    }
+
+
     public String getCurrentMessage() {
         return currentMessage;
     }
-    public Texture getNpcTexture() { return null; }
-    public String getNpcMessage() { return null; }
+
+    public Texture getNpcTexture() {
+        return null;
+    }
+
+    public String getNpcMessage() {
+        return null;
+    }
 
     public List<AActivity> getActivities() {
         return activities;

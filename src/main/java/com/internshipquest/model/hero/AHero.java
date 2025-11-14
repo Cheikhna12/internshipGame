@@ -19,6 +19,7 @@ abstract public class AHero {
     protected int energy;
     protected String name;
     protected String heroDescription;
+    protected boolean licence = false;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -43,6 +44,8 @@ abstract public class AHero {
 
 
     // getters
+
+    public boolean isLicence() {return licence;}
     public int getEndurance() {return endurance;}
     public int getSocial() {return social;}
     public int getLuck() {return luck;}
@@ -59,6 +62,8 @@ abstract public class AHero {
     public Texture getTexture() {return texture;}
 
     // setters
+
+    public void setLicence(boolean licence) {this.licence = licence;}
     public void setEndurance(int endurance) {if (endurance>100){this.endurance=100;} else if (endurance<0){this.endurance =0;} else {this.endurance = endurance;}}
     public void setEnergy(int energy) {if (energy<0){this.energy =0;} else {this.energy = energy;}}
     public void setSocial(int social) {if (social>100){this.social=100;} else if (social<0){this.social =0;} else {this.social = social;}}
