@@ -45,6 +45,7 @@ public class TalkToStranger extends AActivity {
             day.setHour(7 + day.getHourAfterMidnight());
             day.setHourAfterMidnight(0);
             day.setNightTriggered(false);
+            day.setCodeEvent(0);
             game.setScreen(new NightScreenBar(game, hero));
 
         }

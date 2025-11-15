@@ -21,7 +21,7 @@ public class MeetUp extends AActivity {
         int newSocial = hero.getSocial() + 5;
         int newCodingSkill= hero.getCodingSkills()+15;
         int newEnergy = hero.getEnergy() - energyUse;
-        day.setMeetUpEvent(false);
+        day.setCodeEvent(0);
 
         hero.setCodingSkills(newCodingSkill);
         hero.setSocial(newSocial);

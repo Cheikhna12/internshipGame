@@ -22,6 +22,7 @@ public class Sleep extends AActivity {
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
         day.setNightTriggered(false);
+        day.setCodeEvent(0);
         game.setScreen(new NightScreen(game, hero, day));
     }
 }

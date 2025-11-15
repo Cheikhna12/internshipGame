@@ -12,6 +12,6 @@ public class MeetUpEvent extends AEvent {
 
     @Override
     public void applyEffect(AHero hero,Day day) {
-        day.setMeetUpEvent(true);
+        day.setCodeEvent(1); // 1 = meetup open
     }
 }
