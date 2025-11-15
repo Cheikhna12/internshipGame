@@ -19,7 +19,7 @@ public class Maison extends ALieuVisitable {
         this.openHour = 0;
         this.closedHour = 28;
         this.openOnWeekends = true;
-        activities = ActivityFactory.getMaisonActivities();
+        activities = ActivityFactory.getMaisonActivities(game);
         catTexture = new Texture("assets/chat.png");
     }
 

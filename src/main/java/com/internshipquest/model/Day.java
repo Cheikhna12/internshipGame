@@ -1,7 +1,7 @@
 package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.screens.NightScreen;
+import com.internshipquest.screens.NightScreenExhaustion;
 import com.internshipquest.model.hero.AHero;
 
 public class Day {
@@ -11,7 +11,8 @@ public class Day {
     private int hour;
     private boolean weekend = false;
     private int hourAfterMidnight = 0;
-    private boolean nightTriggered = false; // nouveau flag
+    private boolean nightTriggered = false;
+    private boolean meetUpEvent = false;
 
     public Day(InternshipQuestGame game, AHero hero) {
         this.hero = hero;
@@ -57,7 +58,7 @@ public class Day {
         System.out.println(nightTriggered);
         // Bloquer après 3h du matin
         if (nightTriggered && hourAfterMidnight >= 3) {
-            game.setScreen(new NightScreen(game, hero));
+            game.setScreen(new NightScreenExhaustion(game, hero));
 
             day += 1;       // jour suivant
             hour = 10;      // réveil à 10h
@@ -65,6 +66,14 @@ public class Day {
             nightTriggered = false;
             hero.newEnergy(hero.getEndurance()/2);
         }
+    }
+
+    public boolean isMeetUpEvent() {
+        return meetUpEvent;
+    }
+
+    public void setMeetUpEvent(boolean meetUpEvent) {
+        this.meetUpEvent = meetUpEvent;
     }
 
     public void setDay(int day) {
