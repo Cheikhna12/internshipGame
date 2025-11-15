@@ -17,7 +17,7 @@ public class SnackDispenserEpitech extends AActivity {
         int newMoney= hero.getMoney()-cost;
 
         hero.setEnergy(newEnergy);
-        hero.setEnergy(newMoney);
+        hero.setMoney(newMoney);
         hero.setSatiety(hero.getSatiety()+35);
 
         day.addHour(duration);
