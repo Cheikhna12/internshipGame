@@ -12,7 +12,7 @@ public class Day {
     private boolean weekend = false;
     private int hourAfterMidnight = 0;
     private boolean nightTriggered = false;
-    private boolean meetUpEvent = false;
+    private int codeEvent = 0; //1= meetup
 
     public Day(InternshipQuestGame game, AHero hero) {
         this.hero = hero;
@@ -64,16 +64,17 @@ public class Day {
             hour = 10;      // réveil à 10h
             hourAfterMidnight = 0;
             nightTriggered = false;
+            this.setCodeEvent(0);
             hero.newEnergy(hero.getEndurance()/2);
         }
     }
 
-    public boolean isMeetUpEvent() {
-        return meetUpEvent;
+    public int getCodeEvent() {
+        return codeEvent;
     }
 
-    public void setMeetUpEvent(boolean meetUpEvent) {
-        this.meetUpEvent = meetUpEvent;
+    public void setCodeEvent(int Event) {
+        this.codeEvent = Event;
     }
 
     public void setDay(int day) {

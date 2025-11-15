@@ -51,7 +51,7 @@ public class ActivityFactory {
         List<AActivity> list = new ArrayList<>();
         list.add(new Study());
         list.add(new ChessClub());
-        if (day.isMeetUpEvent()==true){list.add(new MeetUp(lieu,day));}
+        if (day.getCodeEvent()==1){list.add(new MeetUp(lieu,day));}
         list.add(new SnackDispenserEpitech());
         list.add(new AskOpeningHours(lieu));
         return list;
