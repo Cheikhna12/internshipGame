@@ -12,6 +12,7 @@ import java.util.List;
 
 public abstract class ALieuVisitable {
 
+    protected boolean meetUpAvailable = false;
     protected InternshipQuestGame game;
     protected Day day;
     protected String currentMessage = null;
@@ -33,6 +34,8 @@ public abstract class ALieuVisitable {
         boolean weekend = day.isWeekend();
         return hour >= openHour && hour < closedHour && (openOnWeekends || !weekend);
     }
+
+
 
     public int getClosedHour() {
         return closedHour;
