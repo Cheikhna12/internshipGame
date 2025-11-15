@@ -17,7 +17,7 @@ public class Epitech extends ALieuVisitable {
         this.openHour = 8;
         this.closedHour = 19;
         this.openOnWeekends = false;
-        activities = ActivityFactory.getEpitechActivities(this);
+        activities = ActivityFactory.getEpitechActivities(this,day);
         profTexture = new Texture("assets/prof.png");
     }
 
@@ -42,10 +42,14 @@ public class Epitech extends ALieuVisitable {
         return "There you are!,\n Did you remember to swipe your badge?";
     }
 
-
     public void dispose() {
         if (profTexture != null)
             profTexture.dispose();
+    }
+
+    @Override
+    public void reloadActivities() {
+        activities = ActivityFactory.getEpitechActivities(this, day);
     }
 }
 
