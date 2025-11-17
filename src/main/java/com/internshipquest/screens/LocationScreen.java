@@ -23,6 +23,7 @@ public class LocationScreen implements Screen {
     private Location location;
     private WorldMapScreen mapScreen;
     private AHero hero;
+    private Day day;
 
     private ALieuVisitable lieu;
     private Texture background;
@@ -44,6 +45,7 @@ public class LocationScreen implements Screen {
         this.location = location;
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
+        this.day=game.getDay();
 
         LocationFactory factory = new LocationFactory(game);
         this.lieu = factory.getVisitableLocation(location.getName());
@@ -62,7 +64,7 @@ public class LocationScreen implements Screen {
         background = LocationFactory.createBackground(location.getName());
         // lance la musique quand on rentre dans un lieu
         if (lieu != null) {
-            lieu.onEnter();
+            lieu.onEnter(hero, day);
         }
     }
 

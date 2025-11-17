@@ -34,10 +34,8 @@ public class NightScreenExhaustion implements Screen {
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
         // --- Configuration du texte ---
-        BitmapFont font = new BitmapFont();
-        font.getData().setScale(1.5f);
 
-        LabelStyle style = new LabelStyle(font, Color.WHITE);
+        LabelStyle style = new LabelStyle(game.font, Color.WHITE);
         messageLabel = new Label(
                 "You exhausted yourself by going to bed too late,\n" +
                         "you barely reach your bed and you wake up with a drowsy head.",

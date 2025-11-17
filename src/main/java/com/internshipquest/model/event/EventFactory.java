@@ -16,6 +16,8 @@ public class EventFactory {
         possibleEvents.add(new MeetUpEvent());
         possibleEvents.add(new CatRobFood(hero));
         possibleEvents.add(new StressDreamEvent(hero));
+        possibleEvents.add(new PromoEvent());
+        possibleEvents.add(new PickpocketCityEvent());
     }
 
     public AEvent getRandomEvent() {
