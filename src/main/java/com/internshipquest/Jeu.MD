@@ -4,17 +4,22 @@ permet le lancement du jeu :
 pends dans les constantes la taille de l'écran, le titre et défini aussi les FPS
 
 # Internshipquest.java
-## creat()
+## create()
 
-fonction 
-batch = new SpriteBatch();
+```batch = new SpriteBatch();```
 → Initialise le moteur de rendu 2D pour les sprites.
+```font = loadDMSerifFont(32);```
+→ créé ka police à la taile de 32 pixels
+```SoundManager.loadSounds();```
+charge les sons et musiques du jeu
 
-font = new BitmapFont();
-→ Crée une police par défaut pour le texte.
+```setScreen(new Menu(this));```
+→ Le jeu commence sur l’écran de *selection des joueurs*.
 
-setScreen(new WorldMapScreen(this));
-→ Le jeu commence sur l’écran “carte du monde”.
+## loadDMSerifFont
+
+permet de charger une autre police que celle par défaut (qui est trop petite).
+```com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;``` sert à définir comment se comporte la police quand on utilise le scale
 
 
 ## dispose()
