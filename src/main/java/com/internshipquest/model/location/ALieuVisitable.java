@@ -49,7 +49,8 @@ public abstract class ALieuVisitable {
         return openHour;
     }
 
-    public abstract void onEnter();
+    public abstract void onEnter(AHero hero,Day day);
+
 
     public abstract void onExit();
 

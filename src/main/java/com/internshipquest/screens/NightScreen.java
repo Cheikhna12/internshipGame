@@ -37,9 +37,7 @@ public class NightScreen implements Screen {
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
         // --- Configuration du texte ---
-        BitmapFont font = new BitmapFont();
-        font.getData().setScale(1.5f);
-        LabelStyle style = new LabelStyle(font, Color.WHITE);
+        LabelStyle style = new LabelStyle(game.font, Color.WHITE);
         messageLabel = new Label("", style);
         messageLabel.setAlignment(Align.center);
         messageLabel.setWrap(true);

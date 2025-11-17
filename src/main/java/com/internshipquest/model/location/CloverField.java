@@ -1,5 +1,7 @@
 package com.internshipquest.model.location;
 
+import com.internshipquest.model.hero.*;
+import com.internshipquest.model.Day;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
@@ -19,7 +21,7 @@ public class CloverField extends ALieuVisitable {
     }
 
     @Override
-    public void onEnter() {
+    public void onEnter(AHero hero,Day day) {
         // nom, loop or not, volume %
         SoundManager.playMusic("cloverField", true, 0.4f); // need change musique
     }
