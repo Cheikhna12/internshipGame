@@ -34,13 +34,10 @@ public class NightScreenBar implements Screen {
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
-        
-        BitmapFont font = new BitmapFont();
-        font.getData().setScale(1.5f);
-
-        LabelStyle style = new LabelStyle(font, Color.WHITE);
+        // --- Configuration du texte ---
+        LabelStyle style = new LabelStyle(game.font, Color.WHITE);
         messageLabel = new Label(
-                " You look around for someone to talk to \n a pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend 3 hour chatting with her. You invite her to spend the night at your place… The next morning, you wake up full of energy and self-confidence. \"",
+                " You look around for someone to talk to \n a pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend 3 hour chatting with her.\n You invite her to spend the night at your place… The next morning, you wake up full of energy and self-confidence. \"",
                 style
         );
         messageLabel.setAlignment(Align.center);

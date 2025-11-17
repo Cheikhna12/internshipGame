@@ -1,7 +1,7 @@
 package com.internshipquest.model;
 
 import com.internshipquest.InternshipQuestGame;
-import com.internshipquest.screens.NightScreen;
+import com.internshipquest.screens.NightScreenExhaustion;
 import com.internshipquest.model.hero.AHero;
 
 public class Day {
@@ -11,7 +11,8 @@ public class Day {
     private int hour;
     private boolean weekend = false;
     private int hourAfterMidnight = 0;
-    private boolean nightTriggered = false; 
+    private boolean nightTriggered = false;
+    private int codeEvent = 0; //1= meetup 2: food promo
 
     public Day(InternshipQuestGame game, AHero hero) {
         this.hero = hero;
@@ -57,13 +58,23 @@ public class Day {
         System.out.println(nightTriggered);
         
         if (nightTriggered && hourAfterMidnight >= 3) {
-            game.setScreen(new NightScreen(game, hero));
+            game.setScreen(new NightScreenExhaustion(game, hero));
 
             day += 1;       
             hour = 10;      
             hourAfterMidnight = 0;
             nightTriggered = false;
+            this.setCodeEvent(0);
+            hero.newEnergy(hero.getEndurance()/2);
         }
+    }
+
+    public int getCodeEvent() {
+        return codeEvent;
+    }
+
+    public void setCodeEvent(int Event) {
+        this.codeEvent = Event;
     }
 
     public void setDay(int day) {

@@ -14,20 +14,23 @@ public class DrinkAlcool extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup", 0.4f); 
 
         int newStress = hero.getStress() - 6;
         hero.setStress(newStress);
+        hero.setMoney(hero.getMoney()-cost);
 
         double chance = Math.random();
         int luck = hero.getLuck();
-        if (chance+(luck/1000) < 0.1) { 
+        if (chance+(luck/1000) < 0.1) { // la chance aide un peu à éviter les problemes
+            SoundManager.playSound("GlassDrinkV", 0.4f);
             int newSocial = hero.getSocial() - 3;
             int newEndurance = hero.getEndurance() - 3;
             hero.setSocial(newSocial);
             hero.setEndurance(newEndurance);
+            hero.setSatiety(hero.getSatiety()-30);
             message = "That was one drink too many !!!\n You vomit on the barmaid, losing your self-confidence and your stamina.";
         } else {
+            SoundManager.playSound("GlassDrink", 0.4f);
             int newSocial = hero.getSocial() + 3;
             int newEnergy = hero.getEnergy() + 5;
             hero.setSocial(newSocial);

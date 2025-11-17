@@ -19,6 +19,9 @@ abstract public class AHero {
     protected int energy;
     protected String name;
     protected String heroDescription;
+    protected boolean licence = false;
+    protected int nbFood = 2;
+    protected int satiety = 0;
 
     private Location currentLocation;
     private Location targetLocation;
@@ -42,7 +45,12 @@ abstract public class AHero {
 
 
 
-    
+    // getters
+
+
+    public int getNbFood() {return nbFood;}
+    public int getSatiety() {return satiety;}
+    public boolean isLicence() {return licence;}
     public int getEndurance() {return endurance;}
     public int getSocial() {return social;}
     public int getLuck() {return luck;}
@@ -58,14 +66,18 @@ abstract public class AHero {
 
     public Texture getTexture() {return texture;}
 
-    
-    public void setEndurance(int endurance) {this.endurance = endurance;}
-    public void setEnergy(int energy) {this.energy = energy;}
-    public void setSocial(int social) {this.social = social;}
-    public void setLuck(int luck) {this.luck = luck;}
-    public void setCodingSkills(int skills) {this.codingSkills = skills;}
-    public void setStress(int stress) {this.stress = stress;}
-    public void setMoney(int money) {this.money = money;}
+    // setters
+
+    public void setNbFood(int food){if (food<0) {this.nbFood=0;}else {this.nbFood =food;}}
+    public void setSatiety(int satiety) {if (satiety>100) {this.satiety=100;} else {this.satiety = satiety;}}
+    public void setLicence(boolean licence) {this.licence = licence;}
+    public void setEndurance(int endurance) {if (endurance>100){this.endurance=100;} else if (endurance<0){this.endurance =0;} else {this.endurance = endurance;}}
+    public void setEnergy(int energy) {if (energy<0){this.energy =0;} else {this.energy = energy;}}
+    public void setSocial(int social) {if (social>100){this.social=100;} else if (social<0){this.social =0;} else {this.social = social;}}
+    public void setLuck(int luck) {if (luck>100){this.luck=100;} else if (luck<0){this.luck =0;} else {this.luck = luck;}}
+    public void setCodingSkills(int skills) {if (skills>100){this.codingSkills=100;} else if (skills<0){this.codingSkills =0;} else {this.codingSkills = skills;}}
+    public void setStress(int stress) {if (stress>100){this.stress=100;} else if (stress<0){this.stress =0;} else {this.stress = stress;}}
+    public void setMoney(int money) {if (money<0){this.money =0;} else {this.money = money;}}
 
     public void setX(float x) {this.x = x;}
     public void setY(float y) {this.y = y;}
@@ -91,11 +103,9 @@ abstract public class AHero {
     }
 
     public void newEnergy(int endurance){
-        this.setEnergy(Math.round(endurance * 1.5f));
+        this.setEndurance(this.getEndurance()-Math.round(5*(100-this.getSatiety())/100));this.setSatiety(0);this.setEnergy(Math.round(endurance * 1.5f)-stress);
     };
 
-
-    
 
 
     

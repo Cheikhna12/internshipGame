@@ -7,8 +7,8 @@ public class Hero extends AHero{
     
     
     public Hero(){
-    
-        super("zeldo",25, 15, 15, 15, 30, 60, 55, new Texture("assets/Hero.png"));
+    //endurance,social,luck, Codingskills, motivation, money, energy
+        super("zeldo",25, 15, 15, 15, 5, 60, 50, new Texture("assets/Hero.png"));
         this.heroDescription= "Mr. 'Average' : Basic Statistics";
     }
 
