@@ -7,21 +7,21 @@ import com.internshipquest.utils.SoundManager;
 import java.util.Random;
 
 public class DrinkAlcool extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public DrinkAlcool() {
         super("Drink a glass", 1, 0, 10);
     }
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup", 0.4f); // !!!!! need to find some music
+        SoundManager.playSound("pushup", 0.4f); 
 
         int newStress = hero.getStress() - 6;
         hero.setStress(newStress);
 
         double chance = Math.random();
         int luck = hero.getLuck();
-        if (chance+(luck/1000) < 0.1) { // la chance aide un peu à éviter les problemes
+        if (chance+(luck/1000) < 0.1) { 
             int newSocial = hero.getSocial() - 3;
             int newEndurance = hero.getEndurance() - 3;
             hero.setSocial(newSocial);

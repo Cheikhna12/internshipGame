@@ -4,14 +4,14 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 
 public class Study extends AActivity {
-    // name, duration, cost
+    
     public Study() {
         super("Make the pool of the day", 8, 30 ,0);
     }
 
     @Override
     public void doIt(AHero hero, Day day) {
-        double result = 7 * hero.getCodingSkills() / 100;  // 2.45
+        double result = 7 * hero.getCodingSkills() / 100;  
         int exoPoolSuccess =(int) Math.round(result);
         int gainCodingskill= exoPoolSuccess*5;
         hero.setCodingSkills(hero.getCodingSkills()+gainCodingskill);

@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class SnackDispenserEpitech extends AActivity {
-    // name, duration, cost
+    
     public SnackDispenserEpitech() {
         super("buy sandwich triangles from the snack vending machine", 0, 0, 10);
     }

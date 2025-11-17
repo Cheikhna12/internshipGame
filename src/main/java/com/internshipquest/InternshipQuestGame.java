@@ -53,7 +53,7 @@ public class InternshipQuestGame extends Game {
     }
 
     public BitmapFont loadDMSerifFont(int size) {
-        // Charger le .ttf depuis assets
+        
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
                 Gdx.files.internal("assets/fonts/DMSerifText-Regular.ttf")
         );
@@ -66,7 +66,7 @@ public class InternshipQuestGame extends Game {
         parameter.magFilter = com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
 
         BitmapFont font = generator.generateFont(parameter);
-        generator.dispose(); // libérer la mémoire du générateur
+        generator.dispose(); 
         return font;
     }
 

@@ -4,7 +4,7 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 
 public class DisplayStat extends AActivity {
-    // name, duration, cost
+    
     public DisplayStat() {
         super("looking at oneself in the mirror", 0, 0,0);
     }

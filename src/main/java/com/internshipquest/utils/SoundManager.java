@@ -17,10 +17,19 @@ public class SoundManager {
     public static void loadSounds() {
         musics.put("gym", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/gym-ambience.wav")));
         musics.put("house", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/house.mp3")));
-
+        musics.put("office", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/office_ambiance.wav")));
+        
         sounds.put("pushup", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("deadlift", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("machine_nourriture", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/MachineANourriture.wav")));
+        
+        sounds.put("correct", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/correct_answer.wav")));
+        sounds.put("wrong", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wrong_answer.wav")));
+        sounds.put("rejected", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/rejected.wav")));
+        
+        musics.put("hired", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/hired.mp3")));
+        
+        System.out.println("[SOUND] Tous les sons chargés avec succès !");
     }
 
     public static void setMasterVolume(float volume) {
@@ -47,7 +56,7 @@ public class SoundManager {
 
         Music music = musics.get(key);
         music.setLooping(looping);
-        music.setVolume(volume * masterVolume); // apply master volume
+        music.setVolume(volume * masterVolume); 
         music.play();
         currentMusicKey = key;
     }
@@ -60,8 +69,23 @@ public class SoundManager {
     }
 
     public static void playSound(String key, float volume) {
-        if (!sounds.containsKey(key)) return;
-        sounds.get(key).play(volume * masterVolume); // apply master volume
+        
+        if (sounds.containsKey(key)) {
+            sounds.get(key).play(volume * masterVolume);
+            return;
+        }
+        
+        
+        if (musics.containsKey(key)) {
+            Music music = musics.get(key);
+            music.setLooping(false);
+            music.setVolume(volume * masterVolume);
+            music.play();
+            System.out.println("[SOUND] Joue la musique courte: " + key);
+            return;
+        }
+        
+        System.out.println("[SOUND] ATTENTION: Son '" + key + "' non trouvé !");
     }
 
     public static void dispose() {

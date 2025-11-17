@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class DeadLifts extends AActivity {
-    // name, duration, cost
+    
     public DeadLifts() {
         super("Do some Deadlifts", 1, 10,0);
     }

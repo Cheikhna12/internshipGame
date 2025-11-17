@@ -35,7 +35,7 @@ public class SettingsScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        // Use LibGDX’s default skin for simplicity
+        
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         Table table = new Table();
@@ -48,7 +48,7 @@ public class SettingsScreen implements Screen {
         volumeSlider = new Slider(0f, 1f, 0.01f, false, skin);
         volumeSlider.setValue(SoundManager.getMasterVolume());
 
-        // Update SoundManager volume when slider moves
+        
         volumeSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, com.badlogic.gdx.scenes.scene2d.Actor actor) {

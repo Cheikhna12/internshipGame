@@ -51,7 +51,7 @@ public abstract class ALieuVisitable {
     public void update(float delta) {
         if (showingMessage) {
             messageTimer += delta;
-            if (messageTimer >= 5f) { // 5 secondes écoulées
+            if (messageTimer >= 5f) { 
                 showingMessage = false;
                 currentMessage = null;
                 messageTimer = 0f;
@@ -90,7 +90,7 @@ public abstract class ALieuVisitable {
 
         activity.doIt(hero, day);
 
-        // Affichage du message
+        
         currentMessage = activity.getMessage();
         showingMessage = true;
         messageTimer = 0f;

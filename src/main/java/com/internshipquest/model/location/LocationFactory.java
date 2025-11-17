@@ -46,15 +46,18 @@ public class LocationFactory {
             case "Shop":
                 lieu = new Shop(game);
                 break;
+            case "Industrial Zone":
+                lieu = new IndustrialZone(game);
+                break;
             default:
-                break; // Non visitable = null
+                break; 
         }
 
         if (lieu != null) locationMap.put(name, lieu);
         return lieu;
     }
 
-    // 🔹 Nouvelle méthode pour créer toutes les locations
+    
     public List<Location> createAllLocations() {
         List<Location> locations = new ArrayList<>();
 
@@ -88,6 +91,8 @@ public class LocationFactory {
                 return new Texture(Gdx.files.internal("assets/images/epitech_background.png"));
             case "Bar":
                 return new Texture(Gdx.files.internal("assets/images/bar_background.png"));
+            case "Industrial Zone":
+                return new Texture(Gdx.files.internal("assets/images/industrie_background.png"));
             default:
                 return new Texture(Gdx.files.internal("assets/images/default_background.png"));
         }
