@@ -5,6 +5,9 @@ import com.internshipquest.model.combat.Entreprise;
 import com.internshipquest.model.combat.EntrepriseFactory;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.PostulerEntreprise;
+import com.internshipquest.model.location.ALieuVisitable;
+import com.internshipquest.model.hero.*;
+import com.internshipquest.model.Day;
 import com.internshipquest.utils.SoundManager;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ public class IndustrialZone extends ALieuVisitable{
 
 
     @Override
-    public void onEnter() {
+    public void onEnter(AHero hero, Day day) {
         SoundManager.playMusic("office", true, 0.6f);
     }
 
