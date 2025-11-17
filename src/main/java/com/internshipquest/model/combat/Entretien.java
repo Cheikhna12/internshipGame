@@ -84,7 +84,8 @@ public class Entretien {
             return "DETENDUE";
         }
     }
-    
+
+
     private void determineDifficultyRange() {
         String diff = rh.getDifficulte();
         switch (diff) {
