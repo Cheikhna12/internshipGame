@@ -1,5 +1,7 @@
 package com.internshipquest.model.location;
 
+import com.internshipquest.model.hero.*;
+import com.internshipquest.model.Day;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
@@ -31,9 +33,18 @@ public class FitnessClub extends ALieuVisitable {
     }
 
     @Override
-    public void onEnter() {
+    public void onEnter(AHero hero,Day day) {
         // nom, loop or not, volume %
         SoundManager.playMusic("gym", true, 0.8f);
+        if (day.getCodeEvent()==3) {
+            if (hero.getLuck()>20){
+            hero.setMoney(hero.getMoney() + 15);
+            currentMessage = "You find a stolen wallet on the ground, you return it to its owner.\n He thanks you by giving you 15 euros.";
+            showingMessage = true;
+            messageTimer = 0f;
+
+            day.setCodeEvent(0);}
+        }
     }
 
     public AHero getHero() {

@@ -65,9 +65,10 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
+    public static List<AActivity> getShopActivities(ALieuVisitable lieu, Day day) {
         List<AActivity> list = new ArrayList<>();
-        list.add(new StoreWork());
+        if (day.getCodeEvent()==2){list.add(new BuyFoodPromotion());}
+                list.add(new StoreWork());
         list.add(new BuyFood());
         list.add(new AskOpeningHours(lieu));
         return list;
