@@ -58,6 +58,7 @@ public class LocationFactory {
     public List<Location> createAllLocations() {
         List<Location> locations = new ArrayList<>();
 
+        // location(nom, taille du carréde sélction( largeur, hauteur), position du carré sur la map (horizontal, vertical)
         locations.add(createLocation("Industrial Zone", 64, 704, 448, 256));
         locations.add(createLocation("Clover Field", 554, 720, 160, 160));
         locations.add(createLocation("Bar", 768, 720, 224, 128));
