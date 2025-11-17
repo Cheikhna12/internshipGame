@@ -33,7 +33,7 @@ public class NightScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
-        // --- Configuration du texte ---
+        
         BitmapFont font = new BitmapFont();
         font.getData().setScale(1.5f);
 
@@ -46,20 +46,20 @@ public class NightScreen implements Screen {
         messageLabel.setAlignment(Align.center);
         messageLabel.setWrap(true);
 
-        // Démarre invisible
+        
         messageLabel.getColor().a = 0f;
 
-        // --- Placement du texte ---
+        
         Table table = new Table();
         table.setFillParent(true);
         table.center();
         table.add(messageLabel).width(Gdx.graphics.getWidth() * 0.8f);
         stage.addActor(table);
 
-        // --- Animation de fondu (fade-in) ---
+        
         messageLabel.addAction(Actions.sequence(
-                Actions.delay(0.5f),         // petit délai avant l’apparition
-                Actions.fadeIn(1.5f)         // apparition progressive sur 1,5 seconde
+                Actions.delay(0.5f),         
+                Actions.fadeIn(1.5f)         
         ));
     }
 
@@ -76,10 +76,10 @@ public class NightScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
-        // Après 3 secondes, on passe à la world map
+        
         timeElapsed += delta;
         if (timeElapsed > 8f) {
-//            hero.setPosition(150, 230);
+
             game.setScreen(new WorldMapScreen(game));
         }
     }

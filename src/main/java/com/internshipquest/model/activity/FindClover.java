@@ -7,14 +7,14 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class FindClover extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public FindClover() {
         super("Look for a four-leaf clover", 1, 5,0);
     }
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup",0.4f); // !!!!! son à changer
+        SoundManager.playSound("pushup",0.4f); 
         double chance = Math.random();
         if (chance < 0.6) {
             message = "After " + duration + " hour of fruitless searching, you give up. No lucky charm for you.";

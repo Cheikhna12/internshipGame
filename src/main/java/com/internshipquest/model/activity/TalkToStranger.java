@@ -11,7 +11,7 @@ import java.util.Random;
 public class TalkToStranger extends AActivity {
     private InternshipQuestGame game;
 
-    // name, duration, costEnergy, costMoney
+    
     public TalkToStranger(InternshipQuestGame game) {
         super("Talk to someone from the bar", 3, 5, 0);
         this.game=game;
@@ -20,7 +20,7 @@ public class TalkToStranger extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup", 0.4f); // !!!!! need to find some music
+        SoundManager.playSound("pushup", 0.4f); 
 
 
         double chance = Math.random();

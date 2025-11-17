@@ -4,7 +4,7 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 
 public class Sleep extends AActivity {
-    // name, duration, cost
+    
     public Sleep() {
         super("Sleep until tomorrow", 0, 0,0);
     }
@@ -13,7 +13,7 @@ public class Sleep extends AActivity {
     public void doIt(AHero hero, Day day) {
         day.setDay(day.getDay()+ 1);
         hero.setEnergy(hero.getEndurance()*2);
-//        hero.newEnergy(hero.getEndurance());
+
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
         day.setNightTriggered(false);

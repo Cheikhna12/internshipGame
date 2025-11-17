@@ -7,14 +7,14 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class Rest extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public Rest() {
         super("Take a short nap.", 1, 0,0);
     }
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup",0.4f); // !!!!!! need to change the sound
+        SoundManager.playSound("pushup",0.4f); 
         double chance = Math.random();
         if (chance < 0.95) {
             int newEnergy = hero.getEnergy() + 5;

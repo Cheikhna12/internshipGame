@@ -61,4 +61,5 @@ public class ActivityFactory {
         list.add(new AskOpeningHours(lieu));
         return list;
     }
+
 }

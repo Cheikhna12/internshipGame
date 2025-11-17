@@ -4,7 +4,7 @@ import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 
 public class Wait extends AActivity {
-    // name, duration, cost
+    
     public Wait() {
         super("Wait one hour", 1, 0, 0);
     }

@@ -5,8 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.Day;
 import com.internshipquest.model.location.*;
@@ -27,13 +25,13 @@ public class LocationScreen implements Screen {
     private ALieuVisitable lieu;
     private Texture background;
     private List<AActivity> activities = new ArrayList<>();
-    private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
+    private List<ActionZone> actions = new ArrayList<>(); 
 
     private Texture npcTexture;
     private String npcMessage;
     private boolean showNpcDialog = false;
 
-    // zone "Return to world Map"
+    
     private final float returnX = 50;
     private final float returnY = 80;
     private final float returnWidth =  400;
@@ -58,9 +56,9 @@ public class LocationScreen implements Screen {
     @Override
     public void show() {
 
-        // on gère maintenant le background dans la factory :)
+        
         background = LocationFactory.createBackground(location.getName());
-        // lance la musique quand on rentre dans un lieu
+        
         if (lieu != null) {
             lieu.onEnter();
         }
@@ -77,7 +75,7 @@ public class LocationScreen implements Screen {
             game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
-        // Texte principal
+        
         game.font.getData().setScale(1.1f);
         game.font.draw(game.batch, location.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
@@ -97,29 +95,36 @@ public class LocationScreen implements Screen {
             game.font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
-                    int yPos = 700;
+                int yPos = 700;
 
-            // On charge les activités qui sont défini dans les classe lieu
+            
             activities = lieu.getActivities();
 
-
-                // Boucle unique pour créer les boutons d’action
-                for (int i = 0; i < activities.size(); i++) {
-                    final int index = i;
-                    AActivity activity = activities.get(i);
-                    addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
-                                lieu.performActivity(index, hero, day);
-                            }
-                    );
-                }
+            if (location.getName().equals("Industrial Zone")) {
+                renderIndustrialZone(yPos);
+            } else {
+                renderStandardActivities(yPos);
+            }
 
             game.font.getData().setScale(1.0f);
             for (ActionZone a : actions) {
+                if (a.text.contains("Facile")) {
+                    game.font.setColor(0.5f, 1f, 0.5f, 1f);
+                } else if (a.text.contains("Moyen")) {
+                    game.font.setColor(1f, 0.9f, 0.3f, 1f);
+                } else if (a.text.contains("Difficile")) {
+                    game.font.setColor(1f, 0.5f, 0.3f, 1f);
+                } else if (a.text.contains("Extreme")) {
+                    game.font.setColor(1f, 0.3f, 0.3f, 1f);
+                } else {
+                    game.font.setColor(1f, 1f, 1f, 1f);
+                }
                 game.font.draw(game.batch, a.text, a.x, a.y);
             }
+            game.font.setColor(1f, 1f, 1f, 1f);
 
             if (showNpcDialog && npcTexture != null) {
-                // Affiche le PNJ et son message
+                
                 game.batch.draw(npcTexture, 500, 0, 960, 720);
                 game.font.getData().setScale(1.1f);
                 game.font.setColor(0f, 0.7f, 1f, 1f);
@@ -138,8 +143,78 @@ public class LocationScreen implements Screen {
         handleInput();
     }
 
+    private void renderIndustrialZone(int startY) {
+        Day currentDay = game.getDay();
+        
+        game.font.getData().setScale(1.1f);
+        game.font.setColor(0.3f, 0.8f, 1f, 1f);
+        game.font.draw(game.batch, "Entreprises disponibles:", 50, startY + 50);
+        
+        game.font.setColor(1f, 1f, 1f, 1f);
+        game.font.getData().setScale(0.85f);
+        game.font.draw(game.batch, "Vos stats: Tech " + hero.getCodingSkills() + " | Social " + hero.getSocial(), 50, startY + 20);
+        
+        int yPos = startY - 50;
+        
+        for (int i = 0; i < activities.size(); i++) {
+            final int index = i;
+            AActivity activity = activities.get(i);
+            String activityName = activity.getName();
+            
+            String[] parts = activityName.split("\\(");
+            String entrepriseName = parts[0].trim();
+            String difficulty = "";
+            if (parts.length > 1) {
+                difficulty = parts[1].replace(")", "").trim();
+            }
+            
+            String displayText = (i + 1) + ". " + entrepriseName + " [" + difficulty + "]";
+            
+            addAction(displayText, 80, yPos - i * 70, () -> {
+                lieu.performActivity(index, hero, currentDay);
+            });
+            
+            game.font.getData().setScale(0.75f);
+            game.font.setColor(0.7f, 0.7f, 0.7f, 1f);
+            String requirements = getEntrepriseRequirements(difficulty);
+            game.font.draw(game.batch, requirements, 100, yPos - i * 70 - 25);
+            
+            game.font.setColor(1f, 1f, 1f, 1f);
+            game.font.getData().setScale(1.0f);
+        }
+    }
+    
+    private void renderStandardActivities(int startY) {
+        Day currentDay = game.getDay();
+        int yPos = startY;
+        
+        for (int i = 0; i < activities.size(); i++) {
+            final int index = i;
+            AActivity activity = activities.get(i);
+            
+            addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50, () -> {
+                lieu.performActivity(index, hero, currentDay);
+            });
+        }
+    }
+    
+    private String getEntrepriseRequirements(String difficulty) {
+        switch (difficulty) {
+            case "Facile":
+                return "Requis: Tech 20-30 | Social 20-30 | Salaire: 500-800€";
+            case "Moyen":
+                return "Requis: Tech 40-50 | Social 40-50 | Salaire: 1000-1500€";
+            case "Difficile":
+                return "Requis: Tech 60-70 | Social 60-70 | Salaire: 2000-3000€";
+            case "Extreme":
+                return "Requis: Tech 80+ | Social 80+ | Salaire: 4000-6000€";
+            default:
+                return "";
+        }
+    }
+    
     private void addAction(String text, float x, float y, Runnable action) {
-        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 600, 40), action));
+        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 800, 40), action));
     }
 
     private void handleInput() {
@@ -156,7 +231,7 @@ public class LocationScreen implements Screen {
                 return;
             }
 
-            // Zone cliquable du texte "Return to world Map avec arret direct pour éviter de pouvoir lancer une autre action pendantle chargement"
+            
             if (clickX >= returnX && clickX <= returnX + returnWidth &&
                     clickY >= returnY - returnHeight && clickY <= returnY) {
                 game.setScreen(mapScreen);
@@ -188,7 +263,7 @@ public class LocationScreen implements Screen {
     }
 
     public void hide() {
-        // pour stopper la musique
+        
         if (lieu != null) {
             lieu.onExit();
         }

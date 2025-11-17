@@ -1,11 +1,11 @@
 package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
-import com.internshipquest.model.AHero;
+import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class SnackDispenser extends AActivity {
-    // name, duration, cost
+    
     public SnackDispenser() {
         super("buy a protein bar from the snack vending machine", 0, 0, 5);
     }

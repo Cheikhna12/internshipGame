@@ -20,8 +20,8 @@ public class Bar extends ALieuVisitable {
 
     @Override
     public void onEnter() {
-        // nom, loop or not, volume %
-        SoundManager.playMusic("house", true, 0.4f); // !!! need to change music
+        
+        SoundManager.playMusic("house", true, 0.4f); 
     }
 
     @Override
