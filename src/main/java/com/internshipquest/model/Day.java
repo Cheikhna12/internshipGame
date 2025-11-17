@@ -12,7 +12,7 @@ public class Day {
     private boolean weekend = false;
     private int hourAfterMidnight = 0;
     private boolean nightTriggered = false;
-    private int codeEvent = 0; //1= meetup
+    private int codeEvent = 0; //1= meetup 2: food promo
 
     public Day(InternshipQuestGame game, AHero hero) {
         this.hero = hero;

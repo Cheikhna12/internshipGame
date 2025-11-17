@@ -8,7 +8,7 @@ public class StressDreamEvent extends AEvent {
 
 
     public StressDreamEvent(AHero hero) {
-        super("You have a terrible nightmare: you go to your internship interview without your trousers... your salary increases by 5.");
+        super("You have a terrible nightmare: you go to your internship interview without your trousers... your stress increases by 5.");
     }
 
     @Override
