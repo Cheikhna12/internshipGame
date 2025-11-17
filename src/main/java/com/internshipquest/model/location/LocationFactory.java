@@ -2,6 +2,7 @@ package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.location.*;
+import com.internshipquest.model.hero.AHero;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +16,6 @@ public class LocationFactory {
 
     private final InternshipQuestGame game;
     private Map<String, ALieuVisitable> locationMap = new HashMap<>();
-
     public LocationFactory(InternshipQuestGame game) {
         this.game = game;
     }
@@ -57,7 +57,6 @@ public class LocationFactory {
         return lieu;
     }
 
-    
     public List<Location> createAllLocations() {
         List<Location> locations = new ArrayList<>();
 
@@ -93,6 +92,10 @@ public class LocationFactory {
                 return new Texture(Gdx.files.internal("assets/images/bar_background.png"));
             case "Industrial Zone":
                 return new Texture(Gdx.files.internal("assets/images/industrie_background.png"));
+            case "Shop":
+                return new Texture(Gdx.files.internal("assets/images/store_background.png"));
+            case "Sorcerer":
+                return new Texture(Gdx.files.internal("assets/images/sorcerer_background.png"));
             default:
                 return new Texture(Gdx.files.internal("assets/images/default_background.png"));
         }

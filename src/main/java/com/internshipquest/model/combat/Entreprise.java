@@ -1,5 +1,7 @@
 package com.internshipquest.model.combat;
 
+import com.internshipquest.model.hero.AHero;
+
 public class Entreprise {
 
     private String name;

@@ -23,8 +23,9 @@ public class InternshipQuestGame extends Game {
         font = loadDMSerifFont(32);
         hero = null;
         day = null ;
-        setScreen(new Menu(this));
         SoundManager.loadSounds();
+        setScreen(new Menu(this));
+
     }
 
     @Override

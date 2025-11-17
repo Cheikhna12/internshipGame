@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class SnackDispenserGym extends AActivity {
     
     public SnackDispenserGym() {
-        super("buy a protein bar from the snack vending machine", 0, 0, 5);
+        super("Eat a protein bar from the snack vending machine", 0, 0, 5);
     }
 
     @Override
@@ -20,6 +20,7 @@ public class SnackDispenserGym extends AActivity {
         hero.setEndurance(newEndurance);
         hero.setEnergy(newEnergy);
         hero.setEnergy(newMoney);
+        hero.setSatiety(hero.getSatiety()+30);
 
         day.addHour(duration);
 

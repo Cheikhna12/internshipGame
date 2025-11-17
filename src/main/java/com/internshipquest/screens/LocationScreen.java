@@ -21,6 +21,7 @@ public class LocationScreen implements Screen {
     private Location location;
     private WorldMapScreen mapScreen;
     private AHero hero;
+    private Day day;
 
     private ALieuVisitable lieu;
     private Texture background;
@@ -42,6 +43,7 @@ public class LocationScreen implements Screen {
         this.location = location;
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
+        this.day=game.getDay();
 
         LocationFactory factory = new LocationFactory(game);
         this.lieu = factory.getVisitableLocation(location.getName());
@@ -60,7 +62,7 @@ public class LocationScreen implements Screen {
         background = LocationFactory.createBackground(location.getName());
         
         if (lieu != null) {
-            lieu.onEnter();
+            lieu.onEnter(hero, day);
         }
     }
 
@@ -79,7 +81,7 @@ public class LocationScreen implements Screen {
         game.font.getData().setScale(1.1f);
         game.font.draw(game.batch, location.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
-        game.font.draw(game.batch, "Your current energy is " + hero.getEnergy() + ".", 50, 850);
+        game.font.draw(game.batch, "Your current energy is " + hero.getEnergy() + " and you got "+hero.getMoney()+" euros.", 50, 850);
 
         Day day = game.getDay();
         if (day != null) {
@@ -124,8 +126,8 @@ public class LocationScreen implements Screen {
             game.font.setColor(1f, 1f, 1f, 1f);
 
             if (showNpcDialog && npcTexture != null) {
-                
-                game.batch.draw(npcTexture, 500, 0, 960, 720);
+                // Affiche le PNJ et son message
+                game.batch.draw(npcTexture, 600, 0, 760, 760);
                 game.font.getData().setScale(1.1f);
                 game.font.setColor(0f, 0.7f, 1f, 1f);
                 game.font.draw(game.batch, npcMessage, 550, 800);

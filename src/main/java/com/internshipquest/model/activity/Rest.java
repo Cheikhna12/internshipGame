@@ -14,7 +14,7 @@ public class Rest extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup",0.4f); 
+        SoundManager.playSound("snore", 0.4f);
         double chance = Math.random();
         if (chance < 0.95) {
             int newEnergy = hero.getEnergy() + 5;

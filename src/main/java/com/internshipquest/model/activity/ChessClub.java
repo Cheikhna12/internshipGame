@@ -7,13 +7,13 @@ import com.internshipquest.utils.SoundManager;
 public class ChessClub extends AActivity {
     
     public ChessClub() {
-        super("Go to the Chess Club", 1, 5,0);
+        super("Go to the Chess Club", 1, 10,0);
     }
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup",0.4f); 
-        int newSocial = hero.getSocial() + 3;
+        SoundManager.playSound("chess",1f);
+        int newSocial = hero.getSocial() + 2;
         int newEnergy = hero.getEnergy() - energyUse;
 
         hero.setSocial(newSocial);

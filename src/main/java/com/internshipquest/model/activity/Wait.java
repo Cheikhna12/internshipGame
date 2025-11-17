@@ -2,6 +2,7 @@ package com.internshipquest.model.activity;
 
 import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
+import com.internshipquest.utils.SoundManager;
 
 public class Wait extends AActivity {
     
@@ -11,6 +12,7 @@ public class Wait extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
+        SoundManager.playSound("waiting",1f);
         day.addHour(duration);
 
         message = "You wait " + duration + " hour(s). As they say: 'everything comes to those who wait'.";

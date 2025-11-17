@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class SnackDispenserEpitech extends AActivity {
     
     public SnackDispenserEpitech() {
-        super("buy sandwich triangles from the snack vending machine", 0, 0, 10);
+        super("Eat sandwich triangles from the snack vending machine", 0, 0, 7);
     }
 
     @Override
@@ -17,7 +17,8 @@ public class SnackDispenserEpitech extends AActivity {
         int newMoney= hero.getMoney()-cost;
 
         hero.setEnergy(newEnergy);
-        hero.setEnergy(newMoney);
+        hero.setMoney(newMoney);
+        hero.setSatiety(hero.getSatiety()+35);
 
         day.addHour(duration);
 
