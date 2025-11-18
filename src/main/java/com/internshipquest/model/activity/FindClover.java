@@ -7,7 +7,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class FindClover extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public FindClover() {
         super("Look for a four-leaf clover", 2, 5,0);
     }

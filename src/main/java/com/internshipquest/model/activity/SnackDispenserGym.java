@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class SnackDispenserGym extends AActivity {
-    // name, duration, cost
+    
     public SnackDispenserGym() {
         super("Eat a protein bar from the snack vending machine", 0, 0, 5);
     }

@@ -41,18 +41,18 @@ public class Menu implements Screen {
         game.batch.begin();
         game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        // Draw character icons
+        
         game.batch.draw(nerdIcon, 207, 425, 150, 200);
         game.batch.draw(chadIcon, 564, 425, 150, 200);
         game.batch.draw(heroIcon, 921, 425, 150, 200);
 
         game.batch.draw(gameLogo, 490, 650, 300, 300);
-        // Highlight selected hero
+        
         if (selectedHero != null) {
             game.font.setColor(Color.WHITE);
 
             game.font.draw(game.batch, "Selected: " + selectedHero.getName(), 500, 375);
-            // sert à centrer la description (glyph calcul la taille du texte en fonction de la police)
+            
             String description = selectedHero.getHeroDescription();
             GlyphLayout layout = new GlyphLayout(game.font, description);
             float x = (Gdx.graphics.getWidth() - layout.width) / 2;
@@ -65,7 +65,7 @@ public class Menu implements Screen {
 
         game.batch.end();
 
-        // Input detection
+        
         if (Gdx.input.justTouched()) {
             int x = Gdx.input.getX();
             int y = Gdx.graphics.getHeight() - Gdx.input.getY();

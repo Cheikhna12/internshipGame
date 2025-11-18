@@ -9,7 +9,7 @@ import java.util.List;
 
 abstract public class AHero {
 
-    // attributes
+    
     protected int endurance;
     protected int social;
     protected int luck;
@@ -30,13 +30,13 @@ abstract public class AHero {
     private List<Vector2> pathWaypoints;
     private int currentWaypointIndex;
 
-    // position
+    
     protected float x;
     protected float y;
-    //texture
+    
     protected Texture texture;
 
-    //roads
+    
     final float ROUTE_NORD = 668f;
     final float ROUTE_CENTRALE = 288f;
     final float ROUTE_SUD = 64f;
@@ -82,7 +82,7 @@ abstract public class AHero {
     public void setX(float x) {this.x = x;}
     public void setY(float y) {this.y = y;}
 
-    // constructor
+    
     public AHero(String name, int endurance,  int social, int luck, int skills, int stress, int money, int energy, Texture texture) {
 
         this.endurance = endurance;
@@ -108,7 +108,7 @@ abstract public class AHero {
 
 
 
-    // fonction deplacement
+    
     public void update(float delta) {
         if (!isMoving || pathWaypoints.isEmpty()) {
             return;
@@ -261,7 +261,7 @@ abstract public class AHero {
         }
     }
 
-    //methods
+    
     public void render(SpriteBatch batch){
         batch.draw(texture,x,y,40,40);
     }

@@ -13,9 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import java.util.Random;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.internshipquest.model.hero.AHero;
 import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.event.*;
+import com.internshipquest.model.Day;
 
 public class NightScreen implements Screen {
 
@@ -26,7 +29,7 @@ public class NightScreen implements Screen {
     private final Label messageLabel;
     private float timeElapsed = 0f;
 
-    public NightScreen(InternshipQuestGame game, AHero hero) {
+    public NightScreen(InternshipQuestGame game, AHero hero, Day day) {
         this.game = game;
         this.hero = hero;
 
@@ -34,20 +37,10 @@ public class NightScreen implements Screen {
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
         // --- Configuration du texte ---
-        BitmapFont font = new BitmapFont();
-        font.getData().setScale(1.5f);
-
-        LabelStyle style = new LabelStyle(font, Color.WHITE);
-        messageLabel = new Label(
-                "You exhausted yourself by going to bed too late,\n" +
-                        "you barely reach your bed and you wake up with a drowsy head.",
-                style
-        );
+        LabelStyle style = new LabelStyle(game.font, Color.WHITE);
+        messageLabel = new Label("", style);
         messageLabel.setAlignment(Align.center);
         messageLabel.setWrap(true);
-
-        // Démarre invisible
-        messageLabel.getColor().a = 0f;
 
         // --- Placement du texte ---
         Table table = new Table();
@@ -56,10 +49,29 @@ public class NightScreen implements Screen {
         table.add(messageLabel).width(Gdx.graphics.getWidth() * 0.8f);
         stage.addActor(table);
 
+        Random random = new Random();
+        boolean triggerEvent = random.nextBoolean(); // true = événement, false = pas d'événement
+
+        if (triggerEvent) {
+            EventFactory eventFactory = new EventFactory(hero,day);
+            AEvent todayEvent = eventFactory.getRandomEvent();
+            if (todayEvent != null) {
+                todayEvent.applyEffect(hero,day);
+                messageLabel.setText(todayEvent.getMessageNight());
+            } else {
+                messageLabel.setText("After a good night, you regenerate your energy thanks to your endurance.");
+            }
+        } else {
+            messageLabel.setText("After a good night, you regenerate your energy thanks to your endurance.");
+        }
+
+        // Démarre invisible
+        messageLabel.getColor().a = 0f;
+
         // --- Animation de fondu (fade-in) ---
         messageLabel.addAction(Actions.sequence(
-                Actions.delay(0.5f),         // petit délai avant l’apparition
-                Actions.fadeIn(1.5f)         // apparition progressive sur 1,5 seconde
+                Actions.delay(0.5f),         
+                Actions.fadeIn(1.5f)         
         ));
     }
 
@@ -76,7 +88,7 @@ public class NightScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
-        // Après 3 secondes, on passe à la world map
+        
         timeElapsed += delta;
         if (timeElapsed > 8f) {
             game.setScreen(new WorldMapScreen(game));

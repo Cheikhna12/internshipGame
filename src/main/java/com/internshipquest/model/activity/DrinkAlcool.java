@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 import java.util.Random;
 
 public class DrinkAlcool extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public DrinkAlcool() {
         super("Drink a glass", 1, 0, 10);
     }

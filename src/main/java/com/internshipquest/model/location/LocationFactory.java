@@ -46,18 +46,21 @@ public class LocationFactory {
             case "Shop":
                 lieu = new Shop(game);
                 break;
+            case "Industrial Zone":
+                lieu = new IndustrialZone(game);
+                break;
             default:
-                break; // Non visitable = null
+                break; 
         }
 
         if (lieu != null) locationMap.put(name, lieu);
         return lieu;
     }
 
-
     public List<Location> createAllLocations() {
         List<Location> locations = new ArrayList<>();
 
+        // location(nom, taille du carréde sélction( largeur, hauteur), position du carré sur la map (horizontal, vertical)
         locations.add(createLocation("Industrial Zone", 64, 704, 448, 256));
         locations.add(createLocation("Clover Field", 554, 720, 160, 160));
         locations.add(createLocation("Bar", 768, 720, 224, 128));
@@ -88,6 +91,8 @@ public class LocationFactory {
                 return new Texture(Gdx.files.internal("assets/images/epitech_background.png"));
             case "Bar":
                 return new Texture(Gdx.files.internal("assets/images/bar_background.png"));
+            case "Industrial Zone":
+                return new Texture(Gdx.files.internal("assets/images/industrie_background.png"));
             case "Shop":
                 return new Texture(Gdx.files.internal("assets/images/store_background.png"));
             case "Sorcerer":

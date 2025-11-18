@@ -11,7 +11,7 @@ import java.util.Random;
 public class TalkToStranger extends AActivity {
     private InternshipQuestGame game;
 
-    // name, duration, costEnergy, costMoney
+    
     public TalkToStranger(InternshipQuestGame game) {
         super("Talk to someone from the bar", 3, 5, 0);
         this.game=game;
@@ -45,6 +45,7 @@ public class TalkToStranger extends AActivity {
             day.setHour(7 + day.getHourAfterMidnight());
             day.setHourAfterMidnight(0);
             day.setNightTriggered(false);
+            day.setCodeEvent(0);
             game.setScreen(new NightScreenBar(game, hero));
 
         }

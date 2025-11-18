@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class PushUps extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public PushUps() {
         super("Do some push-Ups", 1, 5,0);
     }

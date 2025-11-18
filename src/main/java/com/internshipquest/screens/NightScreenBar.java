@@ -35,31 +35,28 @@ public class NightScreenBar implements Screen {
         background = new Texture(Gdx.files.internal("assets/night.png"));
 
         // --- Configuration du texte ---
-        BitmapFont font = new BitmapFont();
-        font.getData().setScale(1.5f);
-
-        LabelStyle style = new LabelStyle(font, Color.WHITE);
+        LabelStyle style = new LabelStyle(game.font, Color.WHITE);
         messageLabel = new Label(
-                " You look around for someone to talk to \n a pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend 3 hour chatting with her. You invite her to spend the night at your place… The next morning, you wake up full of energy and self-confidence. \"",
+                " You look around for someone to talk to \n a pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend 3 hour chatting with her.\n You invite her to spend the night at your place… The next morning, you wake up full of energy and self-confidence. \"",
                 style
         );
         messageLabel.setAlignment(Align.center);
         messageLabel.setWrap(true);
 
-        // Démarre invisible
+        
         messageLabel.getColor().a = 0f;
 
-        // --- Placement du texte ---
+        
         Table table = new Table();
         table.setFillParent(true);
         table.center();
         table.add(messageLabel).width(Gdx.graphics.getWidth() * 0.8f);
         stage.addActor(table);
 
-        // --- Animation de fondu (fade-in) ---
+        
         messageLabel.addAction(Actions.sequence(
-                Actions.delay(0.5f),         // petit délai avant l’apparition
-                Actions.fadeIn(1.5f)         // apparition progressive sur 1,5 seconde
+                Actions.delay(0.5f),         
+                Actions.fadeIn(1.5f)         
         ));
     }
 

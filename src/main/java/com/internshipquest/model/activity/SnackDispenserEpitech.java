@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class SnackDispenserEpitech extends AActivity {
-    // name, duration, cost
+    
     public SnackDispenserEpitech() {
         super("Eat sandwich triangles from the snack vending machine", 0, 0, 7);
     }
@@ -17,7 +17,7 @@ public class SnackDispenserEpitech extends AActivity {
         int newMoney= hero.getMoney()-cost;
 
         hero.setEnergy(newEnergy);
-        hero.setEnergy(newMoney);
+        hero.setMoney(newMoney);
         hero.setSatiety(hero.getSatiety()+35);
 
         day.addHour(duration);

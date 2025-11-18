@@ -14,7 +14,7 @@ public class Nerd extends AHero{
     //methods
 
 
-    //getter
+    
     public String getName() {return name;}
 
 }
