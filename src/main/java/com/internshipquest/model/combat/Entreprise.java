@@ -11,11 +11,11 @@ public class Entreprise {
     private boolean dejaPostule;
     private String description;
     private String difficulte;
-    public Entreprise(String name, String description, int noteTech, int noteSoftSkill, int salaire , String difficulte) {
+    public Entreprise(String name, String description, int noteTech, int noteSoftSkill, String difficulte) {
         this.name = name;
         this.noteTech = noteTech;
         this.noteSoftSkill = noteSoftSkill;
-        this.salaire = salaire;
+        this.salaire = this.noteTech*100+this.noteSoftSkill;
         this.description = description;
         this.difficulte = difficulte;
     }

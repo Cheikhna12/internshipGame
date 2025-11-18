@@ -77,7 +77,7 @@ public class LocationScreen implements Screen {
             game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
-        
+        game.font.setColor(1f, 0.8f, 0f, 1f);
         game.font.getData().setScale(1.1f);
         game.font.draw(game.batch, location.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
@@ -92,8 +92,7 @@ public class LocationScreen implements Screen {
 
 
 
-        if (lieu != null && lieu.isShowingMessage()) {
-            game.font.getData().setScale(1.0f);
+        if (lieu != null && lieu.isShowingMessage() && lieu.getCurrentMessage() !=null) {
             game.font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
