@@ -149,8 +149,6 @@ public class EntretienScreen implements Screen {
         game.font.getData().setScale(1.2f);
         game.font.draw(game.batch, "Entretien chez : " + entreprise.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
-        game.font.draw(game.batch, "Requis: Tech " + rh.getNoteTech() + " | Social " + rh.getNoteSoftSkill(), 50, 850);
-        game.font.draw(game.batch, "Vos stats: Tech " + hero.getCodingSkills() + " | Social " + hero.getSocial(), 50, 820);
         
         
         String ambianceColor = getAmbianceColor(entretien.getAmbiance());
