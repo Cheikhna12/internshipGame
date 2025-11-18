@@ -21,10 +21,10 @@ public class Chad extends AHero{
 
 
 
-    //methods
+    
 
 
-    //getter
+    
     public String getName() {return name;}
 
 }

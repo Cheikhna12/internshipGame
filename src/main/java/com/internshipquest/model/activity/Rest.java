@@ -7,7 +7,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class Rest extends AActivity {
-    // name, duration, costEnergy, costMoney
+    
     public Rest() {
         super("Take a short nap.", 1, 0,0);
     }

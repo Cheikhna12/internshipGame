@@ -3,11 +3,15 @@ package com.internshipquest.model.activity;
 import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
+import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.screens.NightScreen;
 
 public class Sleep extends AActivity {
+    private InternshipQuestGame game;
     // name, duration, cost
-    public Sleep() {
+    public Sleep(InternshipQuestGame game) {
         super("Sleep until tomorrow", 0, 0,0);
+        this.game=game;
     }
 
     @Override
@@ -18,6 +22,7 @@ public class Sleep extends AActivity {
         day.setHour(7+day.getHourAfterMidnight());
         day.setHourAfterMidnight(0);
         day.setNightTriggered(false);
-        message = "After a good night, you regenere your energy to "+hero.getEnergy()+"thanks to your endurance.\n Your stress level affects your sleep";
+        day.setCodeEvent(0);
+        game.setScreen(new NightScreen(game, hero, day));
     }
 }

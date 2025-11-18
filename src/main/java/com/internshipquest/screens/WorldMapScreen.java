@@ -48,7 +48,7 @@ public class WorldMapScreen implements Screen {
     private AHero hero;
     private Day day;
 
-    // Attributes for settings
+    
     private Stage stage;
     private Skin skin;
     private TextButton settingsButton;
@@ -102,7 +102,7 @@ public class WorldMapScreen implements Screen {
         game.font.setColor(1f, 1f, 1f, 1f);
         game.font.draw(game.batch, "Day: " + day.getDay() + " - Hour: " + day.getHour(), 40, 940);
 
-        // Affichage du nom du lieu uniquement au survol (en bas de l'écran)
+        
         if (hoveredLocation != null) {
             game.font.getData().setScale(1.0f);
             game.font.setColor(1f, 0.8f, 0f, 1f);
@@ -132,7 +132,7 @@ public class WorldMapScreen implements Screen {
             game.font.setColor(1f, 0.8f, 0f, 1f);
             game.batch.end();
 
-            if (messageTimer > 3.5f) { // 3,5 secondes affichées
+            if (messageTimer > 3.5f) { 
                 temporaryMessage = null;
                 messageTimer = 0f;
             }
@@ -158,7 +158,7 @@ public class WorldMapScreen implements Screen {
                 if (Gdx.input.justTouched()) {
                     System.out.println("[CLICK] " + loc.getName());
 
-                    // Récupère le lieu logique associé
+                    
                     ALieuVisitable lieu = loc.getLieu();
 
                     if (hero.getCurrentLocation() == loc) {

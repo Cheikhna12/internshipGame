@@ -3,9 +3,11 @@ package com.internshipquest.model.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.internshipquest.model.Day;
 import com.internshipquest.model.hero.AHero;
 import com.internshipquest.model.location.*;
 import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.combat.*;
 
 public class ActivityFactory {
 
@@ -26,9 +28,9 @@ public class ActivityFactory {
     }
 
 
-    public static List<AActivity> getMaisonActivities() {
+    public static List<AActivity> getMaisonActivities(InternshipQuestGame game) {
         List<AActivity> list = new ArrayList<>();
-        list.add(new Sleep());
+        list.add(new Sleep(game));
         list.add(new Wait());
         list.add(new PersonalProject());
         list.add(new DevWait16h());
@@ -46,10 +48,13 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getEpitechActivities(ALieuVisitable lieu) {
+    public static List<AActivity> getEpitechActivities(ALieuVisitable lieu, Day day) {
         List<AActivity> list = new ArrayList<>();
         list.add(new Study());
         list.add(new ChessClub());
+        if (day.getCodeEvent() == 1) {
+            list.add(new MeetUp(lieu, day));
+        }
         list.add(new SnackDispenserEpitech());
         list.add(new AskOpeningHours(lieu));
         return list;
@@ -63,8 +68,11 @@ public class ActivityFactory {
         return list;
     }
 
-    public static List<AActivity> getShopActivities(ALieuVisitable lieu) {
+    public static List<AActivity> getShopActivities(ALieuVisitable lieu, Day day) {
         List<AActivity> list = new ArrayList<>();
+        if (day.getCodeEvent() == 2) {
+            list.add(new BuyFoodPromotion());
+        }
         list.add(new StoreWork());
         list.add(new BuyFood());
         list.add(new AskOpeningHours(lieu));
@@ -77,4 +85,15 @@ public class ActivityFactory {
         list.add(new AskOpeningHours(lieu));
         return list;
     }
+
+    public static List<AActivity> getIndustrialZoneActivities(InternshipQuestGame game) {
+        List<AActivity> list = new ArrayList<>();
+        List<Entreprise> entreprises = EntrepriseFactory.createAllEntreprises();
+        for (Entreprise entreprise : entreprises) {
+            list.add(new PostulerEntreprise(entreprise, game));
+        }
+
+        return list;
+    }
 }
+

@@ -5,7 +5,7 @@ import com.internshipquest.model.hero.AHero;
 import com.internshipquest.utils.SoundManager;
 
 public class Study extends AActivity {
-    // name, duration, cost
+    
     public Study() {
         super("Make the pool of the day", 8, 30, 0);
     }
@@ -19,6 +19,7 @@ public class Study extends AActivity {
         int gainCodingskill = exoPoolSuccess * 5;
         int gainStress = (7 - exoPoolSuccess) * 2;
         hero.setCodingSkills(hero.getCodingSkills() + gainCodingskill);
+        hero.setStress(hero.getStress() + gainStress);
         int newEnergy = hero.getEnergy() - energyUse;
         hero.setEnergy(newEnergy);
         day.addHour(duration);

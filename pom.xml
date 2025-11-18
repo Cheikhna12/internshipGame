@@ -50,7 +50,7 @@
         </dependency>
 
 
-    <!-- LibGDX FreeType -->
+
     <dependency>
         <groupId>com.badlogicgames.gdx</groupId>
         <artifactId>gdx-freetype</artifactId>

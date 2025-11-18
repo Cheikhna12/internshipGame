@@ -5,8 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.Day;
 import com.internshipquest.model.location.*;
@@ -23,17 +21,18 @@ public class LocationScreen implements Screen {
     private Location location;
     private WorldMapScreen mapScreen;
     private AHero hero;
+    private Day day;
 
     private ALieuVisitable lieu;
     private Texture background;
     private List<AActivity> activities = new ArrayList<>();
-    private List<ActionZone> actions = new ArrayList<>(); // actions = zone où les activités seront placé
+    private List<ActionZone> actions = new ArrayList<>(); 
 
     private Texture npcTexture;
     private String npcMessage;
     private boolean showNpcDialog = false;
 
-    // zone "Return to world Map"
+    
     private final float returnX = 50;
     private final float returnY = 80;
     private final float returnWidth =  400;
@@ -44,6 +43,7 @@ public class LocationScreen implements Screen {
         this.location = location;
         this.mapScreen = mapScreen;
         this.hero = game.getHero();
+        this.day=game.getDay();
 
         LocationFactory factory = new LocationFactory(game);
         this.lieu = factory.getVisitableLocation(location.getName());
@@ -58,11 +58,11 @@ public class LocationScreen implements Screen {
     @Override
     public void show() {
 
-        // on gère maintenant le background dans la factory :)
+        
         background = LocationFactory.createBackground(location.getName());
-        // lance la musique quand on rentre dans un lieu
+        
         if (lieu != null) {
-            lieu.onEnter();
+            lieu.onEnter(hero, day);
         }
     }
 
@@ -77,7 +77,7 @@ public class LocationScreen implements Screen {
             game.batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
-        // Texte principal
+        game.font.setColor(1f, 0.8f, 0f, 1f);
         game.font.getData().setScale(1.1f);
         game.font.draw(game.batch, location.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
@@ -92,28 +92,25 @@ public class LocationScreen implements Screen {
 
 
 
-        if (lieu != null && lieu.isShowingMessage()) {
-            game.font.getData().setScale(1.0f);
+        if (lieu != null && lieu.isShowingMessage() && lieu.getCurrentMessage() !=null) {
             game.font.draw(game.batch, lieu.getCurrentMessage(), 50, 700);}
        else {
                 actions.clear();
-                    int yPos = 700;
+                int yPos = 700;
 
-            // On charge les activités qui sont défini dans les classe lieu
+            
             activities = lieu.getActivities();
+            for (int i = 0; i < activities.size(); i++) {
+                final int index = i;
+                AActivity activity = activities.get(i);
+
+                addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50, () -> {
+                    lieu.performActivity(index, hero, day);
+                });
+            }
 
 
-                // Boucle unique pour créer les boutons d’action
-                for (int i = 0; i < activities.size(); i++) {
-                    final int index = i;
-                    AActivity activity = activities.get(i);
-                    addAction((i + 1) + ". " + activity.getName(), 200, yPos - i * 50,() -> {
-                                lieu.performActivity(index, hero, day);
-                            }
-                    );
-                }
 
-            game.font.getData().setScale(1.0f);
             for (ActionZone a : actions) {
                 game.font.draw(game.batch, a.text, a.x, a.y);
             }
@@ -137,9 +134,9 @@ public class LocationScreen implements Screen {
 
         handleInput();
     }
-
+    
     private void addAction(String text, float x, float y, Runnable action) {
-        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 600, 40), action));
+        actions.add(new ActionZone(text, x, y, new com.badlogic.gdx.math.Rectangle(x, y - 30, 800, 40), action));
     }
 
     private void handleInput() {
@@ -156,7 +153,7 @@ public class LocationScreen implements Screen {
                 return;
             }
 
-            // Zone cliquable du texte "Return to world Map avec arret direct pour éviter de pouvoir lancer une autre action pendantle chargement"
+            
             if (clickX >= returnX && clickX <= returnX + returnWidth &&
                     clickY >= returnY - returnHeight && clickY <= returnY) {
                 game.setScreen(mapScreen);
@@ -188,7 +185,7 @@ public class LocationScreen implements Screen {
     }
 
     public void hide() {
-        // pour stopper la musique
+        
         if (lieu != null) {
             lieu.onExit();
         }

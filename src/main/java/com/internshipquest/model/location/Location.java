@@ -9,7 +9,7 @@ public class Location {
     private final float height;
     private ALieuVisitable lieu;
 
-    // Constructeur principal (tout défini)
+    
     public Location(String name, float x, float y, float width, float height) {
         this.name = name;
         this.x = x;
@@ -26,7 +26,7 @@ public class Location {
         return lieu;
     }
 
-    // Getters
+    
     public String getName() {
         return name;
     }
@@ -47,7 +47,7 @@ public class Location {
         return height;
     }
 
-    // Position du centre du lieu
+    
     public float getCenterX() {
         return x + width / 2;
     }
@@ -56,7 +56,7 @@ public class Location {
         return y + height / 2;
     }
 
-    // Vérifie si un point est dans le lieu
+    
     public boolean contains(float pointX, float pointY) {
         return pointX >= x && pointX <= x + width &&
                 pointY >= y && pointY <= y + height;

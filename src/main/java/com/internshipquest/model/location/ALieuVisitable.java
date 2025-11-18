@@ -12,6 +12,7 @@ import java.util.List;
 
 public abstract class ALieuVisitable {
 
+    protected boolean meetUpAvailable = false;
     protected InternshipQuestGame game;
     protected Day day;
     protected String currentMessage = null;
@@ -34,6 +35,8 @@ public abstract class ALieuVisitable {
         return hour >= openHour && hour < closedHour && (openOnWeekends || !weekend);
     }
 
+
+
     public int getClosedHour() {
         return closedHour;
     }
@@ -46,7 +49,8 @@ public abstract class ALieuVisitable {
         return openHour;
     }
 
-    public abstract void onEnter();
+    public abstract void onEnter(AHero hero,Day day);
+
 
     public abstract void onExit();
 
@@ -54,7 +58,7 @@ public abstract class ALieuVisitable {
     public void update(float delta) {
         if (showingMessage) {
             messageTimer += delta;
-            if (messageTimer >= 5f) { // 5 secondes écoulées
+            if (messageTimer >= 5f) { 
                 showingMessage = false;
                 currentMessage = null;
                 messageTimer = 0f;
@@ -93,7 +97,7 @@ public abstract class ALieuVisitable {
 
         activity.doIt(hero, day);
 
-        // Affichage du message
+        
         currentMessage = activity.getMessage();
         showingMessage = true;
         messageTimer = 0f;
