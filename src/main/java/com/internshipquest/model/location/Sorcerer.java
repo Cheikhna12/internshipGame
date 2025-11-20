@@ -25,12 +25,7 @@ public class Sorcerer extends ALieuVisitable {
         sorcererTexture = new Texture("assets/Sorcerer.png");
     }
 
-    @Override
-<<<<<<< HEAD
-    public void onEnter() {
-        
-        SoundManager.playMusic("house", true, 0.4f); 
-=======
+
     public void onEnter(AHero hero, Day day) {
         // nom, loop or not, volume %
         SoundManager.playMusic("sorcerer", true, 0.4f);
@@ -46,7 +41,6 @@ public class Sorcerer extends ALieuVisitable {
             messageTimer = 0f;
             day.setCodeEvent(0);
         }
->>>>>>> origin/main
     }
 
     @Override
