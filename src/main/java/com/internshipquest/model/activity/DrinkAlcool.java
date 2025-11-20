@@ -39,5 +39,6 @@ public class DrinkAlcool extends AActivity {
         }
 
         day.addHour(duration);
+        hero.hasDrunk  = true;
     }
 }

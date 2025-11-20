@@ -1,10 +1,14 @@
 package com.internshipquest.model.combat;
 
+import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.hero.AHero;
+import com.internshipquest.screens.GameOverScreen;
+import com.internshipquest.screens.WorldMapScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Entretien {
     private int questionScore;
@@ -16,6 +20,7 @@ public class Entretien {
     private int totalQuestions; 
     private String resultat;
     private Random random;
+    private InternshipQuestGame game;
     
     
     private int rhMood; 
@@ -241,6 +246,16 @@ public class Entretien {
             this.resultat = "ACCEPTE";
             System.out.println("✓ Résultat: ACCEPTÉ");
             System.out.println("Marge de réussite: +" + (finalScore - seuilReussite) + " points");
+
+
+
+            try {
+                Thread.sleep( 1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+
+            game.setScreen(new GameOverScreen(game,  new WorldMapScreen(game)));
         } else {
             this.resultat = "REJECTE";
             System.out.println("✗ Résultat: REFUSÉ");
