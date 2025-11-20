@@ -25,5 +25,6 @@ public class StoreWork extends AActivity {
         day.addHour(duration);
 
         message = "After " + duration + " hour of handling goods and operating the cash register, \nyou receive your daily pay. 'Fortune always begins with a single coin'.";
+        hero.hasCarrefoured = true;
     }
 }

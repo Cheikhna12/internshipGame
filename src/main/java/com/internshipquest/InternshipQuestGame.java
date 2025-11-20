@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.internshipquest.model.activity.ChessClub;
 import com.internshipquest.screens.Menu;
 import com.internshipquest.model.hero.*;
 import com.internshipquest.model.Day;
