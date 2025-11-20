@@ -6,7 +6,7 @@ public class RH {
     private int niveauEnergie;
     private int barreAcceptation;
     private int seuilAcceptation;
-    private String difficulte; 
+    private String difficulte;
 
     public RH(int noteTech, int noteSoftSkill, int barreAcceptation, int niveauEnergie, int seuilAcceptation) {
         this.noteTech = noteTech;
@@ -55,7 +55,7 @@ public class RH {
         return difficulte;
     }
 
-    
+
     public void setDifficulte(String difficulte) {
         this.difficulte = difficulte;
     }

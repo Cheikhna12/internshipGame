@@ -12,7 +12,6 @@ public class EntrepriseFactory {
                 "Une petite startup dynamique qui cherche des talents bruts.",
                 30,
                 40,
-                1200,
                 "Facile"
         ));
 
@@ -21,7 +20,6 @@ public class EntrepriseFactory {
                 "Agence web créative spécialisée dans les sites vitrines.",
                 40,
                 45,
-                1500,
                 "Facile"
         ));
 
@@ -30,7 +28,6 @@ public class EntrepriseFactory {
                 "PME en pleine croissance dans le secteur de l'analyse de données.",
                 55,
                 50,
-                1900,
                 "Moyen"
         ));
 
@@ -39,7 +36,6 @@ public class EntrepriseFactory {
                 "Fournisseur de solutions cloud pour les grandes entreprises.",
                 65,
                 60,
-                2400,
                 "Moyen"
         ));
 
@@ -48,7 +44,6 @@ public class EntrepriseFactory {
                 "Leader dans le domaine de l'intelligence artificielle et du machine learning.",
                 75,
                 70,
-                3000,
                 "Difficile"
         ));
 
@@ -57,7 +52,6 @@ public class EntrepriseFactory {
                 "Spécialistes de la cybersécurité pour les institutions financières.",
                 85,
                 75,
-                3500,
                 "Difficile"
         ));
 
@@ -66,7 +60,6 @@ public class EntrepriseFactory {
                 "Le géant de la tech. Seuls les meilleurs peuvent y prétendre.",
                 95,
                 85,
-                5000,
                 "Extrême"
         ));
 

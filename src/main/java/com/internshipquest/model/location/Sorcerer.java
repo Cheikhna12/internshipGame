@@ -25,7 +25,6 @@ public class Sorcerer extends ALieuVisitable {
         sorcererTexture = new Texture("assets/Sorcerer.png");
     }
 
-
     public void onEnter(AHero hero, Day day) {
         // nom, loop or not, volume %
         SoundManager.playMusic("sorcerer", true, 0.4f);
