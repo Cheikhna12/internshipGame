@@ -30,6 +30,20 @@ abstract public class AHero {
     private List<Vector2> pathWaypoints;
     private int currentWaypointIndex;
 
+    // Used to calculate score
+    public boolean hasGoneToChessClub = false;
+    public boolean hasHadFunTime = false;
+    public boolean hasPaidLicence = false;
+    public boolean hasGoneToMeetUp = false;
+    public boolean hasFoundClover = false;
+    public boolean hasBeenBewitched  = false;
+    public boolean hasStudied =  false;
+    public boolean hasHadSNacks = false;
+    public boolean hasWorkedOnPersonalProjects = false;
+    public boolean hasDrunk = false;
+    public boolean hasCarrefoured = false;
+    public boolean hasListenedToRadio = false;
+    public boolean hasDeadLifted = false;
     
     protected float x;
     protected float y;
