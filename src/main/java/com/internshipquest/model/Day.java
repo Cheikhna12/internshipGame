@@ -1,8 +1,11 @@
 package com.internshipquest.model;
 
+import com.badlogic.gdx.Screen;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.screens.NightScreenExhaustion;
 import com.internshipquest.model.hero.AHero;
+import com.internshipquest.screens.WorldMapScreen;
+import com.internshipquest.screens.GameOverScreen;
 
 public class Day {
     private AHero hero;
@@ -33,6 +36,7 @@ public class Day {
     }
 
     public int getDay() {
+        gameOverLost();
         return day;
     }
 
@@ -66,6 +70,12 @@ public class Day {
             nightTriggered = false;
             this.setCodeEvent(0);
             hero.newEnergy(hero.getEndurance()/2);
+        }
+    }
+
+    public void gameOverLost(){
+        if (day == 2){
+            game.setScreen(new GameOverScreen(game,  new WorldMapScreen(game)));
         }
     }
 

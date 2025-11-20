@@ -20,6 +20,7 @@ public class PayLicence extends AActivity {
         day.addHour(duration);
 
         message = "You pay 50 euros for access to the fitness club.";
+        hero.hasPaidLicence = true;
 
         lieu.reloadActivities();
     }

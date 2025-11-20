@@ -29,5 +29,7 @@ public class Study extends AActivity {
         } else {
             message = "You successfully solve " + exoPoolSuccess + " pool exercises, increasing your coding skills by " + gainCodingskill + ".\nNot having succeeded in all the exercises increases your stress by " + gainStress + ".";
         }
+
+        hero.hasStudied = true;
     }
 }

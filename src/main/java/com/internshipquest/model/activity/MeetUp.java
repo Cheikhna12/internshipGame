@@ -26,6 +26,7 @@ public class MeetUp extends AActivity {
         hero.setCodingSkills(newCodingSkill);
         hero.setSocial(newSocial);
         hero.setEnergy(newEnergy);
+        hero.hasGoneToMeetUp = true;
 
 
         day.addHour(duration);
