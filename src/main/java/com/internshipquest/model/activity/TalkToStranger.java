@@ -20,7 +20,7 @@ public class TalkToStranger extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        SoundManager.playSound("pushup", 0.4f); // !!!!! need to find some music
+        SoundManager.playSound("Love", 0.4f);
         int newEnergy = hero.getEnergy() - energyUse;
         hero.setEnergy(newEnergy);
 
