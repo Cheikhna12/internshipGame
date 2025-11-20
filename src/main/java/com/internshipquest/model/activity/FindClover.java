@@ -31,6 +31,7 @@ public class FindClover extends AActivity {
         int newEnergy = hero.getEnergy() - energyUse;
         hero.setEnergy(newEnergy);
         day.addHour(duration);
+        hero.hasFoundClover =  true;
 
     }
 }

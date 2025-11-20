@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.utils.SoundManager;
 import com.internshipquest.model.hero.*;
+import com.internshipquest.model.activity.*;
+import org.lwjgl.Sys;
 
 public class GameOverScreen implements Screen{
 
@@ -28,6 +30,7 @@ public class GameOverScreen implements Screen{
     private Screen previousScreen;
     private AHero hero;
     private final Texture background;
+    private int Score = 0;
 
     public GameOverScreen(InternshipQuestGame game, Screen previousScreen) {
         this.game = game;
@@ -40,6 +43,72 @@ public class GameOverScreen implements Screen{
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+    }
+
+    public int calculateScore() {
+        int chess = 0;
+        if(hero.hasGoneToChessClub){
+            chess = 45;
+        }
+        int funTime = 0;
+        if(hero.hasHadFunTime){
+            funTime = 350;
+        }
+        System.out.println(chess);
+        int gymLicence = 0;
+        if(hero.hasPaidLicence){
+            gymLicence = 45;
+        }
+        int meetUp = 0;
+        if(hero.hasGoneToMeetUp){
+            meetUp = 100;
+        }
+        int clover = 0;
+        if(hero.hasFoundClover){
+            clover = 80;
+        }
+        int bewitched = 0;
+        if(hero.hasBeenBewitched){
+            bewitched = 60;
+        }
+        int study = 0;
+        if(hero.hasStudied){
+            study = 50;
+        }
+        int snacks = 0;
+        if(hero.hasHadSNacks){
+            snacks = 15;
+        }
+        int project = 0;
+        if(hero.hasWorkedOnPersonalProjects){
+            project = 25;
+        }
+        int alcohol = 0;
+        if(hero.hasDrunk){
+            alcohol = 23;
+        }
+        int carrefour = 0;
+        if(hero.hasCarrefoured){
+            carrefour = 70;
+        }
+        int radio = 0;
+        if(hero.hasListenedToRadio){
+            radio = 35;
+        }
+        int deadlift = 0;
+        if(hero.hasDeadLifted){
+            deadlift = 45;
+        }
+
+
+        Score = (hero.getSocial() + hero.getMoney() + hero.getLuck() +
+                hero.getEndurance() + hero.getCodingSkills()) + chess + funTime
+        + gymLicence + meetUp + clover + bewitched + study + snacks + project
+        + alcohol + carrefour + radio + deadlift;
+
+
+
+        return Score;
     }
 
     @Override
@@ -62,7 +131,8 @@ public class GameOverScreen implements Screen{
         game.font.draw(game.batch, "Coding Skills: " + hero.getCodingSkills(), 40, 790);
         game.font.draw(game.batch, "Luck: " + hero.getLuck(), 40, 740);
         game.font.draw(game.batch, "Social: " + hero.getSocial(), 40, 690);
-        game.font.draw(game.batch, "Your final score is: " + (hero.getSocial() + hero.getMoney() + hero.getLuck()), 40, 640);
+
+        game.font.draw(game.batch, "Your final score is: " + calculateScore(), 40, 640);
 
 
         SpriteBatch batch = (SpriteBatch) stage.getBatch();
