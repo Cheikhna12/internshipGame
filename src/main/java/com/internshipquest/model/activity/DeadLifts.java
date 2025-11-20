@@ -23,5 +23,7 @@ public class DeadLifts extends AActivity {
 
         message = "After " + duration + " hour(s) of deadlifts, your endurance increased \nto "
                 + newEndurance + " and energy decreased to " + newEnergy+".\nThis workout session helps you de-stress slightly.";
+
+        hero.hasDeadLifted = true;
     }
 }

@@ -34,7 +34,7 @@ public class TalkToStranger extends AActivity {
         } else if (chance + (luck+social) / 1000 < 0.95 && chance + (luck+social) / 1000 >= 0.1) {
             int newSocial = hero.getSocial() + 5;
             hero.setSocial(newSocial);
-            message = "You look around for someone to talk to.\n A pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend " + duration + " hour chatting with her.\n When she gets up to leave, you give her one last knowing \nsmile before she disappears. ";
+            message = "You look around for someone to talk to.\n A pretty stranger seems to be sitting alone at a table,\n so you approach and try out your best opening line.\n She smiles and you spend " + duration + " hour chatting with her.\n When she gets up to leave, you smile one last time \n before she disappears. ";
             day.addHour(duration);
         } else {
             day.addHour(duration);
@@ -47,7 +47,7 @@ public class TalkToStranger extends AActivity {
             day.setNightTriggered(false);
             day.setCodeEvent(0);
             game.setScreen(new NightScreenBar(game, hero));
-
+            hero.hasGoneToChessClub = true;
         }
     }
 }
