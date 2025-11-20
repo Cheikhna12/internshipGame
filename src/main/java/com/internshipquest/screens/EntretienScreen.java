@@ -60,7 +60,7 @@ public class EntretienScreen implements Screen {
             this.background = new Texture(Gdx.files.internal("assets/images/office_background.png"));
 
         
-            this.rhTexture = new Texture(Gdx.files.internal("assets/images/rh_neural.png"));
+            this.rhTexture = new Texture(Gdx.files.internal("assets/RH_Neutral.png"));
 
 
         this.responseOptions = new String[2]; 
@@ -87,8 +87,7 @@ public class EntretienScreen implements Screen {
                 hero.setMoney(hero.getMoney() + entreprise.getSalaire());
                 hero.setEndurance(Math.min(100, hero.getEndurance() + 5));
                 hero.setSocial(Math.min(100, hero.getSocial() + 3));
-                
-                System.out.println("[ENTRETIEN] Embauché ! Salaire: +" + entreprise.getSalaire() + "€");
+
             } else {
                 resultMessage = "Desole, votre profil ne correspond pas a nos attentes...\n\nStress: +10";
 
@@ -133,28 +132,15 @@ public class EntretienScreen implements Screen {
         }
         
         if (rhTexture != null) {
-            float rhWidth = 250;
-            float rhHeight = 350;
-            float rhX = Gdx.graphics.getWidth() - rhWidth - 30;
-            float rhY = Gdx.graphics.getHeight() - rhHeight - 100;
-            
-            
-            float alpha = 0.7f + (entretien.getRhMood() / 300f);
-            game.batch.setColor(1f, 1f, 1f, alpha);
-            game.batch.draw(rhTexture, rhX, rhY, rhWidth, rhHeight);
-            game.batch.setColor(1f, 1f, 1f, 1f);
+            game.batch.draw(rhTexture, 600, 0, 760, 760);
+
         }
-        
-        
+
+        game.font.setColor(1f, 0.8f, 0f, 1f);
         game.font.getData().setScale(1.2f);
         game.font.draw(game.batch, "Entretien chez : " + entreprise.getName(), 50, 900);
         game.font.getData().setScale(1.0f);
-        
-        
-        String ambianceColor = getAmbianceColor(entretien.getAmbiance());
-        game.font.setColor(Color.valueOf(ambianceColor));
-        game.font.draw(game.batch, "Ambiance: " + entretien.getAmbiance() + " | Humeur RH: " + entretien.getRhMood() + "/100", 50, 790);
-        game.font.setColor(1f, 1f, 1f, 1f);
+
 
         switch (currentstate) {
             case QUESTIONING:
@@ -181,17 +167,10 @@ public class EntretienScreen implements Screen {
     }
     
     private void renderQuestioningState() {
-        game.font.getData().setScale(1.1f);
-        game.font.setColor(1f, 0.9f, 0.3f, 1f);
-        game.font.draw(game.batch, "Question " + (entretien.getCurrentQuestionIndex() + 1) + "/" + entretien.getTotalQuestions(), 50, 720);
-        
-        String questionType = currentQuestion.getType().toString();
-        game.font.setColor(getQuestionTypeColor(questionType));
-        game.font.draw(game.batch, "[" + questionType + "]", 300, 720);
         
         game.font.getData().setScale(1.0f);
-        game.font.setColor(1f, 1f, 1f, 1f);
-        drawWrappedText(currentQuestion.getText(), 50, 650, 900);
+        game.font.setColor(0f, 0.7f, 1f, 1f);
+        drawWrappedText(currentQuestion.getText(), 150, 750, 600);
         
         game.font.getData().setScale(0.9f);
         for (int i = 0; i < 2; i++) {
@@ -207,13 +186,8 @@ public class EntretienScreen implements Screen {
                 }
             }
             
-            drawWrappedText("[" + (i+1) + "] " + responseOptions[i], 70, yPos, 850);
+            drawWrappedText(responseOptions[i], 70, yPos, 850);
         }
-
-        game.font.setColor(0.6f, 0.6f, 0.6f, 1f);
-        game.font.getData().setScale(0.8f);
-        game.font.draw(game.batch, "Choisissez votre approche: 1 (Technique) ou 2 (Relationnel)", 70, 220);
-        game.font.draw(game.batch, "Vos competences determinent l'efficacite de votre reponse !", 70, 190);
     }
     
     private void renderFeedbackState(float delta) {
@@ -231,11 +205,7 @@ public class EntretienScreen implements Screen {
         game.font.getData().setScale(1.0f);
         game.font.setColor(0.9f, 0.9f, 0.9f, 1f);
         drawWrappedText(feedbackMessage, 50, 590, 900);
-        
-        game.font.getData().setScale(0.8f);
-        game.font.setColor(0.5f, 0.5f, 0.5f, 1f);
-        game.font.draw(game.batch, "Prochaine question dans " + String.format("%.1f", 2.0f - timer) + "s...", 50, 250);
-        
+
         timer += delta;
         
         if (timer >= 2.0f) {
@@ -311,15 +281,6 @@ public class EntretienScreen implements Screen {
         if (currentstate != InterviewState.QUESTIONING) return;
         
         int choiceIndex = -1;
-        
-        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_1) ||
-            Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUMPAD_1)) {
-            choiceIndex = 0;
-        } else if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_2) || 
-                   Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUMPAD_2)) {
-            choiceIndex = 1;
-        }
-        
 
         int mouseX = Gdx.input.getX();
         int mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
