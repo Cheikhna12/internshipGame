@@ -28,8 +28,8 @@ public class Entretien {
     private int lastResponseScore;
 
     private static int COUT_QUESTION = 10;
-    private static final double COEFF_PRINCIPAL = 0.8;
-    private static final double COEFF_SECONDAIRE = 0.2;
+    private static double COEFF_PRINCIPAL = 0.8;
+    private static double COEFF_SECONDAIRE = 0.2;
 
     public Entretien(RH rh, AHero hero) {
         this.rh = rh;

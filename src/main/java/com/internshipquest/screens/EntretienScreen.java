@@ -34,6 +34,9 @@ public class EntretienScreen implements Screen {
 
 
     private Texture background;
+    private Texture rhNeutral;
+    private Texture rhHappy;
+    private Texture rhSad;
     private Texture rhTexture;
 
 
@@ -71,6 +74,10 @@ public class EntretienScreen implements Screen {
     public void show() {
         SoundManager.playMusic("office", true, 0.5f);
         nextQuestion();
+
+        rhNeutral = new Texture(Gdx.files.internal("assets/RH_Neutral.png"));
+        rhHappy   = new Texture(Gdx.files.internal("assets/RH_Happy.png"));
+        rhSad     = new Texture(Gdx.files.internal("assets/RH_Angry.png"));
     }
 
     private void nextQuestion() {
@@ -305,6 +312,7 @@ public class EntretienScreen implements Screen {
             
             feedbackMessage = entretien.getLastFeedback();
             String feedbackType = entretien.getLastFeedbackType();
+            updateRhFace();
             
             try {
                 switch (feedbackType) {
@@ -324,6 +332,22 @@ public class EntretienScreen implements Screen {
             
             currentstate = InterviewState.FEEDBACK;
             timer = 0f;
+        }
+    }
+
+    private void updateRhFace() {
+        String feedbackType = entretien.getLastFeedbackType();
+
+        switch (feedbackType) {
+            case "POSITIVE":
+                rhTexture = rhHappy;
+                break;
+            case "NEGATIVE":
+                rhTexture = rhSad;
+                break;
+            default:
+                rhTexture = rhNeutral;
+                break;
         }
     }
     
