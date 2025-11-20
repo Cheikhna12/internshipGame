@@ -25,8 +25,9 @@ public class Entretien {
     private List<String> feedbackTypeList; 
     private int minDifficulty;
     private int maxDifficulty;
-    private int lastResponseScore; 
+    private int lastResponseScore;
 
+    private static int COUT_QUESTION = 10;
     private static final double COEFF_PRINCIPAL = 0.8;
     private static final double COEFF_SECONDAIRE = 0.2;
 
@@ -60,19 +61,9 @@ public class Entretien {
         
         System.out.println("[ENTRETIEN] Initialisé: " + totalQuestions + " questions, Ambiance: " + ambiance);
     }
-    
+
     private int determineQuestionCount() {
-        String diff = rh.getDifficulte();
-        switch (diff) {
-            case "FACILE":
-                return 3 + random.nextInt(2); 
-            case "MOYEN":
-                return 4 + random.nextInt(2); 
-            case "DIFFICILE":
-                return 5 + random.nextInt(2); 
-            default:
-                return 3;
-        }
+        return rh.getNiveauEnergie() / COUT_QUESTION;
     }
     
     private String determineAmbiance() {
@@ -211,7 +202,7 @@ public class Entretien {
     }
 
     public boolean verifFinEntretien(){
-        if (currentQuestionIndex < totalQuestions){
+        if (rh.getNiveauEnergie() >= COUT_QUESTION) {
             return false;
         }
         this.finEntretien = true;
@@ -250,7 +241,7 @@ public class Entretien {
         return true;
     }
 
-    
+
     
     public void nextQuestion(){
         if (currentQuestionIndex < totalQuestions){
@@ -276,19 +267,23 @@ public class Entretien {
     }
 
     public Question poserProchaineQuestion() {
+
+        if (rh.getNiveauEnergie() < COUT_QUESTION) {
+            finEntretien = true;
+//            resultat = "REJECTE";
+            return null;
+        }
+
+        rh.diminuerEnergie(COUT_QUESTION);
+
         Question question = getCurrentQuestion();
         if (question == null) {
             return null;
         }
-        
-        
+
         int difficulty = calculateQuestionDifficulty(question);
         questionScore += difficulty;
-        
-        System.out.println("[ENTRETIEN] Question " + (currentQuestionIndex + 1) + "/" + totalQuestions);
-        System.out.println("  Type: " + question.getType() + ", Difficulté: " + difficulty);
-        System.out.println("  Question: " + question.getText());
-        
+
         return question;
     }
 
