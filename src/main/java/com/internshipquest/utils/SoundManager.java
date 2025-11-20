@@ -43,7 +43,7 @@ public class SoundManager {
         sounds.put("snore", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/snore.wav")));
         sounds.put("waiting", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/waiting.wav")));
         sounds.put("machine_nourriture", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/MachineANourriture.wav")));
-        
+        sounds.put("love",Gdx.audio.newSound(Gdx.files.internal("assets/sounds/Love.wav")));
         sounds.put("correct", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/correct_answer.wav")));
         sounds.put("wrong", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wrong_answer.wav")));
         sounds.put("rejected", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/rejected.wav")));
