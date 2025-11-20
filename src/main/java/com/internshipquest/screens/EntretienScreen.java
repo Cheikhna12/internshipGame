@@ -73,15 +73,15 @@ public class EntretienScreen implements Screen {
     @Override
     public void show() {
         SoundManager.playMusic("office", true, 0.5f);
-        nextQuestion();
+        nextQuestion(game);
 
         rhNeutral = new Texture(Gdx.files.internal("assets/RH_Neutral.png"));
         rhHappy   = new Texture(Gdx.files.internal("assets/RH_Happy.png"));
         rhSad     = new Texture(Gdx.files.internal("assets/RH_Angry.png"));
     }
 
-    private void nextQuestion() {
-        if (entretien.verifFinEntretien()) {
+    private void nextQuestion(InternshipQuestGame game) {
+        if (entretien.verifFinEntretien(game)) {
             
             if (entretien.isAccepted()) {
                 resultMessage = "FELICITATIONS ! Vous etes embauche !\n\nSalaire: +" + entreprise.getSalaire() + " euros";
@@ -213,7 +213,7 @@ public class EntretienScreen implements Screen {
         
         if (timer >= 2.0f) {
             timer = 0f;
-            nextQuestion();
+            nextQuestion(game);
         }
     }
     
@@ -251,18 +251,7 @@ public class EntretienScreen implements Screen {
         }
     }
     
-//    private String getAmbianceColor(String ambiance) {
-//        switch (ambiance) {
-//            case "TENDUE":
-//                return "FF5555FF";
-//            case "NEUTRE":
-//                return "FFAA55FF";
-//            case "DETENDUE":
-//                return "55FF55FF";
-//            default:
-//                return "FFFFFFFF";
-//        }
-//    }
+
     
     private Color getQuestionTypeColor(String type) {
         switch (type) {

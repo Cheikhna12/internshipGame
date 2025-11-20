@@ -2,8 +2,9 @@ package com.internshipquest.model.combat;
 
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.model.hero.AHero;
-import com.internshipquest.screens.GameOverScreen;
+import com.internshipquest.screens.GameWonScreen;
 import com.internshipquest.screens.WorldMapScreen;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,7 +173,7 @@ public class Entretien {
         return Math.max(0, Math.min(baseScore, 100));
     }
 
-    public boolean verifFinEntretien(){
+    public boolean verifFinEntretien(InternshipQuestGame game){
         if (rh.getNiveauEnergie() >= COUT_QUESTION) {
             return false;
         }
@@ -184,18 +185,7 @@ public class Entretien {
         if (scoreEntretien >= seuilReussite) {
             this.resultat = "ACCEPTE";
             System.out.println("✓ Résultat: ACCEPTÉ");
-
-            System.out.println("Marge de réussite: +" + (finalScore - seuilReussite) + " points");
-
-
-
-            try {
-                Thread.sleep( 1000);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }
-
-            game.setScreen(new GameOverScreen(game,  new WorldMapScreen(game)));
+            game.setScreen(new GameWonScreen(game,  new WorldMapScreen(game)));
           
         } else {
             this.resultat = "REJECTE";
