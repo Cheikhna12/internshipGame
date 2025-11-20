@@ -22,5 +22,6 @@ public class PersonalProject extends AActivity {
 
         message = "After " + duration + " hour(s) of work, your coding Skills increased \nto "
                 + newCodingSkills + " and energy decreased to " + newEnergy;
+        hero.hasWorkedOnPersonalProjects = true;
     }
 }

@@ -30,5 +30,7 @@ public class ListenRadio extends AActivity {
 
         day.addHour(duration);
 
+        hero.hasListenedToRadio = true;
+
     }
 }
