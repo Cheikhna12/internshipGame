@@ -15,10 +15,11 @@ public class SoundManager {
     private static float masterVolume = 1.0f;
 
     public static void loadSounds() {
+
+        //background music
         musics.put("gym", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/gym-ambience.wav")));
         musics.put("house", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/house.mp3")));
         musics.put("office", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/office_ambiance.wav")));
-        
         musics.put("bar", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/BarJazz.mp3")));
         musics.put("cloverField", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/FairyClover.mp3")));
         musics.put("epitech", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/EpitechMusic.mp3")));
@@ -28,6 +29,7 @@ public class SoundManager {
         musics.put("village-evening", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/village-evening.mp3")));
         musics.put("intro", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/intro.mp3")));
 
+        //sound (short music for action)
         sounds.put("pushup", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("deadlift", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/essouflé.wav")));
         sounds.put("keybordTyping", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/keyboard_typing.mp3")));
@@ -43,14 +45,11 @@ public class SoundManager {
         sounds.put("snore", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/snore.wav")));
         sounds.put("waiting", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/waiting.wav")));
         sounds.put("machine_nourriture", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/MachineANourriture.wav")));
-        
+        sounds.put("love",Gdx.audio.newSound(Gdx.files.internal("assets/sounds/Love.wav")));
         sounds.put("correct", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/correct_answer.wav")));
         sounds.put("wrong", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wrong_answer.wav")));
         sounds.put("rejected", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/rejected.wav")));
-        
         musics.put("hired", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/hired.mp3")));
-        
-        System.out.println("[SOUND] Tous les sons chargés avec succès !");
     }
 
     public static void setMasterVolume(float volume) {
