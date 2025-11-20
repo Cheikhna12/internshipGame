@@ -200,11 +200,7 @@ public class EntretienScreen implements Screen {
     private void renderFeedbackState(float delta) {
         String feedbackType = entretien.getLastFeedbackType();
         Color feedbackColor = getFeedbackColor(feedbackType);
-        
-        game.font.getData().setScale(1.3f);
-        game.font.setColor(feedbackColor);
-        game.font.draw(game.batch, "Score: " + entretien.getLastResponseScore() + "/100", 50, 700);
-        
+
         game.font.getData().setScale(1.1f);
         game.font.setColor(1f, 1f, 0.8f, 1f);
         game.font.draw(game.batch, "Reaction du recruteur:", 50, 640);
@@ -245,9 +241,8 @@ public class EntretienScreen implements Screen {
         
         game.font.getData().setScale(1.0f);
         game.font.setColor(1f, 1f, 1f, 1f);
-        game.font.draw(game.batch, "Score final: " + entretien.getReponseScore() + " / " + (entretien.getQuestionScore() + rh.getBarreAcceptation()), 50, 480);
+        game.font.draw(game.batch, "Score entretien: " + entretien.getScoreEntretien() + " / " + entretien.getTotalQuestions(), 50, 480);
         game.font.draw(game.batch, "Nombre de questions: " + entretien.getTotalQuestions(), 50, 450);
-        game.font.draw(game.batch, "Ambiance finale: " + entretien.getAmbiance(), 50, 420);
         
         timer += delta;
         
@@ -256,18 +251,18 @@ public class EntretienScreen implements Screen {
         }
     }
     
-    private String getAmbianceColor(String ambiance) {
-        switch (ambiance) {
-            case "TENDUE":
-                return "FF5555FF"; 
-            case "NEUTRE":
-                return "FFAA55FF"; 
-            case "DETENDUE":
-                return "55FF55FF"; 
-            default:
-                return "FFFFFFFF"; 
-        }
-    }
+//    private String getAmbianceColor(String ambiance) {
+//        switch (ambiance) {
+//            case "TENDUE":
+//                return "FF5555FF";
+//            case "NEUTRE":
+//                return "FFAA55FF";
+//            case "DETENDUE":
+//                return "55FF55FF";
+//            default:
+//                return "FFFFFFFF";
+//        }
+//    }
     
     private Color getQuestionTypeColor(String type) {
         switch (type) {
@@ -309,7 +304,7 @@ public class EntretienScreen implements Screen {
             System.out.println("[ENTRETIEN] Réponse choisie: " + (choiceIndex == 0 ? "TECH" : "SOFT"));
             
             entretien.repondreQuestion(choiceIndex);
-            
+
             feedbackMessage = entretien.getLastFeedback();
             String feedbackType = entretien.getLastFeedbackType();
             updateRhFace();
@@ -391,11 +386,9 @@ public class EntretienScreen implements Screen {
 
     @Override
     public void dispose() {
-        if (background != null) {
-            background.dispose();
-        }
-        if (rhTexture != null) {
-            rhTexture.dispose();
-        }
+        if (background != null) background.dispose();
+        if (rhNeutral != null) rhNeutral.dispose();
+        if (rhHappy != null) rhHappy.dispose();
+        if (rhSad != null) rhSad.dispose();
     }
 }
