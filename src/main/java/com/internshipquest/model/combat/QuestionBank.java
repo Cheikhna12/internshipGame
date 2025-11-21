@@ -14,299 +14,299 @@ public class QuestionBank {
     }
 
     private static void initializeQuestions() {
-        
+
         allQuestions.add(new Question(
-            "Qu'est-ce qu'une variable en programmation ?",
-            Question.QuestionType.TECH, 2,
-            "Expliquer avec des exemples de types (int, String, etc.)",
-            "Faire une analogie simple et claire"
-        ));
-        
-        allQuestions.add(new Question(
-            "Quelle est la différence entre '==' et '.equals()' en Java ?",
-            Question.QuestionType.TECH, 3,
-            "Expliquer la comparaison de références vs contenu",
-            "Donner des exemples concrets d'utilisation"
-        ));
-        
-        allQuestions.add(new Question(
-            "Citez un avantage de la programmation orientée objet.",
-            Question.QuestionType.TECH, 2,
-            "Parler d'encapsulation, héritage ou polymorphisme",
-            "Expliquer avec un exemple de projet réel"
-        ));
-        
-        allQuestions.add(new Question(
-            "Qu'est-ce qu'un algorithme ?",
-            Question.QuestionType.TECH, 1,
-            "Donner une définition technique précise",
-            "Utiliser une métaphore de la vie quotidienne"
+                "What is a variable in programming?",
+                Question.QuestionType.TECH, 2,
+                "Explain with examples of types (int, String, etc.)",
+                "Use a simple and clear analogy"
         ));
 
-        
         allQuestions.add(new Question(
-            "Expliquez le concept d'héritage en POO.",
-            Question.QuestionType.TECH, 5,
-            "Détailler avec des exemples de classes parent/enfant",
-            "Présenter les bénéfices pour le travail en équipe"
-        ));
-        
-        allQuestions.add(new Question(
-            "Qu'est-ce qu'une API REST ?",
-            Question.QuestionType.TECH, 5,
-            "Expliquer HTTP, endpoints et méthodes CRUD",
-            "Décrire comment vous l'avez utilisée dans un projet"
-        ));
-        
-        allQuestions.add(new Question(
-            "Décrivez le pattern MVC (Modèle-Vue-Contrôleur).",
-            Question.QuestionType.TECH, 6,
-            "Expliquer la séparation des responsabilités",
-            "Montrer comment cela facilite le travail collaboratif"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment gérez-vous les erreurs dans votre code ?",
-            Question.QuestionType.MIXED, 4,
-            "Parler de try-catch, exceptions personnalisées",
-            "Expliquer votre processus de debugging et tests"
+                "What is the difference between '==' and '.equals()' in Java?",
+                Question.QuestionType.TECH, 3,
+                "Explain reference comparison vs content comparison",
+                "Give concrete usage examples"
         ));
 
-        
         allQuestions.add(new Question(
-            "Quelle est la différence entre une classe abstraite et une interface ?",
-            Question.QuestionType.TECH, 7,
-            "Détailler les cas d'usage et limitations de chacune",
-            "Expliquer avec des exemples de design patterns"
-        ));
-        
-        allQuestions.add(new Question(
-            "Expliquez ce qu'est l'injection de dépendances.",
-            Question.QuestionType.TECH, 8,
-            "Parler de couplage faible et testabilité",
-            "Montrer comment cela améliore la maintenabilité"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment fonctionne le Garbage Collector en Java ?",
-            Question.QuestionType.TECH, 8,
-            "Expliquer les algorithmes de GC et la gestion mémoire",
-            "Décrire l'impact sur les performances d'une app"
-        ));
-        
-        allQuestions.add(new Question(
-            "Qu'est-ce que la complexité algorithmique O(n) ?",
-            Question.QuestionType.TECH, 7,
-            "Expliquer Big O notation avec des exemples",
-            "Montrer l'importance pour l'optimisation"
+                "Name one advantage of object-oriented programming.",
+                Question.QuestionType.TECH, 2,
+                "Talk about encapsulation, inheritance, or polymorphism",
+                "Explain with a real project example"
         ));
 
-        
         allQuestions.add(new Question(
-            "Aimez-vous travailler en équipe ?",
-            Question.QuestionType.SOFTSKILL, 2,
-            "Parler de méthodologies agiles et outils collaboratifs",
-            "Raconter une expérience positive de travail d'équipe"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment vous organisez-vous pour respecter une deadline ?",
-            Question.QuestionType.SOFTSKILL, 3,
-            "Mentionner des outils de gestion de projet",
-            "Expliquer votre méthode de priorisation des tâches"
-        ));
-        
-        allQuestions.add(new Question(
-            "Êtes-vous curieux d'apprendre de nouvelles technologies ?",
-            Question.QuestionType.SOFTSKILL, 2,
-            "Citer des technologies récentes que vous avez apprises",
-            "Parler de votre passion et motivation"
-        ));
-        
-        allQuestions.add(new Question(
-            "Que savez-vous de notre entreprise ?",
-            Question.QuestionType.SOFTSKILL, 3,
-            "Mentionner leur stack technique",
-            "Parler de leur culture et valeurs"
+                "What is an algorithm?",
+                Question.QuestionType.TECH, 1,
+                "Give a precise technical definition",
+                "Use a real-life metaphor"
         ));
 
-        
+
         allQuestions.add(new Question(
-            "Décrivez une situation où vous avez dû gérer un conflit.",
-            Question.QuestionType.SOFTSKILL, 5,
-            "Expliquer comment vous avez trouvé une solution technique",
-            "Raconter comment vous avez géré les émotions et la communication"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment réagissez-vous face à la critique constructive ?",
-            Question.QuestionType.SOFTSKILL, 4,
-            "Parler de code review et amélioration continue",
-            "Montrer votre ouverture d'esprit et capacité d'adaptation"
-        ));
-        
-        allQuestions.add(new Question(
-            "Quelle est votre plus grande fierté dans un projet passé ?",
-            Question.QuestionType.SOFTSKILL, 5,
-            "Détailler les défis techniques surmontés",
-            "Parler de l'impact du projet et du travail d'équipe"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment gérez-vous le stress et la pression ?",
-            Question.QuestionType.MIXED, 5,
-            "Parler de méthodologies et outils d'optimisation",
-            "Expliquer vos techniques de gestion du temps et bien-être"
+                "Explain the concept of inheritance in OOP.",
+                Question.QuestionType.TECH, 5,
+                "Detail with examples of parent/child classes",
+                "Present the benefits for teamwork"
         ));
 
-        
         allQuestions.add(new Question(
-            "Comment motivez-vous les autres membres de votre équipe ?",
-            Question.QuestionType.SOFTSKILL, 7,
-            "Parler de pair programming et partage de connaissances",
-            "Expliquer votre style de leadership et communication"
-        ));
-        
-        allQuestions.add(new Question(
-            "Décrivez une situation où vous avez échoué et ce que vous en avez appris.",
-            Question.QuestionType.SOFTSKILL, 8,
-            "Analyser les erreurs techniques et solutions trouvées",
-            "Montrer votre humilité et capacité à rebondir"
-        ));
-        
-        allQuestions.add(new Question(
-            "Où vous voyez-vous dans 5 ans ?",
-            Question.QuestionType.SOFTSKILL, 6,
-            "Parler d'évolution technique (architecte, tech lead)",
-            "Exprimer vos ambitions et valeurs professionnelles"
-        ));
-        
-        allQuestions.add(new Question(
-            "Comment gérez-vous les désaccords techniques avec vos collègues ?",
-            Question.QuestionType.MIXED, 7,
-            "Parler de benchmarks, tests et preuves de concept",
-            "Expliquer l'importance du dialogue et du compromis"
+                "What is a REST API?",
+                Question.QuestionType.TECH, 5,
+                "Explain HTTP, endpoints, and CRUD methods",
+                "Describe how you used it in a project"
         ));
 
-        
         allQuestions.add(new Question(
-            "Quel est votre plus grand défaut ?",
-            Question.QuestionType.PIEGE, 6,
-            "Mentionner un défaut technique que vous travaillez à améliorer",
-            "Transformer un défaut en qualité (perfectionnisme, etc.)"
-        ));
-        
-        allQuestions.add(new Question(
-            "Pourquoi devrions-nous vous choisir plutôt qu'un autre candidat ?",
-            Question.QuestionType.PIEGE, 7,
-            "Mettre en avant vos compétences techniques uniques",
-            "Parler de votre motivation et fit culturel"
-        ));
-        
-        allQuestions.add(new Question(
-            "Si vous pouviez être un animal, lequel seriez-vous et pourquoi ?",
-            Question.QuestionType.PIEGE, 5,
-            "Faire un lien avec des qualités de développeur",
-            "Montrer votre créativité et sens de l'humour"
-        ));
-        
-        allQuestions.add(new Question(
-            "Pourquoi avez-vous quitté votre dernier poste/école ?",
-            Question.QuestionType.PIEGE, 6,
-            "Parler de recherche de défis techniques",
-            "Rester positif et parler d'évolution de carrière"
-        ));
-        
-        allQuestions.add(new Question(
-            "Combien de temps comptez-vous rester chez nous ?",
-            Question.QuestionType.PIEGE, 7,
-            "Parler de projets techniques à long terme",
-            "Montrer votre engagement tout en restant honnête"
-        ));
-        
-        allQuestions.add(new Question(
-            "Que feriez-vous si vous n'étiez pas d'accord avec votre manager ?",
-            Question.QuestionType.PIEGE, 8,
-            "Proposer des solutions basées sur des données",
-            "Expliquer l'importance du dialogue et de la hiérarchie"
+                "Describe the MVC pattern (Model-View-Controller).",
+                Question.QuestionType.TECH, 6,
+                "Explain separation of responsibilities",
+                "Show how it facilitates collaborative work"
         ));
 
-        
         allQuestions.add(new Question(
-            "Parlez-moi de votre projet le plus complexe.",
-            Question.QuestionType.MIXED, 6,
-            "Détailler l'architecture et les technologies utilisées",
-            "Raconter l'histoire du projet et les défis humains"
+                "How do you handle errors in your code?",
+                Question.QuestionType.MIXED, 4,
+                "Talk about try-catch, custom exceptions",
+                "Explain your debugging and testing process"
         ));
-        
+
+
         allQuestions.add(new Question(
-            "Comment restez-vous à jour avec les nouvelles technologies ?",
-            Question.QuestionType.MIXED, 4,
-            "Citer des ressources techniques (blogs, conférences)",
-            "Parler de votre curiosité et passion pour l'apprentissage"
+                "What is the difference between an abstract class and an interface?",
+                Question.QuestionType.TECH, 7,
+                "Detail the use cases and limitations of each",
+                "Explain with examples of design patterns"
         ));
-        
+
         allQuestions.add(new Question(
-            "Décrivez votre workflow de développement idéal.",
-            Question.QuestionType.MIXED, 5,
-            "Parler de CI/CD, tests, code review",
-            "Expliquer l'importance de la collaboration et communication"
+                "Explain what dependency injection is.",
+                Question.QuestionType.TECH, 8,
+                "Talk about loose coupling and testability",
+                "Show how it improves maintainability"
+        ));
+
+        allQuestions.add(new Question(
+                "How does the Java Garbage Collector work?",
+                Question.QuestionType.TECH, 8,
+                "Explain GC algorithms and memory management",
+                "Describe the impact on application performance"
+        ));
+
+        allQuestions.add(new Question(
+                "What is time complexity O(n)?",
+                Question.QuestionType.TECH, 7,
+                "Explain Big O notation with examples",
+                "Show its importance for optimization"
+        ));
+
+
+        allQuestions.add(new Question(
+                "Do you like working in a team?",
+                Question.QuestionType.SOFTSKILL, 2,
+                "Talk about agile methodologies and collaborative tools",
+                "Share a positive team experience"
+        ));
+
+        allQuestions.add(new Question(
+                "How do you organize yourself to meet a deadline?",
+                Question.QuestionType.SOFTSKILL, 3,
+                "Mention project management tools",
+                "Explain your task prioritization method"
+        ));
+
+        allQuestions.add(new Question(
+                "Are you curious about learning new technologies?",
+                Question.QuestionType.SOFTSKILL, 2,
+                "Mention recent technologies you learned",
+                "Talk about your passion and motivation"
+        ));
+
+        allQuestions.add(new Question(
+                "What do you know about our company?",
+                Question.QuestionType.SOFTSKILL, 3,
+                "Mention their tech stack",
+                "Talk about their culture and values"
+        ));
+
+
+        allQuestions.add(new Question(
+                "Describe a situation where you had to manage a conflict.",
+                Question.QuestionType.SOFTSKILL, 5,
+                "Explain how you found a technical solution",
+                "Describe how you handled emotions and communication"
+        ));
+
+        allQuestions.add(new Question(
+                "How do you react to constructive criticism?",
+                Question.QuestionType.SOFTSKILL, 4,
+                "Talk about code review and continuous improvement",
+                "Show your open-mindedness and adaptability"
+        ));
+
+        allQuestions.add(new Question(
+                "What is your greatest pride in a past project?",
+                Question.QuestionType.SOFTSKILL, 5,
+                "Detail the technical challenges you overcame",
+                "Discuss the project's impact and team effort"
+        ));
+
+        allQuestions.add(new Question(
+                "How do you handle stress and pressure?",
+                Question.QuestionType.MIXED, 5,
+                "Talk about methods and optimization tools",
+                "Explain your time management and well-being techniques"
+        ));
+
+
+        allQuestions.add(new Question(
+                "How do you motivate other team members?",
+                Question.QuestionType.SOFTSKILL, 7,
+                "Talk about pair programming and knowledge sharing",
+                "Explain your leadership and communication style"
+        ));
+
+        allQuestions.add(new Question(
+                "Describe a situation where you failed and what you learned from it.",
+                Question.QuestionType.SOFTSKILL, 8,
+                "Analyze the technical mistakes and solutions found",
+                "Show your humility and ability to bounce back"
+        ));
+
+        allQuestions.add(new Question(
+                "Where do you see yourself in 5 years?",
+                Question.QuestionType.SOFTSKILL, 6,
+                "Talk about technical evolution (architect, tech lead)",
+                "Express your ambitions and professional values"
+        ));
+
+        allQuestions.add(new Question(
+                "How do you handle technical disagreements with colleagues?",
+                Question.QuestionType.MIXED, 7,
+                "Talk about benchmarks, tests, and proof of concepts",
+                "Explain the importance of dialogue and compromise"
+        ));
+
+
+        allQuestions.add(new Question(
+                "What is your biggest flaw?",
+                Question.QuestionType.PIEGE, 6,
+                "Mention a technical weakness you are improving",
+                "Turn a flaw into a strength (perfectionism, etc.)"
+        ));
+
+        allQuestions.add(new Question(
+                "Why should we choose you over another candidate?",
+                Question.QuestionType.PIEGE, 7,
+                "Highlight your unique technical skills",
+                "Talk about your motivation and cultural fit"
+        ));
+
+        allQuestions.add(new Question(
+                "If you could be an animal, which one would you be and why?",
+                Question.QuestionType.PIEGE, 5,
+                "Link qualities of the animal to a developer trait",
+                "Show your creativity and sense of humor"
+        ));
+
+        allQuestions.add(new Question(
+                "Why did you leave your last job/school?",
+                Question.QuestionType.PIEGE, 6,
+                "Talk about seeking new technical challenges",
+                "Stay positive and focus on career growth"
+        ));
+
+        allQuestions.add(new Question(
+                "How long do you plan to stay with us?",
+                Question.QuestionType.PIEGE, 7,
+                "Talk about long-term technical projects",
+                "Show your commitment while staying honest"
+        ));
+
+        allQuestions.add(new Question(
+                "What would you do if you disagreed with your manager?",
+                Question.QuestionType.PIEGE, 8,
+                "Propose data-backed solutions",
+                "Explain the importance of dialogue and hierarchy"
+        ));
+
+
+        allQuestions.add(new Question(
+                "Tell me about your most complex project.",
+                Question.QuestionType.MIXED, 6,
+                "Detail the architecture and technologies used",
+                "Tell the story of the project and the human challenges"
+        ));
+
+        allQuestions.add(new Question(
+                "How do you stay up to date with new technologies?",
+                Question.QuestionType.MIXED, 4,
+                "Mention technical resources (blogs, conferences)",
+                "Talk about your curiosity and passion for learning"
+        ));
+
+        allQuestions.add(new Question(
+                "Describe your ideal development workflow.",
+                Question.QuestionType.MIXED, 5,
+                "Talk about CI/CD, tests, code review",
+                "Explain the importance of collaboration and communication"
         ));
     }
 
     public static Question getRandomQuestion(Question.QuestionType type, int minDifficulty, int maxDifficulty) {
         List<Question> filtered = new ArrayList<>();
-        
+
         for (Question q : allQuestions) {
-            if (q.getType() == type && 
-                q.getDifficulty() >= minDifficulty && 
-                q.getDifficulty() <= maxDifficulty) {
+            if (q.getType() == type &&
+                    q.getDifficulty() >= minDifficulty &&
+                    q.getDifficulty() <= maxDifficulty) {
                 filtered.add(q);
             }
         }
-        
+
         if (filtered.isEmpty()) {
-            
+
             for (Question q : allQuestions) {
                 if (q.getType() == type) {
                     filtered.add(q);
                 }
             }
         }
-        
+
         if (filtered.isEmpty()) {
-            
+
             return new Question(
-                "Parlez-moi de vous et de votre parcours.",
-                Question.QuestionType.MIXED, 3,
-                "Présenter vos compétences techniques",
-                "Raconter votre histoire et motivations"
+                    "Tell me about yourself and your background.",
+                    Question.QuestionType.MIXED, 3,
+                    "Introduce your technical skills",
+                    "Tell your story and motivations"
             );
         }
-        
+
         return filtered.get(random.nextInt(filtered.size()));
     }
 
     public static Question getRandomQuestionAny(int minDifficulty, int maxDifficulty) {
         List<Question> filtered = new ArrayList<>();
-        
+
         for (Question q : allQuestions) {
             if (q.getDifficulty() >= minDifficulty && q.getDifficulty() <= maxDifficulty) {
                 filtered.add(q);
             }
         }
-        
+
         if (filtered.isEmpty()) {
             return allQuestions.get(random.nextInt(allQuestions.size()));
         }
-        
+
         return filtered.get(random.nextInt(filtered.size()));
     }
 
     @Deprecated
     public static String getRandomQuestion(String type, String difficulte) {
         int minDiff = 1, maxDiff = 3;
-        
+
         switch (difficulte.toUpperCase()) {
             case "FACILE":
                 minDiff = 1; maxDiff = 3;
@@ -319,7 +319,7 @@ public class QuestionBank {
                 minDiff = 7; maxDiff = 9;
                 break;
         }
-        
+
         Question.QuestionType qType;
         switch (type.toUpperCase()) {
             case "TECH":
@@ -334,7 +334,7 @@ public class QuestionBank {
             default:
                 qType = Question.QuestionType.MIXED;
         }
-        
+
         Question q = getRandomQuestion(qType, minDiff, maxDiff);
         return q.getText();
     }

@@ -14,7 +14,7 @@ public class PostulerEntreprise extends AActivity {
 
 
     public PostulerEntreprise(Entreprise entreprise, InternshipQuestGame game) {
-        super("Postuler chez " + entreprise.getName() + " (Salaire: " + entreprise.getSalaire() + " euros/mois)",
+        super("Apply to " + entreprise.getName() + " (Salary: " + entreprise.getSalaire() + " euros/month)",
                 2, 5, 0);
         this.entreprise = entreprise;
         this.game = game;
@@ -24,7 +24,7 @@ public class PostulerEntreprise extends AActivity {
     @Override
     public void doIt(AHero hero, Day day) {
         if (entreprise.isDejaPostule()) {
-            this.message = "Vous avez deja postule chez " + entreprise.getName() + " !";
+            this.message = "You have already applied to " + entreprise.getName() + " !";
             return;
         }
         hero.setEnergy(hero.getEnergy() - energyUse);
