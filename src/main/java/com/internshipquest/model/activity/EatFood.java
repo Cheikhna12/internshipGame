@@ -19,12 +19,14 @@ public class EatFood extends AActivity {
             if (hero.getNbFood() == 0) {
                 message = "It's empty! I need to buy some food.";
             } else if (hero.getNbFood() == 1) {
+                SoundManager.playSound("EatFood", 0.5f);
                 hero.setNbFood(0);
                 hero.setSatiety(100);
                 hero.setEnergy(hero.getEnergy() + 20);
                 day.addHour(duration);
                 message = "I'm full, but I need to buy food for tomorrow.";
             } else {
+                SoundManager.playSound("EatFood", 0.5f);
                 hero.setNbFood(hero.getNbFood() - 1);
                 hero.setSatiety(100);
                 hero.setEnergy(hero.getEnergy() + 20);

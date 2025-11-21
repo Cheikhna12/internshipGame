@@ -25,6 +25,7 @@ public class ListenRadio extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
+        SoundManager.playSound("radio",0.4f);
         int index = random.nextInt(radioTips.size());
         message = radioTips.get(index);
 
