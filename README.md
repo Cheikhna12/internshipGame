@@ -80,44 +80,48 @@ mvn exec:java
 ### Activities
 Key activities available to the player:
 
-| Activity | Description |
-|----------|-------------|
-| BuyFood / BuyFoodPromotion | Replenish satiety |
-| EatFood / DrinkAlcool | Manage energy and stress |
-| Study / PersonalProject / PostulerEntreprise | Increase hero stats or trigger interviews |
-| PushUps / DeadLifts / Rest / Sleep | Influence energy and stress |
-| TalkToStranger / MeetUp | Social interactions |
-| SnackDispenser / SnackDispenserEpitech / SnackDispenserGym | Mini-activities for small stat boosts |
-| Wait / DevWait16h | Time-based activities |
-| ChessClub / ListenRadio / LookFridge / PayLicence / StoreWork / DisplayStat | Optional gameplay interactions |
+| Activity                                                                    | Description                               |
+|-----------------------------------------------------------------------------|-------------------------------------------|
+| BuyFood / BuyFoodPromotion                                                  | Replenish satiety                         |
+| EatFood / DrinkAlcool                                                       | Manage energy and stress                  |
+| Study / PersonalProject / PostulerEntreprise                                | Increase hero stats or trigger interviews |
+| PushUps / DeadLifts / Rest / Sleep                                          | Influence energy and stress               |
+| TalkToStranger / MeetUp                                                     | Social interactions                       |
+| SnackDispenser / SnackDispenserEpitech / SnackDispenserGym                  | Mini-activities for small stat boosts     |
+| Wait                                                                        | Time-based activities                     |
+| ChessClub / ListenRadio / LookFridge / PayLicence / StoreWork / DisplayStat | Optional gameplay interactions            |
 
 ### Events
 Randomized events enrich gameplay:
 
-| Event | Description |
-|-------|-------------|
-| CatRobFood | Encounter with a cat stealing food |
-| EnduranceDreamEvent / StressDreamEvent | Dream sequences affecting stats |
+| Event                                          | Description                                 |
+|------------------------------------------------|---------------------------------------------|
+| CatRobFood                                     | Encounter with a cat stealing food          |
+| EnduranceDreamEvent / StressDreamEvent         | Dream sequences affecting stats             |
 | MeetUpEvent / PromoEvent / PickpocketCityEvent | City interactions with rewards or penalties |
 
 ### Locations
 Playable locations include:
 
-| Location | Description |
-|----------|-------------|
-| Bar | Socialize, drink, reduce stress |
-| CloverField | Search for clovers, trigger events |
-| Epitech | Study and complete personal projects |
-| FitnessClub / IndustrialZone / Shop / Maison / Sorcerer | Various interactions and mini-games |
+| Location       | Description                        |
+|----------------|------------------------------------|
+| Bar            | Socialize, drink, reduce stress    |
+| CloverField    | Search for clovers, trigger events |
+| Epitech        | Study and go to meet up            |
+| FitnessClub    | increase your endurance            |
+| IndustrialZone | Search your internship             |
+| Shop           | gain money and buy food            |
+| Home           | Sleep, eat and see your cat        |
+| Sorcerer       | try to gain luck                   |
 
 ### Heroes
 Three playable characters:
 
-| Hero | Strengths |
-|------|-----------|
-| Chad | High energy, moderate stress resistance |
-| Nerd | High intelligence, lower energy |
-| Custom Hero (Hero.java) | Balanced stats |
+| Hero     | Strengths                               |
+|----------|-----------------------------------------|
+| Giovanni | High energy, moderate stress resistance |
+| Helmüt   | High intelligence, lower energy         |
+| Zeldo    | boosted stat for demo                   |
 
 ### Combat & Interviews
 - Managed via `Entretien`, `Entreprise`, `RH`, and `QuestionBank`
