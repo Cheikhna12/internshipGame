@@ -1,142 +1,159 @@
-#  Sim Life - Projet Simple
+# InternshipQuest – 2D Java Game with LibGDX
 
-##  Lancer
+Embark on the adventure of a student searching for the perfect internship in a Java Sim-life game where interviews turn into epic duels.
+
+## 📑 Table of Contents
+- [Installation & Running](#installation--running)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+- [Features](#features)
+    - [World Exploration](#world-exploration)
+    - [Interview System (Combat)](#interview-system-combat)
+    - [Character & Progression](#character--progression)
+    - [Graphics & Animations](#graphics--animations)
+    - [Audio & Ambiance](#audio--ambiance)
+    - [Technical Architecture](#technical-architecture)
+- [Gameplay Details](#gameplay-details)
+    - [Activities](#activities)
+    - [Events](#events)
+    - [Locations](#locations)
+    - [Heroes](#heroes)
+- [Project Structure](#project-structure)
+- [Assets Overview](#assets-overview)
+- [Roadmap](#roadmap)
+- [Authors](#authors)
+- [License](#license)
+
+## Installation & Running
+
+### Prerequisites
+- Java 17 or higher
+- Maven installed
+- LibGDX configured in the project
+
+### Installation
+Clone the project and install dependencies:
 
 ```bash
+git clone git@github.com:EpitechMscProPromo2028/T-JAV-501-REN_5.git
+cd internshipquest
 mvn clean install
 mvn clean compile
 mvn exec:java
 ```
+
+## Features
+
+### World Exploration
+- Interactive world map with multiple visitable locations
+- Dozens of possible actions through dedicated screens
+- Events triggered based on player progression
+
+### Interview System (Combat)
+- Interviews presented as RPG-style battles
+- Combat power defined by the player's statistics
+- Recruiter reactions based on hero's actions
+- Success or failure affects game progression
+- Victory screen with scoring and dynamic transitions
+
+### Character & Progression
+- 3 playable heroes with distinct stats
+- Management of stress, energy, and satiety through interactions
+- Stats influence interview outcomes and game events
+
+### Graphics & Animations
+- Manga/anime-inspired style
+- NPCs react dynamically when entering locations
+
+### Audio & Ambiance
+- Ambiance varies by location and time (sporty, corporate, night)
+- Sound effects for supermarkets, food, radio, etc.
+- Epic music for interviews and final boss encounters
+
+### Technical Architecture
+- Multi-screen architecture using LibGDX `Screen` interface
+- Factory design pattern for `event`, `activity`, and `location` classes
+- Centralized asset management for graphics and audio
+
+## Gameplay Details
+
+### Activities
+Key activities available to the player:
+
+| Activity | Description |
+|----------|-------------|
+| BuyFood / BuyFoodPromotion | Replenish satiety |
+| EatFood / DrinkAlcool | Manage energy and stress |
+| Study / PersonalProject / PostulerEntreprise | Increase hero stats or trigger interviews |
+| PushUps / DeadLifts / Rest / Sleep | Influence energy and stress |
+| TalkToStranger / MeetUp | Social interactions |
+| SnackDispenser / SnackDispenserEpitech / SnackDispenserGym | Mini-activities for small stat boosts |
+| Wait / DevWait16h | Time-based activities |
+| ChessClub / ListenRadio / LookFridge / PayLicence / StoreWork / DisplayStat | Optional gameplay interactions |
+
+### Events
+Randomized events enrich gameplay:
+
+| Event | Description |
+|-------|-------------|
+| CatRobFood | Encounter with a cat stealing food |
+| EnduranceDreamEvent / StressDreamEvent | Dream sequences affecting stats |
+| MeetUpEvent / PromoEvent / PickpocketCityEvent | City interactions with rewards or penalties |
+
+### Locations
+Playable locations include:
+
+| Location | Description |
+|----------|-------------|
+| Bar | Socialize, drink, reduce stress |
+| CloverField | Search for clovers, trigger events |
+| Epitech | Study and complete personal projects |
+| FitnessClub / IndustrialZone / Shop / Maison / Sorcerer | Various interactions and mini-games |
+
+### Heroes
+Three playable characters:
+
+| Hero | Strengths |
+|------|-----------|
+| Chad | High energy, moderate stress resistance |
+| Nerd | High intelligence, lower energy |
+| Custom Hero (Hero.java) | Balanced stats |
+
+### Combat & Interviews
+- Managed via `Entretien`, `Entreprise`, `RH`, and `QuestionBank`
+- Correct actions/questions reduce stress and increase hiring chances
+- Wrong actions/questions increase stress and risk failure
+
+## Project Structure
+```plaintext
+src/main/java/com/internshipquest
+├── graphics       # Rendering classes (maps, backgrounds)
+├── model
+│   ├── activity   # All activities
+│   ├── combat     # Interview / combat system
+│   ├── event      # Random events
+│   ├── hero       # Hero classes
+│   └── location   # Game world locations
+├── screens        # LibGDX screens (world map, interviews, game over)
+└── utils          # Constants, SoundManager, etc.
 ```
 
-## 💻 Code Expliqué
+## Assets Overview
+- **Images**: Hero sprites, NPCs, backgrounds, UI elements
+- **Sounds**: Ambiance, music, effects for actions/events
+- **Fonts**: DMSerifText and OFL license
 
-### WorldMapScreen.java (150 lignes)
-
-**Charge les icônes :**
-```java
-iconHome = new Texture("assets/icon_home.png");
-iconSchool = new Texture("assets/icon_school.png");
-// etc...
-```
-
-**Affiche les icônes :**
-```java
-game.batch.draw(icon, x, y, size, size);
-```
-
-**Plus grande si survolée :**
-```java
-float size = (loc == hoveredLocation) ? 60 : 50;
-```
-
-### LocationScreen.java ()
+## Roadmap
+- Planned improvements:
+    - Save/load functionality
+    - More dynamic NPC interactions
+    - Additional mini-games and events
 
 
-```java
-if (nom.equals("Maison")) {
-    // Activités : Dormir, Manger
-    game.font.draw(batch, "1. Dormir - Restaure energie", x, y);
-    game.font.draw(batch, "2. Manger - Restaure nourriture", x, y);
-}
-```
+## Authors
+- **Thomas Plantevin** – [LinkedIn](https://www.linkedin.com/in/thomas-plantevin-9a47ba175)
+- **Mathys Toux** – [LinkedIn](https://www.linkedin.com/in/mathys-toux-69b059234/)
+- **Cheikhna mouhamedou Ould** – [LinkedIn](https://www.linkedin.com/in/cheikhna-ould-6a7689232/)
 
-**Prêt pour la logique :**
-```java
-// TODO: Implémenter avec l'alternant Mathys
-if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-    // hero.dormir(); // À implémenter
-}
-```
-
-## Prochaines Étapes
-
-### 1. Créer le modèle Hero
-
-```java
-public class Hero {
-    private int energie = 100;
-    private int nourriture = 100;
-    private int argent = 50;
-    private int competences = 0;
-    
-    public void dormir() {
-        energie = Math.min(100, energie + 50);
-    }
-    
-    public void manger() {
-        nourriture = Math.min(100, nourriture + 30);
-    }
-    
-    public void travailler() {
-        if (energie >= 20) {
-            energie -= 20;
-            argent += 50;
-        }
-    }
-    
-    public void etudier() {
-        if (energie >= 10) {
-            energie -= 10;
-            competences += 5;
-        }
-    }
-    
-    public void acheterNourriture() {
-        if (argent >= 10) {
-            argent -= 10;
-            nourriture += 20;
-        }
-    }
-}
-```
-
-### 2. Ajouter Hero dans le jeu
-
-Dans `IntershipQuestGame.java` :
-```java
-public Hero hero;
-
-public void create() {
-    hero = new Hero();
-    // ...
-}
-```
-
-### 3. Utiliser Hero dans LocationScreen
-
-```java
-if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-    if (location.getName().equals("Maison")) {
-        game.hero.dormir();
-        System.out.println("Énergie: " + game.hero.getEnergie());
-    }
-}
-```
-
-### 4. Afficher les stats
-
-En haut de l'écran :
-```java
-game.font.draw(batch, "Energie: " + game.hero.getEnergie(), 50, 700);
-game.font.draw(batch, "Nourriture: " + game.hero.getNourriture(), 250, 700);
-game.font.draw(batch, "Argent: " + game.hero.getArgent(), 450, 700);
-```
-
-
-## Modifier
-
-**Changer position d'un lieu** (ligne 42-45) :
-```java
-locations.add(new Location("Maison", "", 200, 550, ...));
-                                        ↑     ↑
-                                        X     Y
-```
-
-**Ajouter un 5ème lieu** :
-1. Télécharger une icône PNG dans `assets/`
-2. Charger : `iconBank = new Texture("assets/icon_bank.png");`
-3. Ajouter : `locations.add(new Location("Banque", "", x, y, ...));`
-4. Afficher : `if (nom.equals("Banque")) game.batch.draw(iconBank, ...);`
-
----
+## License
+Project developed as part of academic studies. Redistribution is prohibited without permission.
