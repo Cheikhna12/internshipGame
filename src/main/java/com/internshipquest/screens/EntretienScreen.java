@@ -190,7 +190,7 @@ public class EntretienScreen implements Screen {
 
         game.font.getData().setScale(1.1f);
         game.font.setColor(1f, 1f, 0.8f, 1f);
-        game.font.draw(game.batch, "Recruiter’s reaction:", 50, 640);
+        game.font.draw(game.batch, "Recruiter's reaction:", 50, 640);
 
         game.font.getData().setScale(1.0f);
         game.font.setColor(0.9f, 0.9f, 0.9f, 1f);
