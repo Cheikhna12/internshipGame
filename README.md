@@ -80,53 +80,54 @@ mvn exec:java
 ### Activities
 Key activities available to the player:
 
-| Activity                                                                    | Description                               |
-|-----------------------------------------------------------------------------|-------------------------------------------|
-| BuyFood / BuyFoodPromotion                                                  | Replenish satiety                         |
-| EatFood / DrinkAlcool                                                       | Manage energy and stress                  |
-| Study / PersonalProject / PostulerEntreprise                                | Increase hero stats or trigger interviews |
-| PushUps / DeadLifts / Rest / Sleep                                          | Influence energy and stress               |
-| TalkToStranger / MeetUp                                                     | Social interactions                       |
-| SnackDispenser / SnackDispenserEpitech / SnackDispenserGym                  | Mini-activities for small stat boosts     |
-| Wait                                                                        | Time-based activities                     |
-| ChessClub / ListenRadio / LookFridge / PayLicence / StoreWork / DisplayStat | Optional gameplay interactions            |
+| Activity                                            | Description                    |
+|-----------------------------------------------------|--------------------------------|
+| BuyFood / BuyFoodPromotion                          | Replenish food in fridge       |
+| EatFood / DrinkAlcool                               | Manage energy and stress       |
+| Study / PersonalProject /                           | Increase Coding Skill          |
+| PushUps / DeadLifts                                 | gain Endurance                 |
+| TalkToStranger / MeetUp / ChessClub                 | Social interactions            |
+| SnackDispenserEpitech / SnackDispenserGym           | Pay for small stat boosts      |
+| Wait                                                | Time-based activities          |
+| ListenRadio / LookFridge / PayLicence / DisplayStat | Optional gameplay interactions |
 
 ### Events
 Randomized events enrich gameplay:
 
 | Event                                          | Description                                 |
 |------------------------------------------------|---------------------------------------------|
-| CatRobFood                                     | Encounter with a cat stealing food          |
+| CatRobFood                                     | Encounter with your cat stealing food       |
 | EnduranceDreamEvent / StressDreamEvent         | Dream sequences affecting stats             |
 | MeetUpEvent / PromoEvent / PickpocketCityEvent | City interactions with rewards or penalties |
 
 ### Locations
 Playable locations include:
 
-| Location       | Description                        |
-|----------------|------------------------------------|
-| Bar            | Socialize, drink, reduce stress    |
-| CloverField    | Search for clovers, trigger events |
-| Epitech        | Study and go to meet up            |
-| FitnessClub    | increase your endurance            |
-| IndustrialZone | Search your internship             |
-| Shop           | gain money and buy food            |
-| Home           | Sleep, eat and see your cat        |
-| Sorcerer       | try to gain luck                   |
+| Location       | Description                     |
+|----------------|---------------------------------|
+| Bar            | Socialize, drink, reduce stress |
+| CloverField    | Search for clovers, rest        |
+| Epitech        | Study and go to meet up         |
+| FitnessClub    | increase your endurance         |
+| IndustrialZone | Search your internship          |
+| Shop           | gain money and buy food         |
+| Home           | Sleep, eat and see your cat     |
+| Sorcerer       | try to gain luck                |
 
 ### Heroes
 Three playable characters:
 
-| Hero     | Strengths                               |
-|----------|-----------------------------------------|
-| Giovanni | High energy, moderate stress resistance |
-| Helmüt   | High intelligence, lower energy         |
-| Zeldo    | boosted stat for demo                   |
+| Hero     | Strengths                       |
+|----------|---------------------------------|
+| Giovanni | High endurance, lower skills    |
+| Helmüt   | High intelligence, lower energy |
+| Zeldo    | boosted stat for demo           |
 
 ### Combat & Interviews
 - Managed via `Entretien`, `Entreprise`, `RH`, and `QuestionBank`
-- Correct actions/questions reduce stress and increase hiring chances
-- Wrong actions/questions increase stress and risk failure
+- Correct actions/questions increase hiring chances
+- higher salary increase difficulty
+
 
 ## Project Structure
 ```plaintext
