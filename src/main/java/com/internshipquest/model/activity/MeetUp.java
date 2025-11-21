@@ -32,6 +32,6 @@ public class MeetUp extends AActivity {
         day.addHour(duration);
         lieu.reloadActivities();
 
-        message = "You participate in the MeetUp for " + duration + " hour.\n Your coding skills increase dramatically.";
+        message = "You participate to the MeetUp for " + duration + " hour.\n Your coding skills increase dramatically.";
     }
 }

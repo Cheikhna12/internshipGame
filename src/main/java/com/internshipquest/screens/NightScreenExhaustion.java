@@ -37,7 +37,7 @@ public class NightScreenExhaustion implements Screen {
 
         LabelStyle style = new LabelStyle(game.font, Color.WHITE);
         messageLabel = new Label(
-                "You exhausted yourself by going to bed too late,\n" +
+                "You're exhausted after going to bed too late,\n" +
                         "you barely reach your bed and you wake up with a drowsy head.",
                 style
         );
