@@ -1,0 +1,185 @@
+.
+├── dependency-reduced-pom.xml
+├── Newreadme.md
+├── pom.xml
+├── README.md
+├── src
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── internshipquest
+│       │           ├── graphics
+│       │           │   ├── CityMapRenderer.java
+│       │           │   └── CityMapRenderer.MD
+│       │           ├── InternshipQuestGame.java
+│       │           ├── Jeu.MD
+│       │           ├── Main.java
+│       │           ├── model
+│       │           │   ├── activity
+│       │           │   │   ├── AActivity.java
+│       │           │   │   ├── ActivityFactory.java
+│       │           │   │   ├── AskOpeningHours.java
+│       │           │   │   ├── Bewitchment.java
+│       │           │   │   ├── BuyFood.java
+│       │           │   │   ├── BuyFoodPromotion.java
+│       │           │   │   ├── ChessClub.java
+│       │           │   │   ├── DeadLifts.java
+│       │           │   │   ├── DevWait16h.java
+│       │           │   │   ├── DisplayStat.java
+│       │           │   │   ├── DrinkAlcool.java
+│       │           │   │   ├── EatFood.java
+│       │           │   │   ├── FindClover.java
+│       │           │   │   ├── ListenRadio.java
+│       │           │   │   ├── LookFridge.java
+│       │           │   │   ├── MeetUp.java
+│       │           │   │   ├── NewActivité.md
+│       │           │   │   ├── PayLicence.java
+│       │           │   │   ├── PersonalProject.java
+│       │           │   │   ├── PostulerEntreprise.java
+│       │           │   │   ├── PushUps.java
+│       │           │   │   ├── Rest.java
+│       │           │   │   ├── Sleep.java
+│       │           │   │   ├── SnackDispenserEpitech.java
+│       │           │   │   ├── SnackDispenserGym.java
+│       │           │   │   ├── SnackDispenser.java
+│       │           │   │   ├── StoreWork.java
+│       │           │   │   ├── Study.java
+│       │           │   │   ├── TalkToStranger.java
+│       │           │   │   └── Wait.java
+│       │           │   ├── combat
+│       │           │   │   ├── EntrepriseFactory.java
+│       │           │   │   ├── Entreprise.java
+│       │           │   │   ├── Entretien.java
+│       │           │   │   ├── QuestionBank.java
+│       │           │   │   ├── Question.java
+│       │           │   │   └── RH.java
+│       │           │   ├── Day.java
+│       │           │   ├── event
+│       │           │   │   ├── AEvent.java
+│       │           │   │   ├── CatRobFood.java
+│       │           │   │   ├── EnduranceDreamEvent.java
+│       │           │   │   ├── EventFactory.java
+│       │           │   │   ├── MeetUpEvent.java
+│       │           │   │   ├── NewEvent.md
+│       │           │   │   ├── PickpocketCityEvent.java
+│       │           │   │   ├── PromoEvent.java
+│       │           │   │   └── StressDreamEvent.java
+│       │           │   ├── hero
+│       │           │   │   ├── AHero.java
+│       │           │   │   ├── Chad.java
+│       │           │   │   ├── Hero.java
+│       │           │   │   ├── hero.md
+│       │           │   │   └── Nerd.java
+│       │           │   └── location
+│       │           │       ├── ALieuVisitable.java
+│       │           │       ├── Bar.java
+│       │           │       ├── CloverField.java
+│       │           │       ├── Epitech.java
+│       │           │       ├── FitnessClub.java
+│       │           │       ├── IndustrialZone.java
+│       │           │       ├── LocationFactory.java
+│       │           │       ├── Location.java
+│       │           │       ├── Maison.java
+│       │           │       ├── NewLocation.md
+│       │           │       ├── Shop.java
+│       │           │       └── Sorcerer.java
+│       │           ├── Schema.Entretien.drawio.png
+│       │           ├── Schéma_Explicatif_InternshipQuest.drawio.png
+│       │           ├── screens
+│       │           │   ├── EntretienScreen.java
+│       │           │   ├── GameOverScreen.java
+│       │           │   ├── GameWonScreen.java
+│       │           │   ├── LocationScreen.java
+│       │           │   ├── LocationScreen.md
+│       │           │   ├── Menu.java
+│       │           │   ├── NightScreenBar.java
+│       │           │   ├── NightScreenExhaustion.java
+│       │           │   ├── NightScreen.java
+│       │           │   ├── SettingsScreen.java
+│       │           │   └── WorldMapScreen.java
+│       │           └── utils
+│       │               ├── Constants.java
+│       │               └── SoundManager.java
+│       └── resources
+│           └── assets
+│               ├── Assets.MD
+│               ├── barmaid.png
+│               ├── buttonTexture.png
+│               ├── Chad.png
+│               ├── chat.png
+│               ├── city_map.tmx
+│               ├── coach.png
+│               ├── fonts
+│               │   ├── DMSerifText-Italic.ttf
+│               │   ├── DMSerifText-Regular.ttf
+│               │   └── OFL.txt
+│               ├── GameLogo.png
+│               ├── Hero.png
+│               ├── images
+│               │   ├── bar_background.png
+│               │   ├── clover_field_background.png
+│               │   ├── default_background.png
+│               │   ├── epitech_background.png
+│               │   ├── gym_background.png
+│               │   ├── industrie_background.png
+│               │   ├── lost.png
+│               │   ├── maison_background.png
+│               │   ├── Menu_background.png
+│               │   ├── office_background.png
+│               │   ├── sorcerer_background.png
+│               │   ├── store_background.png
+│               │   └── won.png
+│               ├── Nerd.png
+│               ├── night.png
+│               ├── poke2.png
+│               ├── poke2.tsx
+│               ├── poke3.png
+│               ├── poke3.tsx
+│               ├── poke5.png
+│               ├── poke5.tsx
+│               ├── pokemon.png
+│               ├── pokemon.tsx
+│               ├── prof.png
+│               ├── RH_Angry.png
+│               ├── RH_Happy.png
+│               ├── RH_Neutral.png
+│               ├── Sorcerer.png
+│               ├── sounds
+│               │   ├── BarJazz.mp3
+│               │   ├── chess-pieces.wav
+│               │   ├── cloverDiscovery.wav
+│               │   ├── cloverSearch.wav
+│               │   ├── correct_answer.wav
+│               │   ├── EatFood.wav
+│               │   ├── entretien.mp3
+│               │   ├── EpitechMusic.mp3
+│               │   ├── essouflé.wav
+│               │   ├── FairyClover.mp3
+│               │   ├── Final_boss.mp3
+│               │   ├── GlassDrinkV.wav
+│               │   ├── GlassDrink.wav
+│               │   ├── grocery_activity.wav
+│               │   ├── GroceryMusic.mp3
+│               │   ├── gym-ambience.wav
+│               │   ├── hired.mp3
+│               │   ├── house.mp3
+│               │   ├── intro.mp3
+│               │   ├── keyboard_typing.mp3
+│               │   ├── Love.wav
+│               │   ├── MachineANourriture.wav
+│               │   ├── office_ambiance.wav
+│               │   ├── radio_static.wav
+│               │   ├── rejected.wav
+│               │   ├── snore.wav
+│               │   ├── Spellreverse.wav
+│               │   ├── spellToux.wav
+│               │   ├── SpellWork.wav
+│               │   ├── village-evening.mp3
+│               │   ├── village.mp3
+│               │   ├── waiting.wav
+│               │   ├── wizard.mp3
+│               │   └── wrong_answer.wav
+│               └── StoreOwner.png
+└── structure.txt
+
+20 directories, 163 files
