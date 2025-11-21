@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class SnackDispenserEpitech extends AActivity {
     
     public SnackDispenserEpitech() {
-        super("Eat sandwich triangles from the snack vending machine", 0, 0, 7);
+        super("Eat sandwiches from the snack vending machine", 0, 0, 7);
     }
 
     @Override
@@ -22,6 +22,6 @@ public class SnackDispenserEpitech extends AActivity {
 
         day.addHour(duration);
 
-        message = "You pay "+cost+" euros for the sandwich triangles \nand increase your energy to "+newEnergy+".";
+        message = "You pay "+cost+" euros for the sandwiches \nand increase your energy to "+newEnergy+".";
     }
 }

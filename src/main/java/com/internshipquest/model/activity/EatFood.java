@@ -14,7 +14,7 @@ public class EatFood extends AActivity {
     public void doIt(AHero hero, Day day) {
 
         if (hero.getSatiety() == 100) {
-            message = "I'm not at Grandma's,\n no need to eat when I'm not hungry anymore";
+            message = "I'm not at Grandma's,\n no need to eat if I'm not hungry.";
         } else {
             if (hero.getNbFood() == 0) {
                 message = "It's empty! I need to buy some food.";

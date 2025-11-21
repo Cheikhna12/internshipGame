@@ -9,7 +9,7 @@ import java.util.Random;
 public class DrinkAlcool extends AActivity {
     
     public DrinkAlcool() {
-        super("Drink a glass", 1, 0, 10);
+        super("Drink beverage", 1, 0, 10);
     }
 
     @Override
