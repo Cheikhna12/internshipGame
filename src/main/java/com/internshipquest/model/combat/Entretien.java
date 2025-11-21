@@ -185,8 +185,8 @@ public class Entretien {
         if (scoreEntretien >= seuilReussite) {
             this.resultat = "ACCEPTE";
             System.out.println("✓ Résultat: ACCEPTÉ");
-            game.setScreen(new GameWonScreen(game,  new WorldMapScreen(game)));
-          
+            game.setScreen(new GameWonScreen(game));
+
         } else {
             this.resultat = "REJECTE";
             System.out.println("✗ Résultat: REFUSÉ");
