@@ -3,7 +3,7 @@ package com.internshipquest.model.combat;
 public class Question {
     private String text;
     private QuestionType type;
-    private int difficulty; 
+    private int difficulty;
     private String optionTech;
     private String optionSoft;
     
