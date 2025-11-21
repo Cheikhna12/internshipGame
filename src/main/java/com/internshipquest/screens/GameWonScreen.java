@@ -26,14 +26,12 @@ public class GameWonScreen implements Screen{
     private Stage stage;
     private Skin skin;
     private Label gameOverLabel;
-    private Screen previousScreen;
     private AHero hero;
     private final Texture background;
     private int Score = 0;
 
-    public GameWonScreen(InternshipQuestGame game, Screen previousScreen) {
+    public GameWonScreen(InternshipQuestGame game) {
         this.game = game;
-        this.previousScreen = previousScreen;
         this.hero = game.getHero();
         background = new Texture(Gdx.files.internal("assets/images/won.png"));
     }
@@ -54,7 +52,6 @@ public class GameWonScreen implements Screen{
         if(hero.hasHadFunTime){
             funTime = 350;
         }
-        System.out.println(chess);
         int gymLicence = 0;
         if(hero.hasPaidLicence){
             gymLicence = 45;
@@ -117,11 +114,11 @@ public class GameWonScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ESCAPE)) {
-            game.setScreen(previousScreen);
+            Gdx.app.exit();
         }
 
-        stage.act(delta);
-        stage.draw();
+       stage.act(delta);
+      stage.draw();
 
         game.batch.begin();
         game.font.draw(game.batch, "You win !! " + hero.getName(), 500, 500);

@@ -19,7 +19,7 @@ public class SoundManager {
         //background music
         musics.put("gym", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/gym-ambience.wav")));
         musics.put("house", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/house.mp3")));
-        musics.put("office", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/office_ambiance.wav")));
+        musics.put("office", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/Final_boss.mp3")));
         musics.put("bar", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/BarJazz.mp3")));
         musics.put("cloverField", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/FairyClover.mp3")));
         musics.put("epitech", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/EpitechMusic.mp3")));
@@ -50,6 +50,8 @@ public class SoundManager {
         sounds.put("wrong", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wrong_answer.wav")));
         sounds.put("rejected", Gdx.audio.newSound(Gdx.files.internal("assets/sounds/rejected.wav")));
         musics.put("hired", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/hired.mp3")));
+        musics.put("EatFood", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/EatFood.wav")));
+        musics.put("radio", Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/radio_static.wav")));
     }
 
     public static void setMasterVolume(float volume) {

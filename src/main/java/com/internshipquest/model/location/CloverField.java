@@ -23,7 +23,7 @@ public class CloverField extends ALieuVisitable {
     @Override
     public void onEnter(AHero hero,Day day) {
         // nom, loop or not, volume %
-        SoundManager.playMusic("cloverField", true, 0.4f); // need change musique
+        SoundManager.playMusic("cloverField", true, 0.4f);
     }
 
     @Override

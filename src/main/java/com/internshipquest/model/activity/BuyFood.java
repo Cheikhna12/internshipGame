@@ -12,7 +12,7 @@ public class BuyFood extends AActivity {
 
     @Override
     public void doIt(AHero hero, Day day) {
-        // SoundManager.playSound("deadlift", 0.4f); need to put sound
+        SoundManager.playSound("StoreWork", 0.4f);
         hero.setNbFood(hero.getNbFood()+1);
         hero.setMoney(hero.getMoney()-cost);
         day.addHour(duration);
