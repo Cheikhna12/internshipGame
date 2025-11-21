@@ -14,7 +14,7 @@ public class LookFridge extends AActivity {
     public void doIt(AHero hero, Day day) {
         //SoundManager.playSound("pushup",0.4f);
         if (hero.getNbFood() == 0) {
-            message = "You notice the abysmal emptiness of your fridge.\n It might be time to go grocery shopping.";
+            message = "You notice the abyssal emptiness of your fridge.\n It might be time to go grocery shopping.";
         } else {
             message = "You have enough food for " + hero.getNbFood() + " days.";
         }

@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class PersonalProject extends AActivity {
     // name, duration, cost
     public PersonalProject() {
-        super("Working on a personal project", 1, 5,0);
+        super("Work on a personal project", 1, 5,0);
     }
 
     @Override

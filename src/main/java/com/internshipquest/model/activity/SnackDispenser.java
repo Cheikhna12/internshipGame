@@ -23,7 +23,7 @@ public class SnackDispenser extends AActivity {
 
         day.addHour(duration);
 
-        message = "You pay 5 euros for the protein bar and gain "+newEnergy+" energy and "+newEndurance+" endurance.";
+        message = "You pay 5 euros for a protein bar and gain "+newEnergy+" energy and "+newEndurance+" endurance.";
         hero.hasHadSNacks = true;
     }
 }

@@ -59,10 +59,10 @@ public class NightScreen implements Screen {
                 todayEvent.applyEffect(hero,day);
                 messageLabel.setText(todayEvent.getMessageNight());
             } else {
-                messageLabel.setText("After a good night, you regenerate your energy thanks to your endurance.");
+                messageLabel.setText("After a good night, you regenerate your energy proportional to your endurance.");
             }
         } else {
-            messageLabel.setText("After a good night, you regenerate your energy thanks to your endurance.");
+            messageLabel.setText("After a good night, you regenerate your energy proportional to your endurance.");
         }
 
         // Démarre invisible

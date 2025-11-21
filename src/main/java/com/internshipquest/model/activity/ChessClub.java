@@ -27,7 +27,7 @@ public class ChessClub extends AActivity {
 
         day.addHour(duration);
 
-        message = "You play " + duration + " hour with the other club member, getting along with them.";
+        message = "You play " + duration + " hour with the other club members, getting along with them.";
         System.out.println(hasGoneToChessClub);
 
     }

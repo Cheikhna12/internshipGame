@@ -13,7 +13,7 @@ public class TalkToStranger extends AActivity {
 
     
     public TalkToStranger(InternshipQuestGame game) {
-        super("Talk to someone from the bar", 3, 5, 0);
+        super("Talk to someone", 3, 5, 0);
         this.game=game;
 
     }
