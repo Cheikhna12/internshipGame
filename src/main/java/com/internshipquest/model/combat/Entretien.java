@@ -272,26 +272,26 @@ public class Entretien {
     private String generateFeedback(Question question, String responseType, int scoreQuestion, int scoreReponse) {
         String[] positiveReactions = {
                 "The recruiter nods approvingly",
-                "You see a smile appear on his face.",
-                "He takes notes with interest.",
-                "Interesting...’ he murmurs.",
-                "He seems impressed by your answer."
+                "You see a smile appear on her face.",
+                "She takes notes with interest.",
+                "'Interesting...' she murmurs.",
+                "She seems impressed by your answer."
         };
         
         String[] neutralReactions = {
             "The recruiter remains impassive.",
-            "He takes a few notes without comment.",
-            "'I see...’ he simply says.",
-            "He listens to you attentively.",
-            "His expression remains neutral."
+            "She takes a few notes without comment.",
+            "'I see...' she simply says.",
+            "She listens to you attentively.",
+            "Her expression remains neutral."
         };
         
         String[] negativeReactions = {
             "The recruiter frowns slightly.",
-            "He seems a little disappointed.",
-            "'Hmm...’ he says doubtfully.",
-            "He quickly jots something down.",
-            "His gaze becomes more judgemental."
+            "She seems a little disappointed.",
+            "'Hmm...' she says doubtfully.",
+            "She quickly jots something down.",
+            "Her gaze becomes more judgemental."
         };
 
         if (scoreReponse-scoreQuestion >= 10) {
