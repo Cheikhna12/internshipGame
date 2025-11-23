@@ -2,7 +2,42 @@
 
 Embark on the adventure of a student searching for the perfect internship in a Java Sim-life game where interviews turn into epic duels.
 
-## 📑 Table of Contents
+## Quick Start - Play the Game
+
+**Want to play right away? Build the game package!**
+
+### Build & Play
+
+1. **Generate the game package:**
+   ```bash
+   ./creer-package-distribution.sh
+   ```
+   This creates:
+   - `distribution/InternshipQuestGame-v1.0.zip`
+   - `distribution/InternshipQuestGame-v1.0.tar.gz` (for Linux/Mac)
+
+2. **Extract the archive:**
+   ```bash
+   # Windows: Right-click > Extract All
+   # Linux/Mac:
+   unzip distribution/InternshipQuestGame-v1.0.zip
+   # or
+   tar -xzf distribution/InternshipQuestGame-v1.0.tar.gz
+   ```
+
+3. **Launch the game:**
+   - **Windows**: Double-click `lancer-jeu.bat`
+   - **Linux/Mac**: Run `./lancer-jeu.sh`
+   - **Or manually**: `java -jar internship-quest-game-1.0-SNAPSHOT.jar`
+
+**Requirements:** Java 17 or higher must be installed on your system.
+
+> **Note:** Distribution packages are not included in the repository (too large). Generate them locally with the script above.
+
+---
+
+## Table of Contents
+- [Quick Start - Play the Game](#quick-start---play-the-game)
 - [Installation & Running](#installation--running)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
@@ -147,6 +182,59 @@ src/main/java/com/internshipquest
 - **Images**: Hero sprites, NPCs, backgrounds, UI elements
 - **Sounds**: Ambiance, music, effects for actions/events
 - **Fonts**: DMSerifText and OFL license
+
+##  Tests Unitaires
+
+### Exécuter les tests
+
+**Méthode 1 : Script automatisé (recommandé)**
+```bash
+./run-tests.sh
+```
+
+**Méthode 2 : Maven directement**
+```bash
+mvn test
+```
+
+**Méthode 3 : Avec rapport de couverture**
+```bash
+mvn clean test jacoco:report
+```
+
+### Tests disponibles
+
+Le projet contient **3 classes de tests unitaires** :
+
+1. **QuestionTest.java** - 14 tests sur le modèle Question
+   - Validation des types de questions (TECH, SOFTSKILL, MIXED, PIEGE)
+   - Vérification des difficultés
+   - Test des options de réponse
+
+2. **AHeroTest.java** - 17 tests sur le modèle Hero
+   - Validation des setters avec plafonnement (max 100)
+   - Gestion des valeurs négatives
+   - Calcul de l'énergie
+
+3. **DayTest.java** - 14 tests sur le système de jours
+   - Détection des weekends
+   - Progression des heures
+   - Gestion du passage de minuit
+
+**Total : 45+ tests unitaires**
+
+### Rapport de couverture de code
+
+Après avoir exécuté les tests, le rapport de couverture JaCoCo est disponible à :
+```
+target/site/jacoco/index.html
+```
+
+Ouvrez ce fichier dans votre navigateur pour voir :
+- Le pourcentage de code testé
+- Les lignes couvertes/non couvertes par classe
+- Les branches conditionnelles testées
+
 
 ## Roadmap
 - Planned improvements:

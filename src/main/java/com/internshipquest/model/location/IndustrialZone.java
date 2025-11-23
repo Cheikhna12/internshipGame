@@ -1,15 +1,15 @@
 package com.internshipquest.model.location;
 
 import com.internshipquest.InternshipQuestGame;
+import com.internshipquest.model.Day;
 import com.internshipquest.model.combat.Entreprise;
 import com.internshipquest.model.combat.EntrepriseFactory;
 import com.internshipquest.model.activity.AActivity;
 import com.internshipquest.model.activity.ActivityFactory;
-import com.internshipquest.model.location.ALieuVisitable;
+import com.internshipquest.model.activity.PostulerEntreprise;
 import com.internshipquest.model.hero.*;
-import com.internshipquest.model.Day;
 import com.internshipquest.utils.SoundManager;
-
+import com.internshipquest.model.location.ALieuVisitable;
 import java.util.ArrayList;
 import java.util.List;
 
