@@ -20,37 +20,32 @@ public class Entreprise {
         this.difficulte = difficulte;
     }
     public RH createRh(){
-    int barreAcceptation;
     int seuilAcceptation;
     int niveauEnergie;
 
     switch (difficulte) {
         case "Facile":
-            barreAcceptation = 50;
             seuilAcceptation = 40;
-            niveauEnergie = 60 + (int)(Math.random() * 20);
+            niveauEnergie = 30 + (int)(Math.random() * 10);
             break;
 
         case "Moyen":
-            barreAcceptation = 70;
             seuilAcceptation = 60;
-            niveauEnergie = 70 + (int)(Math.random() * 20);
+            niveauEnergie = 40 + (int)(Math.random() * 10);
             break;
 
         case "Difficile":
-            barreAcceptation = 85;
             seuilAcceptation = 75;
-            niveauEnergie = 80 + (int)(Math.random() * 15);
+            niveauEnergie = 50 + (int)(Math.random() * 10);
             break;
 
         case "Extreme":
-            barreAcceptation = 95;
             seuilAcceptation = 90;
-            niveauEnergie = 90 + (int)(Math.random() * 10);
+            niveauEnergie = 60 + (int)(Math.random() * 10);
             break;
 
         default:
-            barreAcceptation = 60;
+
             seuilAcceptation = 50;
             niveauEnergie = 70;
             break;
@@ -58,7 +53,6 @@ public class Entreprise {
     return new RH (
             this.noteTech,
             this.noteSoftSkill,
-            barreAcceptation,
             niveauEnergie,
             seuilAcceptation
     );

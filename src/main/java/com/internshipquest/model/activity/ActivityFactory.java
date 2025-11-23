@@ -33,7 +33,7 @@ public class ActivityFactory {
         list.add(new Sleep(game));
         list.add(new Wait());
         list.add(new PersonalProject());
-        list.add(new DevWait16h());
+//        list.add(new DevWait16h());
         list.add(new EatFood());
         list.add(new LookFridge());
         list.add(new ListenRadio());

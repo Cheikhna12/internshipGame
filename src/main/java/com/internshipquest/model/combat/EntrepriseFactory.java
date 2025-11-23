@@ -9,7 +9,7 @@ public class EntrepriseFactory {
         List<Entreprise> entreprises = new ArrayList<>();
         entreprises.add(new Entreprise(
                 "WebStart Inc.",
-                "Une petite startup dynamique qui cherche des talents bruts.",
+                "A small start-up looking for young talents",
                 30,
                 40,
                 "Facile"
@@ -17,7 +17,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "Pixel Agency",
-                "Agence web créative spécialisée dans les sites vitrines.",
+                "Web agency specialized in front-end development",
                 40,
                 45,
                 "Facile"
@@ -25,7 +25,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "DataCorp",
-                "PME en pleine croissance dans le secteur de l'analyse de données.",
+                "Small company specialized in data management",
                 55,
                 50,
                 "Moyen"
@@ -33,7 +33,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "CloudTech Solutions",
-                "Fournisseur de solutions cloud pour les grandes entreprises.",
+                "Supplier of cloud solution to large companies",
                 65,
                 60,
                 "Moyen"
@@ -41,7 +41,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "AI Innovations",
-                "Leader dans le domaine de l'intelligence artificielle et du machine learning.",
+                "World leader in AI development and machine learning",
                 75,
                 70,
                 "Difficile"
@@ -49,7 +49,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "CyberSec Elite",
-                "Spécialistes de la cybersécurité pour les institutions financières.",
+                "Cybersecurity expert for banking companies",
                 85,
                 75,
                 "Difficile"
@@ -57,7 +57,7 @@ public class EntrepriseFactory {
 
         entreprises.add(new Entreprise(
                 "GAFAM Corp",
-                "Le géant de la tech. Seuls les meilleurs peuvent y prétendre.",
+                "The biggest tech company in the world, only the world's best candidates may apply",
                 95,
                 85,
                 "Extrême"

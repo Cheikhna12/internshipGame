@@ -43,10 +43,5 @@ public class IndustrialZone extends ALieuVisitable{
         return "Bienvenue dans la zone industrielle. De nombreuses opportunités vous attendent ici.";
     }
 
-//    public List<Entreprise> getEntreprises() {
-//        return entreprises;
-//    }
-
-
 }
 

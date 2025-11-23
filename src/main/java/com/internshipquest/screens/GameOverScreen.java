@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.internshipquest.InternshipQuestGame;
 import com.internshipquest.utils.SoundManager;
 import com.internshipquest.model.hero.*;
+import com.internshipquest.model.Day;
 import com.internshipquest.model.activity.*;
 import org.lwjgl.Sys;
 
@@ -29,13 +30,16 @@ public class GameOverScreen implements Screen{
     private Label gameOverLabel;
     private Screen previousScreen;
     private AHero hero;
+    private Day day;
     private final Texture background;
+    private int bonusScore=0;
     private int Score = 0;
 
     public GameOverScreen(InternshipQuestGame game, Screen previousScreen) {
         this.game = game;
         this.previousScreen = previousScreen;
         this.hero = game.getHero();
+        this.day= game.getDay();
         background = new Texture(Gdx.files.internal("assets/images/lost.png"));
     }
 
@@ -46,66 +50,52 @@ public class GameOverScreen implements Screen{
     }
 
     public int calculateScore() {
-        int chess = 0;
+        this.bonusScore=0;
         if(hero.hasGoneToChessClub){
-            chess = 45;
+            this.bonusScore += 45;
         }
-        int funTime = 0;
         if(hero.hasHadFunTime){
-            funTime = 350;
+            this.bonusScore += 350;
         }
-        System.out.println(chess);
-        int gymLicence = 0;
         if(hero.hasPaidLicence){
-            gymLicence = 45;
+            this.bonusScore += 35;
         }
-        int meetUp = 0;
         if(hero.hasGoneToMeetUp){
-            meetUp = 100;
+            this.bonusScore += 50;
         }
-        int clover = 0;
         if(hero.hasFoundClover){
-            clover = 80;
+            this.bonusScore += 100;
         }
-        int bewitched = 0;
         if(hero.hasBeenBewitched){
-            bewitched = 60;
+            this.bonusScore += 180;
         }
-        int study = 0;
         if(hero.hasStudied){
-            study = 50;
+            this.bonusScore +=  50;
         }
-        int snacks = 0;
         if(hero.hasHadSNacks){
-            snacks = 15;
+            this.bonusScore +=  15;
         }
-        int project = 0;
         if(hero.hasWorkedOnPersonalProjects){
-            project = 25;
+            this.bonusScore +=  25;
         }
-        int alcohol = 0;
         if(hero.hasDrunk){
-            alcohol = 23;
+            this.bonusScore +=  5;
         }
-        int carrefour = 0;
         if(hero.hasCarrefoured){
-            carrefour = 70;
+            this.bonusScore += 50;
         }
-        int radio = 0;
         if(hero.hasListenedToRadio){
-            radio = 35;
+            this.bonusScore +=  5;
         }
-        int deadlift = 0;
         if(hero.hasDeadLifted){
-            deadlift = 45;
+            this.bonusScore +=  45;
         }
 
+        bonusScore +=(30-day.getDay())*100;
 
-        Score = (hero.getSocial() + hero.getMoney() + hero.getLuck() +
-                hero.getEndurance() + hero.getCodingSkills()) + chess + funTime
-        + gymLicence + meetUp + clover + bewitched + study + snacks + project
-        + alcohol + carrefour + radio + deadlift;
 
+        Score = (hero.getSocial() + hero.getMoney()/3 + hero.getLuck() +
+                hero.getEndurance() + hero.getCodingSkills()) + this.bonusScore;
 
 
         return Score;
@@ -124,16 +114,15 @@ public class GameOverScreen implements Screen{
         stage.draw();
 
         game.batch.begin();
-        game.font.draw(game.batch, "You loose, " + hero.getName(), 500, 500);
+        game.font.draw(game.batch, "You win !! " + hero.getName(), 500, 500);
         game.font.draw(game.batch, "Your final stats are: " , 40, 940);
-        game.font.draw(game.batch, "Money: " + hero.getMoney(), 40, 890);
+        game.font.draw(game.batch, "Money: " + hero.getMoney()/3, 40, 890);
         game.font.draw(game.batch, "Endurance: " + hero.getEndurance(), 40, 840);
         game.font.draw(game.batch, "Coding Skills: " + hero.getCodingSkills(), 40, 790);
         game.font.draw(game.batch, "Luck: " + hero.getLuck(), 40, 740);
         game.font.draw(game.batch, "Social: " + hero.getSocial(), 40, 690);
-
-        game.font.draw(game.batch, "Your final score is: " + calculateScore(), 40, 640);
-
+        game.font.draw(game.batch, "Bonus Score: " + this.bonusScore/2, 40, 640);
+        game.font.draw(game.batch, "Your final score is: " + calculateScore() , 40, 590);
 
         SpriteBatch batch = (SpriteBatch) stage.getBatch();
         batch.begin();

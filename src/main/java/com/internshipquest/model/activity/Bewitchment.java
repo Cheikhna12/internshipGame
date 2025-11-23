@@ -9,7 +9,7 @@ import com.internshipquest.utils.SoundManager;
 public class Bewitchment extends AActivity {
     // name, duration, costEnergy, costMoney
     public Bewitchment() {
-        super("Ask for a spell to gain luck", 2, 15, 100);
+        super("Buy a spell to gain luck", 2, 15, 100);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Bewitchment extends AActivity {
             SoundManager.playSound("SpellReverse",0.5f);
             hero.setMoney(hero.getMoney() - cost);
             hero.setLuck(hero.getLuck()-10);
-            message = "After " + duration + " hour of ritual, you notice that the sorcerer is holding his grimoire upside down.\n Too late to escape, misfortune strikes.";
+            message = "After " + duration + " hour of ritual, you notice that the sorcerer is holding his spellbook upside down.\n It's too late to escape, misfortune strikes.";
 
         } else if (chance +luck/1000 < 0.7 && chance+luck /1000 >=0.2) {
             SoundManager.playSound("SpellCough",0.5f);

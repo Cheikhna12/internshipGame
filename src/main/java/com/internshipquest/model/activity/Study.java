@@ -7,7 +7,7 @@ import com.internshipquest.utils.SoundManager;
 public class Study extends AActivity {
     
     public Study() {
-        super("Make the pool of the day", 8, 30, 0);
+        super("Do the pool of the day", 8, 30, 0);
     }
 
 
