@@ -1,6 +1,6 @@
-# 🎮 Internship Quest Game - Guide d'Installation
+# Internship Quest Game - Guide d'Installation
 
-## 📦 Contenu du Package
+## Contenu du Package
 
 Ce package contient tout ce dont vous avez besoin pour jouer à Internship Quest Game :
 
@@ -14,7 +14,7 @@ internship-quest-game/
 
 ---
 
-## ⚙️ Prérequis
+##  Prérequis
 
 **Java 17 ou supérieur** doit être installé sur votre ordinateur.
 
@@ -36,7 +36,7 @@ Si Java n'est pas installé, téléchargez-le ici :
 
 ---
 
-## 🚀 Lancement du Jeu
+## Lancement du Jeu
 
 ### Windows
 
@@ -67,35 +67,35 @@ java -jar internship-quest-game-1.0-SNAPSHOT.jar
 
 ---
 
-## 🎯 Comment Jouer
+## Comment Jouer
 
 ### Objectif
 Trouvez une alternance avant la fin du temps imparti en gérant vos statistiques et en relevant des défis !
 
 ### Contrôles
-- **Déplacement** : Flèches directionnelles ou ZQSD
+- **Déplacement** : Flèches directionnelles
 - **Interaction** : Cliquez sur les lieux pour interagir
 - **Menu** : Suivez les instructions à l'écran
 
 ### Statistiques à gérer
-- 💪 **Endurance** : Votre résistance physique
-- 🗣️ **Social** : Vos compétences sociales
-- 🍀 **Chance** : Votre facteur chance
-- 💻 **Coding Skills** : Vos compétences en programmation
-- 😰 **Stress** : Votre niveau de stress (à minimiser)
-- 💰 **Argent** : Vos finances
-- ⚡ **Énergie** : Votre niveau d'énergie
+- **Endurance** : Votre résistance physique
+- **Social** : Vos compétences sociales
+- **Chance** : Votre facteur chance
+- **Coding Skills** : Vos compétences en programmation
+- **Stress** : Votre niveau de stress (à minimiser)
+- **Argent** : Vos finances
+- **Énergie** : Votre niveau d'énergie
 
 ### Lieux disponibles
-- 🏫 **Epitech** : Étudiez et améliorez vos compétences
-- 🏪 **Carrefour** : Achetez de la nourriture et travaillez
-- 🏥 **Pokécenter** : Récupérez votre énergie
-- 💪 **FitnessClub** : Améliorez votre endurance
-- 🏠 **Maisons** : Reposez-vous et mangez
+- **Epitech** : Étudiez et améliorez vos compétences
+- **Carrefour** : Achetez de la nourriture et travaillez
+- **Pokécenter** : Récupérez votre énergie
+- **FitnessClub** : Améliorez votre endurance
+- **Maisons** : Reposez-vous et mangez
 
 ---
 
-## 🐛 Résolution de Problèmes
+## Résolution de Problèmes
 
 ### Le jeu ne se lance pas
 
@@ -129,7 +129,7 @@ java -Xmx4G -jar internship-quest-game-1.0-SNAPSHOT.jar
 
 ---
 
-## 📊 Configuration Système Recommandée
+## Configuration Système Recommandée
 
 ### Minimum
 - **OS** : Windows 10, Linux (Ubuntu 20.04+), macOS 10.14+
@@ -147,7 +147,7 @@ java -Xmx4G -jar internship-quest-game-1.0-SNAPSHOT.jar
 
 ---
 
-## 📝 Notes de Version
+## Notes de Version
 
 **Version 1.0-SNAPSHOT**
 - Système de carte interactive avec TMX
@@ -160,7 +160,7 @@ java -Xmx4G -jar internship-quest-game-1.0-SNAPSHOT.jar
 
 ---
 
-## 🆘 Support
+## Support
 
 Pour toute question ou problème :
 1. Vérifiez la section "Résolution de Problèmes" ci-dessus
@@ -169,7 +169,7 @@ Pour toute question ou problème :
 
 ---
 
-## 📜 Licence et Crédits
+## Licence et Crédits
 
 **Internship Quest Game**
 Développé avec LibGDX
@@ -182,6 +182,6 @@ Développé avec LibGDX
 
 ---
 
-## 🎮 Bon Jeu !
+## Bon Jeu !
 
-Bonne chance dans votre quête d'alternance ! 🚀
+Bonne chance dans votre quête d'alternance ! 

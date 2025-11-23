@@ -2,7 +2,42 @@
 
 Embark on the adventure of a student searching for the perfect internship in a Java Sim-life game where interviews turn into epic duels.
 
-## 📑 Table of Contents
+## Quick Start - Play the Game
+
+**Want to play right away? Build the game package!**
+
+### Build & Play
+
+1. **Generate the game package:**
+   ```bash
+   ./creer-package-distribution.sh
+   ```
+   This creates:
+   - `distribution/InternshipQuestGame-v1.0.zip`
+   - `distribution/InternshipQuestGame-v1.0.tar.gz` (for Linux/Mac)
+
+2. **Extract the archive:**
+   ```bash
+   # Windows: Right-click > Extract All
+   # Linux/Mac:
+   unzip distribution/InternshipQuestGame-v1.0.zip
+   # or
+   tar -xzf distribution/InternshipQuestGame-v1.0.tar.gz
+   ```
+
+3. **Launch the game:**
+   - **Windows**: Double-click `lancer-jeu.bat`
+   - **Linux/Mac**: Run `./lancer-jeu.sh`
+   - **Or manually**: `java -jar internship-quest-game-1.0-SNAPSHOT.jar`
+
+**Requirements:** Java 17 or higher must be installed on your system.
+
+> **Note:** Distribution packages are not included in the repository (too large). Generate them locally with the script above.
+
+---
+
+## Table of Contents
+- [Quick Start - Play the Game](#quick-start---play-the-game)
 - [Installation & Running](#installation--running)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
@@ -148,7 +183,7 @@ src/main/java/com/internshipquest
 - **Sounds**: Ambiance, music, effects for actions/events
 - **Fonts**: DMSerifText and OFL license
 
-## 🧪 Tests Unitaires
+##  Tests Unitaires
 
 ### Exécuter les tests
 
@@ -200,12 +235,6 @@ Ouvrez ce fichier dans votre navigateur pour voir :
 - Les lignes couvertes/non couvertes par classe
 - Les branches conditionnelles testées
 
-### Intégration Continue (CI/CD)
-
-Le projet inclut une pipeline GitHub Actions (`.github/workflows/tests.yml`) qui :
-- Exécute automatiquement tous les tests à chaque push
-- Génère le rapport de couverture
-- Archive les rapports comme artifacts
 
 ## Roadmap
 - Planned improvements:
