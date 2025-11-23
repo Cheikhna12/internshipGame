@@ -9,7 +9,7 @@ mvn exec:java
 ```
 ```
 
-## 💻 Code Expliqué
+## Code Expliqué
 
 ### WorldMapScreen.java (150 lignes)
 
